@@ -1,0 +1,98 @@
+/* Page-specific login styles */
+:root{
+  --brand:#2563eb; /* blue */
+  --muted:#6c757d;
+}
+
+body, html, .login-page{
+  height:100%;
+  background:linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+}
+
+.login-page{
+  min-height:100vh;
+}
+
+.login-card{
+  width:920px;
+  max-width:95vw;
+  border-radius:12px;
+  overflow:hidden;
+}
+
+.bg-image{
+  /* show the logo/image without a colored overlay */
+  background-image: url('/Images/New%20Logo.png');
+  background-size: contain; /* Use contain so the logo never crops when zooming */
+  background-repeat: no-repeat;
+  background-position: center center;
+  min-height: 420px; /* give some vertical space so the logo has room */
+  background-color: transparent;
+}
+
+.brand-logo{
+  width:96px;
+  height:auto;
+  object-fit:contain;
+  /* place the image on a clean white round area so any transparent logo looks correct */
+  background: #fff;
+  padding: 8px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(37,99,235,0.08);
+}
+
+.slogan{
+  display:inline-block;
+  padding:10px 18px;
+  font-weight:700;
+  color: #fff;
+  font-size:1.1rem;
+  letter-spacing:0.01em;
+  text-transform:none;
+  border-radius:999px;
+  background: linear-gradient(90deg, #2563eb 0%, #06b6d4 100%);
+  box-shadow: 0 8px 24px rgba(37,99,235,0.18);
+  position:relative;
+  overflow:hidden;
+}
+
+/* subtle shine */
+.slogan::after{
+  content:'';
+  position:absolute;
+  top:0;
+  left:-60%;
+  width:60%;
+  height:100%;
+  background:linear-gradient(120deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.35) 50%, rgba(255,255,255,0.15) 100%);
+  transform: skewX(-20deg);
+  transition: all 1.2s ease-in-out;
+}
+.slogan:hover::after{ left:120%; }
+
+@media (max-width:767.98px){
+  .slogan{ font-size:0.98rem; padding:8px 14px }
+}
+
+.login-card .card-body{
+  padding:0;
+}
+
+.input-group-text{
+  background:#fff;
+  border-right:0;
+}
+
+.form-control{
+  border-left:0;
+}
+
+.btn-primary{
+  background:var(--brand);
+  border-color:var(--brand);
+}
+
+@media (max-width:767.98px){
+  .bg-image{display:none}
+  .brand-logo{width:72px}
+}

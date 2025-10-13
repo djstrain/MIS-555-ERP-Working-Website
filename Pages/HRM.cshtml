@@ -1,0 +1,97 @@
+@page "/HRM"
+@model WebApplication1.Pages.HRMmodel
+
+@{
+    ViewData["Title"] = "Human Resource Management";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Human Resource Management</h1>
+
+    <section class="cards mb-5" aria-label="Key Metrics">
+        <article class="card">
+            <h3>Employees</h3>
+            <p>@Model.Employees.Count</p>
+        </article>
+        
+        <article class="card">
+            <h3>Departments</h3>
+            <p>@Model.DepartmentsCount</p>
+        </article>
+        
+        <article class="card">
+            <h3>Avg Salary</h3>
+            <p>@Model.AverageSalary.ToString("C0")</p>
+        </article>
+        
+        <article class="card">
+            <h3>Payroll (Mo)</h3>
+            <p>@Model.MonthlyPayroll.ToString("C0")</p>
+        </article>
+    </section>
+    
+    <div class="row mb-5">
+        <div class="col-md-4">
+            <form method="post">
+                <h2>Employee Search</h2>
+                <div class="input-group mb-2">
+                    <input type="text" asp-for="Input.SearchTerm" class="form-control" placeholder="Search by Name or ID..." />
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+                
+                <span asp-validation-for="Input.SearchTerm" class="text-danger"></span>
+            </form>
+        </div>
+        
+        <div class="col-md-4">
+            <h2 class="mt-4 mt-md-0">Filter</h2>
+            <label for="dept" class="d-block">Departments</label>
+            <select asp-for="Input.DepartmentFilter" id="dept" class="form-control" style="width:100%" onchange="this.form.submit()">
+                <option value="">All Departments</option>
+                @foreach(var d in Model.Employees.Select(e => e.Department).Where(d => !string.IsNullOrWhiteSpace(d)).Distinct(StringComparer.OrdinalIgnoreCase))
+                {
+                    <option value="@d" selected="@(string.Equals(Model.Input.DepartmentFilter, d, StringComparison.OrdinalIgnoreCase) ? "selected" : null)">@d</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    <h2>Employee Directory</h2>
+    <table class="table table-striped" style="margin-top:20px">
+        <thead>
+            <tr class="table-dark">
+                <th>Name</th>
+                <th>Department</th>
+                <th>Role</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Salary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Employees != null && Model.Employees.Any())
+            {
+                @* Loop through each Employee object in the list *@
+                @foreach (var employee in Model.Employees)
+                {
+                    <tr>
+                        <td>@employee.Name</td>
+                        <td>@employee.Department</td>
+                        <td>@employee.Role</td>
+                        <td>@employee.Address</td>
+                        <td>@employee.Phone</td>
+                        <td>@employee.Salary.ToString("C0")</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6">No employees to display.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+   

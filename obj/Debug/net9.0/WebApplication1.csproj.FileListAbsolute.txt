@@ -1,0 +1,584 @@
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/bin/Debug/net9.0/appsettings.Development.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/bin/Debug/net9.0/appsettings.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/bin/Debug/net9.0/WebApplication1.staticwebassets.runtime.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/bin/Debug/net9.0/WebApplication1.staticwebassets.endpoints.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/bin/Debug/net9.0/WebApplication1
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/bin/Debug/net9.0/WebApplication1.deps.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/bin/Debug/net9.0/WebApplication1.runtimeconfig.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/bin/Debug/net9.0/WebApplication1.dll
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/bin/Debug/net9.0/WebApplication1.pdb
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/rpswa.dswa.cache.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/WebApplication1.GeneratedMSBuildEditorConfig.editorconfig
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/WebApplication1.AssemblyInfoInputs.cache
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/WebApplication1.AssemblyInfo.cs
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/WebApplication1.csproj.CoreCompileInputs.cache
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/WebApplication1.MvcApplicationPartsAssemblyInfo.cache
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/WebApplication1.RazorAssemblyInfo.cache
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/WebApplication1.RazorAssemblyInfo.cs
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/rjimswa.dswa.cache.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/rjsmrazor.dswa.cache.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/rjsmcshtml.dswa.cache.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/scopedcss/Pages/Shared/_Layout.cshtml.rz.scp.css
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/scopedcss/bundle/WebApplication1.styles.css
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/scopedcss/projectbundle/WebApplication1.bundle.scp.css
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/ixpe6lrf0h-61n19gt1b8.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/9cuoy2kfs0-xtxxf3hu2r.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/19w17uh790-bqjiyaj88i.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/nxr65fp6ju-c2jlpeoesf.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/vds0grvm57-erw9l3u2r3.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/c0flqbh7jd-aexeepp0ev.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/nm9g14axri-d7shbmvgxk.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/8gyiizm30s-ausgxo2sd3.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/rmjmro5sku-k8d9w2qqmf.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/0o42b2g814-cosvhxvwiu.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/a215y03rvq-ub07r2b239.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/qp4fg9dus5-fvhpjtyr6v.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/03f6gdrpmq-b7pk76d08c.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/fle8gijxpn-fsbi9cje9m.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/o616lg12vu-rzd6atqjts.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/6z9gq5hhul-ee0r1s7dh0.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/byanloesg0-dxx9fxp4il.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/2qyufrochm-jd9uben2k1.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/4wv2vfd634-khv3u5hwcm.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/ja8fqrm8jy-r4e9w2rdcm.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/c2c1yxbmrg-lcd1t2u6c8.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/x0l4wjud04-c2oey78nd0.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/9vrkph75uu-tdbxkamptv.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/ikncwkxbxm-j5mq2jizvt.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/zomefxqwxo-06098lyss8.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/qvcz9cxlw7-nvvlpmu67g.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/3vcl8mu3ac-s35ty4nyc5.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/dn1423ojao-pj5nd1wqec.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/8q27mebpdv-46ein0sx1k.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/1dbtq5xxx4-v0zj4ognzu.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/ikqbg9q10o-37tfw0ft22.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/jat30n7i32-hrwsygsryq.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/cywyta7z3y-pk9g2wxc8p.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/zxs9ktsksh-ft3s53vfgj.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/ee17hrt33b-6cfz1n2cew.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/fymagkd8sm-6pdc2jztkx.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/ng36anrl9o-493y06b0oq.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/zpqfy2c4zi-iovd86k7lj.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/019yz3ojn6-vr1egmr9el.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/vpxwt0ikd2-kbrnm935zg.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/xea8x15nsi-jj8uyg4cgr.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/ru401ckino-y7v9cxd14o.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/1d45i4jnax-notf2xhcfb.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/o5bvkoqpwu-h1s4sie4z3.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/jea6umhs6z-63fj8s7r0e.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/dmrdq0yu68-0j3bgjxly4.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/rz7zkju6cf-47otxtyo56.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/b8h80mpqvt-4v8eqarkd7.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/qc2js6kczy-356vix0kms.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/fic9gxn2mp-83jwlth58m.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/z068dedv35-mrlpezrjn3.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/hpm0ws0t6t-lzl9nlhx6b.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/wryiew6yrs-ag7o75518u.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/qjngrmrkam-x0q3zqp4vz.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/1k3b7g2st6-0i3buxo5is.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/84er2wu9dc-o1o13a6vjx.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/wjzdzii2te-ttgo8qnofa.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/uclpxe38th-2z0ns9nrw6.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/igemxyk2qm-muycvpuwrr.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/tjlucbxuv0-87fc7y1x7t.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/cqxxp6mh6s-mlv21k5csn.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/staticwebassets.build.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/staticwebassets.build.json.cache
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/staticwebassets.development.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/staticwebassets.build.endpoints.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/WebApplication1.dll
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/refint/WebApplication1.dll
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/WebApplication1.pdb
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/WebApplication1.genruntimeconfig.cache
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/ref/WebApplication1.dll
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/mz4azubuim-4sryfxpqlk.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/4ej8qvsbid-4sryfxpqlk.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/sfr9826l73-b9sayid5wm.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/v0hg5kd2af-fkine303qw.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/9uwkjrcawh-5rurk76jfr.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/pzvw0wtrw7-idanv07etg.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/rn9r6p0q1d-u7n3jh46by.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/7vrtsrpmip-76vlz7ppx2.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/gezcd9l5iy-zredgrrjz9.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/dku91zxtk2-qzo1ael7q5.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/yca23pgf6u-ge7cmw0gvs.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/jwwb8bpvk7-98p6i47mhy.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/yg9wuf35o9-hp3y5u8zov.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/aefue5n8w5-j1rh3zmzf4.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/4nrwod1gpy-r2zjvkqz9j.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/c4oh1qh96e-3zmplc5kbr.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/a146igsz96-9xq9r5ygnr.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/l5p7jymqme-ealz4nmh17.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/qej0k42uae-jlom8mwc80.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/y6u2j6sl2o-r8xzjc00yk.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/3knzuzew2k-enyctd97xe.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/07jqbfhl64-uk79hfafcq.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/36as3noawr-21j5e60tnv.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/dduy0j93or-7110geyt33.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/i9zdnorfj8-rzd3327la3.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/tp9jhn170j-ilv7mgrltc.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/jqs9qqe5xf-qh9v230zix.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/hll8b3cqy3-k92vddmdlt.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/ku3dovyi26-e2yt01uo55.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/3dgsh67pmz-mtwjsfn9k0.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/j6sn761cyj-7eeuv104th.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/wstkq9flp3-bmffkpov56.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/twrgxny9y6-vyzdf1sirx.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/yurvr3xhy9-muoghvarxl.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/2qiqquc2xf-6w8a1nafav.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/mgu0rqrsxy-v1jgj6tvsn.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/bgl90ynbez-xcj3jwy3ez.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/040mz9ao9v-l2trj82oks.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/ahhvmodqn3-xu1u91xh30.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/xgk4ck246v-hfnvotp760.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/dx18tefebm-ceiik0ndnn.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/qj66ir4fij-e3n0to4hyu.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/kwb7jcuzmd-al1sn75wio.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/3q6als3wbn-5oqnx4l6rc.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/gfihzos8ns-od0218gj0o.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/5qfbb8gsgr-j6v91olcco.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/q1ddigqfyd-qzjy4gndhm.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/qqdalwilr9-4y1q69i7bh.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/n1ekesv7fw-7c3cqgm9ul.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/f5lw2tw3it-awv2fa1l5m.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/m92x6gfj9i-6wtquprqpz.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/gp68h8grcj-ua61j0m3jb.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/64zg66191j-4kz743aaul.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/7qtb39eve5-n6z6vjrvax.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/lo2jw7i472-mt8s8vc10g.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/4tkhanr7tv-q6le3n4pqd.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/6lik5k3au6-d903e53a5t.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/fkch20yenf-4gj71czt9y.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/b8ipx5fmjx-pmkdcvvyn8.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/pmmyc28gi4-i7lcvtu83x.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/y6vh3jaat4-zuydisaeqe.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/etmkbcrdoi-f8l8jlaarl.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/w00ims56lg-vwk46gvup8.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/xgv8adm6ux-e5qr4y45ti.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/bdmkbgfh36-tz92fy92qo.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/p0oktq0qet-hxpzm55bhm.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/vcy8q0no3o-jobdgyv7fd.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/1gij28ksab-oqzye5uocj.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/0vcyo6bo8q-d2c3fpsxt9.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/a8yvnpyxxr-1ctl41ykas.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/m1h4cgud0z-3v515g0etj.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/0ct6dn6sug-eid9cp036s.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/6bjkt1qlqx-e424kx1c0h.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/1f0jwixe4p-67ljsce0th.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/ca5wkfjyrc-ybbqubdvl8.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/qc10kj8sx0-t7b1t7uvp2.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/yx0dh9zj5i-f2ihk7vblk.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/clrnajayu2-zwed15lnye.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/w9o9d92gjc-fmbsxotvex.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/osmyunlsos-ostrvpws33.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/w6ko3dfrel-pptdjadj5b.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/2jn021p0pd-d6qy9io5vu.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/g94v4mm6af-552ihykybp.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/ixvay70oet-8yjydtqp9z.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/7leuditzai-vq2po8yq3w.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/ib09o5f1uu-ob01ycvowj.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/hy6bzz4miy-ge8k5fxfc6.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/tfzx3hjlv1-fuz00yeobm.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/mcohlsis06-xb8z1hr9l3.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/gzv31nb9cb-lvofo3pdm2.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/xjbcl7z7wh-dwxoijawmz.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/q2h85hzj24-cj4u9hcvw0.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/hdde5kgtib-296er6y1kw.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/bv5l8xe3ds-5vnigwyrxj.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/47qv8phfeg-lbl2ndukgw.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/p8q9293tud-ae7cu6h1ei.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/4k25ehsuy6-dtph94s8kj.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/kx3cod70rn-f930k6wun1.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/xikhwei4za-eg9m97f3dw.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/l0ld6yeqps-9chea49xda.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1/obj/Debug/net9.0/compressed/87wud5rj38-fifz381iq3.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/bin/Debug/net9.0/appsettings.Development.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/bin/Debug/net9.0/appsettings.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/bin/Debug/net9.0/WebApplication1.staticwebassets.endpoints.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/bin/Debug/net9.0/WebApplication1.staticwebassets.runtime.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/bin/Debug/net9.0/WebApplication1
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/bin/Debug/net9.0/WebApplication1.deps.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/bin/Debug/net9.0/WebApplication1.runtimeconfig.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/bin/Debug/net9.0/WebApplication1.dll
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/bin/Debug/net9.0/WebApplication1.pdb
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/rpswa.dswa.cache.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/WebApplication1.GeneratedMSBuildEditorConfig.editorconfig
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/WebApplication1.AssemblyInfoInputs.cache
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/WebApplication1.AssemblyInfo.cs
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/WebApplication1.csproj.CoreCompileInputs.cache
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/WebApplication1.MvcApplicationPartsAssemblyInfo.cache
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/WebApplication1.RazorAssemblyInfo.cache
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/WebApplication1.RazorAssemblyInfo.cs
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/rjimswa.dswa.cache.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/rjsmrazor.dswa.cache.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/rjsmcshtml.dswa.cache.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/scopedcss/Pages/Shared/_Layout.cshtml.rz.scp.css
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/scopedcss/bundle/WebApplication1.styles.css
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/scopedcss/projectbundle/WebApplication1.bundle.scp.css
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/87wud5rj38-fifz381iq3.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/ixpe6lrf0h-61n19gt1b8.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/v0hg5kd2af-fkine303qw.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/9uwkjrcawh-5rurk76jfr.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/pzvw0wtrw7-idanv07etg.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/rn9r6p0q1d-u7n3jh46by.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/7vrtsrpmip-76vlz7ppx2.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/gezcd9l5iy-zredgrrjz9.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/dku91zxtk2-qzo1ael7q5.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/yca23pgf6u-ge7cmw0gvs.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/jwwb8bpvk7-98p6i47mhy.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/yg9wuf35o9-hp3y5u8zov.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/aefue5n8w5-j1rh3zmzf4.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/4nrwod1gpy-r2zjvkqz9j.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/c4oh1qh96e-3zmplc5kbr.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/a146igsz96-9xq9r5ygnr.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/l5p7jymqme-ealz4nmh17.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/qej0k42uae-jlom8mwc80.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/y6u2j6sl2o-r8xzjc00yk.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/3knzuzew2k-enyctd97xe.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/07jqbfhl64-uk79hfafcq.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/36as3noawr-21j5e60tnv.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/dduy0j93or-7110geyt33.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/i9zdnorfj8-rzd3327la3.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/tp9jhn170j-ilv7mgrltc.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/jqs9qqe5xf-qh9v230zix.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/hll8b3cqy3-k92vddmdlt.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/ku3dovyi26-e2yt01uo55.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/3dgsh67pmz-mtwjsfn9k0.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/j6sn761cyj-7eeuv104th.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/wstkq9flp3-bmffkpov56.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/twrgxny9y6-vyzdf1sirx.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/yurvr3xhy9-muoghvarxl.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/2qiqquc2xf-6w8a1nafav.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/mgu0rqrsxy-v1jgj6tvsn.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/bgl90ynbez-xcj3jwy3ez.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/040mz9ao9v-l2trj82oks.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/ahhvmodqn3-xu1u91xh30.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/xgk4ck246v-hfnvotp760.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/dx18tefebm-ceiik0ndnn.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/qj66ir4fij-e3n0to4hyu.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/kwb7jcuzmd-al1sn75wio.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/3q6als3wbn-5oqnx4l6rc.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/gfihzos8ns-od0218gj0o.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/5qfbb8gsgr-j6v91olcco.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/q1ddigqfyd-qzjy4gndhm.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/qqdalwilr9-4y1q69i7bh.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/n1ekesv7fw-7c3cqgm9ul.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/f5lw2tw3it-awv2fa1l5m.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/m92x6gfj9i-6wtquprqpz.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/gp68h8grcj-ua61j0m3jb.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/64zg66191j-4kz743aaul.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/7qtb39eve5-n6z6vjrvax.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/lo2jw7i472-mt8s8vc10g.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/4tkhanr7tv-q6le3n4pqd.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/6lik5k3au6-d903e53a5t.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/fkch20yenf-4gj71czt9y.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/b8ipx5fmjx-pmkdcvvyn8.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/pmmyc28gi4-i7lcvtu83x.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/y6vh3jaat4-zuydisaeqe.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/etmkbcrdoi-f8l8jlaarl.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/w00ims56lg-vwk46gvup8.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/xgv8adm6ux-e5qr4y45ti.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/bdmkbgfh36-tz92fy92qo.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/p0oktq0qet-hxpzm55bhm.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/vcy8q0no3o-jobdgyv7fd.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/1gij28ksab-oqzye5uocj.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/0vcyo6bo8q-d2c3fpsxt9.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/a8yvnpyxxr-1ctl41ykas.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/m1h4cgud0z-3v515g0etj.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/0ct6dn6sug-eid9cp036s.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/6bjkt1qlqx-e424kx1c0h.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/1f0jwixe4p-67ljsce0th.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/ca5wkfjyrc-ybbqubdvl8.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/qc10kj8sx0-t7b1t7uvp2.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/yx0dh9zj5i-f2ihk7vblk.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/clrnajayu2-zwed15lnye.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/w9o9d92gjc-fmbsxotvex.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/osmyunlsos-ostrvpws33.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/w6ko3dfrel-pptdjadj5b.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/2jn021p0pd-d6qy9io5vu.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/g94v4mm6af-552ihykybp.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/ixvay70oet-8yjydtqp9z.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/7leuditzai-vq2po8yq3w.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/ib09o5f1uu-ob01ycvowj.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/hy6bzz4miy-ge8k5fxfc6.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/tfzx3hjlv1-fuz00yeobm.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/mcohlsis06-xb8z1hr9l3.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/gzv31nb9cb-lvofo3pdm2.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/xjbcl7z7wh-dwxoijawmz.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/q2h85hzj24-cj4u9hcvw0.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/hdde5kgtib-296er6y1kw.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/bv5l8xe3ds-5vnigwyrxj.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/47qv8phfeg-lbl2ndukgw.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/p8q9293tud-ae7cu6h1ei.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/4k25ehsuy6-dtph94s8kj.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/kx3cod70rn-f930k6wun1.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/xikhwei4za-eg9m97f3dw.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/l0ld6yeqps-9chea49xda.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/9cuoy2kfs0-xtxxf3hu2r.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/19w17uh790-bqjiyaj88i.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/nxr65fp6ju-c2jlpeoesf.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/vds0grvm57-erw9l3u2r3.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/c0flqbh7jd-aexeepp0ev.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/nm9g14axri-d7shbmvgxk.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/8gyiizm30s-ausgxo2sd3.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/rmjmro5sku-k8d9w2qqmf.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/0o42b2g814-cosvhxvwiu.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/a215y03rvq-ub07r2b239.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/qp4fg9dus5-fvhpjtyr6v.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/03f6gdrpmq-b7pk76d08c.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/fle8gijxpn-fsbi9cje9m.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/o616lg12vu-rzd6atqjts.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/6z9gq5hhul-ee0r1s7dh0.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/byanloesg0-dxx9fxp4il.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/2qyufrochm-jd9uben2k1.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/4wv2vfd634-khv3u5hwcm.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/ja8fqrm8jy-r4e9w2rdcm.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/c2c1yxbmrg-lcd1t2u6c8.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/x0l4wjud04-c2oey78nd0.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/9vrkph75uu-tdbxkamptv.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/ikncwkxbxm-j5mq2jizvt.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/zomefxqwxo-06098lyss8.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/qvcz9cxlw7-nvvlpmu67g.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/3vcl8mu3ac-s35ty4nyc5.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/dn1423ojao-pj5nd1wqec.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/8q27mebpdv-46ein0sx1k.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/1dbtq5xxx4-v0zj4ognzu.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/ikqbg9q10o-37tfw0ft22.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/jat30n7i32-hrwsygsryq.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/cywyta7z3y-pk9g2wxc8p.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/zxs9ktsksh-ft3s53vfgj.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/ee17hrt33b-6cfz1n2cew.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/fymagkd8sm-6pdc2jztkx.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/ng36anrl9o-493y06b0oq.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/zpqfy2c4zi-iovd86k7lj.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/019yz3ojn6-vr1egmr9el.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/vpxwt0ikd2-kbrnm935zg.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/xea8x15nsi-jj8uyg4cgr.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/ru401ckino-y7v9cxd14o.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/1d45i4jnax-notf2xhcfb.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/o5bvkoqpwu-h1s4sie4z3.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/jea6umhs6z-63fj8s7r0e.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/dmrdq0yu68-0j3bgjxly4.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/rz7zkju6cf-47otxtyo56.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/b8h80mpqvt-4v8eqarkd7.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/qc2js6kczy-356vix0kms.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/fic9gxn2mp-83jwlth58m.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/z068dedv35-mrlpezrjn3.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/hpm0ws0t6t-lzl9nlhx6b.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/wryiew6yrs-ag7o75518u.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/qjngrmrkam-x0q3zqp4vz.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/1k3b7g2st6-0i3buxo5is.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/84er2wu9dc-o1o13a6vjx.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/wjzdzii2te-ttgo8qnofa.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/uclpxe38th-2z0ns9nrw6.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/igemxyk2qm-muycvpuwrr.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/tjlucbxuv0-87fc7y1x7t.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/cqxxp6mh6s-mlv21k5csn.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/mz4azubuim-4sryfxpqlk.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/4ej8qvsbid-4sryfxpqlk.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/staticwebassets.build.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/staticwebassets.build.json.cache
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/staticwebassets.development.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/staticwebassets.build.endpoints.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/WebApplication1.dll
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/refint/WebApplication1.dll
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/WebApplication1.pdb
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/WebApplication1.genruntimeconfig.cache
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/ref/WebApplication1.dll
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/compressed/sfr9826l73-t0ca2smxyt.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/obj/Debug/net9.0/WebApplication1.sourcelink.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/bin/Debug/net9.0/appsettings.Development.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/bin/Debug/net9.0/appsettings.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/bin/Debug/net9.0/WebApplication1.staticwebassets.endpoints.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/bin/Debug/net9.0/WebApplication1.staticwebassets.runtime.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/bin/Debug/net9.0/WebApplication1
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/bin/Debug/net9.0/WebApplication1.deps.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/bin/Debug/net9.0/WebApplication1.runtimeconfig.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/bin/Debug/net9.0/WebApplication1.dll
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/bin/Debug/net9.0/WebApplication1.pdb
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/rpswa.dswa.cache.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/WebApplication1.GeneratedMSBuildEditorConfig.editorconfig
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/WebApplication1.AssemblyInfoInputs.cache
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/WebApplication1.AssemblyInfo.cs
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/WebApplication1.csproj.CoreCompileInputs.cache
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/WebApplication1.MvcApplicationPartsAssemblyInfo.cache
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/WebApplication1.RazorAssemblyInfo.cache
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/WebApplication1.RazorAssemblyInfo.cs
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/WebApplication1.sourcelink.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/rjimswa.dswa.cache.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/rjsmrazor.dswa.cache.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/rjsmcshtml.dswa.cache.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/scopedcss/Pages/Shared/_Layout.cshtml.rz.scp.css
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/scopedcss/bundle/WebApplication1.styles.css
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/scopedcss/projectbundle/WebApplication1.bundle.scp.css
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/sfr9826l73-t0ca2smxyt.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/ixpe6lrf0h-61n19gt1b8.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/v0hg5kd2af-fkine303qw.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/9uwkjrcawh-5rurk76jfr.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/pzvw0wtrw7-idanv07etg.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/rn9r6p0q1d-u7n3jh46by.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/7vrtsrpmip-76vlz7ppx2.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/gezcd9l5iy-zredgrrjz9.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/dku91zxtk2-qzo1ael7q5.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/yca23pgf6u-ge7cmw0gvs.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/jwwb8bpvk7-98p6i47mhy.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/yg9wuf35o9-hp3y5u8zov.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/aefue5n8w5-j1rh3zmzf4.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/4nrwod1gpy-r2zjvkqz9j.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/c4oh1qh96e-3zmplc5kbr.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/a146igsz96-9xq9r5ygnr.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/l5p7jymqme-ealz4nmh17.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/qej0k42uae-jlom8mwc80.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/y6u2j6sl2o-r8xzjc00yk.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/3knzuzew2k-enyctd97xe.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/07jqbfhl64-uk79hfafcq.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/36as3noawr-21j5e60tnv.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/dduy0j93or-7110geyt33.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/i9zdnorfj8-rzd3327la3.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/tp9jhn170j-ilv7mgrltc.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/jqs9qqe5xf-qh9v230zix.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/hll8b3cqy3-k92vddmdlt.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/ku3dovyi26-e2yt01uo55.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/3dgsh67pmz-mtwjsfn9k0.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/j6sn761cyj-7eeuv104th.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/wstkq9flp3-bmffkpov56.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/twrgxny9y6-vyzdf1sirx.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/yurvr3xhy9-muoghvarxl.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/2qiqquc2xf-6w8a1nafav.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/mgu0rqrsxy-v1jgj6tvsn.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/bgl90ynbez-xcj3jwy3ez.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/040mz9ao9v-l2trj82oks.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/ahhvmodqn3-xu1u91xh30.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/xgk4ck246v-hfnvotp760.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/dx18tefebm-ceiik0ndnn.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/qj66ir4fij-e3n0to4hyu.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/kwb7jcuzmd-al1sn75wio.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/3q6als3wbn-5oqnx4l6rc.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/gfihzos8ns-od0218gj0o.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/5qfbb8gsgr-j6v91olcco.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/q1ddigqfyd-qzjy4gndhm.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/qqdalwilr9-4y1q69i7bh.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/n1ekesv7fw-7c3cqgm9ul.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/f5lw2tw3it-awv2fa1l5m.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/m92x6gfj9i-6wtquprqpz.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/gp68h8grcj-ua61j0m3jb.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/64zg66191j-4kz743aaul.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/7qtb39eve5-n6z6vjrvax.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/lo2jw7i472-mt8s8vc10g.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/4tkhanr7tv-q6le3n4pqd.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/6lik5k3au6-d903e53a5t.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/fkch20yenf-4gj71czt9y.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/b8ipx5fmjx-pmkdcvvyn8.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/pmmyc28gi4-i7lcvtu83x.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/y6vh3jaat4-zuydisaeqe.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/etmkbcrdoi-f8l8jlaarl.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/w00ims56lg-vwk46gvup8.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/xgv8adm6ux-e5qr4y45ti.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/bdmkbgfh36-tz92fy92qo.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/p0oktq0qet-hxpzm55bhm.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/vcy8q0no3o-jobdgyv7fd.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/1gij28ksab-oqzye5uocj.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/0vcyo6bo8q-d2c3fpsxt9.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/a8yvnpyxxr-1ctl41ykas.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/m1h4cgud0z-3v515g0etj.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/0ct6dn6sug-eid9cp036s.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/6bjkt1qlqx-e424kx1c0h.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/1f0jwixe4p-67ljsce0th.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/ca5wkfjyrc-ybbqubdvl8.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/qc10kj8sx0-t7b1t7uvp2.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/yx0dh9zj5i-f2ihk7vblk.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/clrnajayu2-zwed15lnye.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/w9o9d92gjc-fmbsxotvex.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/osmyunlsos-ostrvpws33.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/w6ko3dfrel-pptdjadj5b.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/2jn021p0pd-d6qy9io5vu.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/g94v4mm6af-552ihykybp.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/ixvay70oet-8yjydtqp9z.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/7leuditzai-vq2po8yq3w.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/ib09o5f1uu-ob01ycvowj.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/hy6bzz4miy-ge8k5fxfc6.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/tfzx3hjlv1-fuz00yeobm.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/mcohlsis06-xb8z1hr9l3.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/gzv31nb9cb-lvofo3pdm2.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/xjbcl7z7wh-dwxoijawmz.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/q2h85hzj24-cj4u9hcvw0.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/hdde5kgtib-296er6y1kw.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/bv5l8xe3ds-5vnigwyrxj.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/47qv8phfeg-lbl2ndukgw.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/p8q9293tud-ae7cu6h1ei.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/4k25ehsuy6-dtph94s8kj.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/kx3cod70rn-f930k6wun1.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/xikhwei4za-eg9m97f3dw.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/l0ld6yeqps-9chea49xda.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/9cuoy2kfs0-xtxxf3hu2r.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/19w17uh790-bqjiyaj88i.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/nxr65fp6ju-c2jlpeoesf.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/vds0grvm57-erw9l3u2r3.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/c0flqbh7jd-aexeepp0ev.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/nm9g14axri-d7shbmvgxk.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/8gyiizm30s-ausgxo2sd3.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/rmjmro5sku-k8d9w2qqmf.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/0o42b2g814-cosvhxvwiu.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/a215y03rvq-ub07r2b239.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/qp4fg9dus5-fvhpjtyr6v.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/03f6gdrpmq-b7pk76d08c.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/fle8gijxpn-fsbi9cje9m.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/o616lg12vu-rzd6atqjts.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/6z9gq5hhul-ee0r1s7dh0.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/byanloesg0-dxx9fxp4il.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/2qyufrochm-jd9uben2k1.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/4wv2vfd634-khv3u5hwcm.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/ja8fqrm8jy-r4e9w2rdcm.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/c2c1yxbmrg-lcd1t2u6c8.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/x0l4wjud04-c2oey78nd0.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/9vrkph75uu-tdbxkamptv.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/ikncwkxbxm-j5mq2jizvt.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/zomefxqwxo-06098lyss8.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/qvcz9cxlw7-nvvlpmu67g.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/3vcl8mu3ac-s35ty4nyc5.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/dn1423ojao-pj5nd1wqec.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/8q27mebpdv-46ein0sx1k.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/1dbtq5xxx4-v0zj4ognzu.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/ikqbg9q10o-37tfw0ft22.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/jat30n7i32-hrwsygsryq.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/cywyta7z3y-pk9g2wxc8p.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/zxs9ktsksh-ft3s53vfgj.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/ee17hrt33b-6cfz1n2cew.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/fymagkd8sm-6pdc2jztkx.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/ng36anrl9o-493y06b0oq.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/zpqfy2c4zi-iovd86k7lj.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/019yz3ojn6-vr1egmr9el.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/vpxwt0ikd2-kbrnm935zg.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/xea8x15nsi-jj8uyg4cgr.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/ru401ckino-y7v9cxd14o.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/1d45i4jnax-notf2xhcfb.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/o5bvkoqpwu-h1s4sie4z3.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/jea6umhs6z-63fj8s7r0e.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/dmrdq0yu68-0j3bgjxly4.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/rz7zkju6cf-47otxtyo56.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/b8h80mpqvt-4v8eqarkd7.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/qc2js6kczy-356vix0kms.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/fic9gxn2mp-83jwlth58m.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/z068dedv35-mrlpezrjn3.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/hpm0ws0t6t-lzl9nlhx6b.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/wryiew6yrs-ag7o75518u.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/qjngrmrkam-x0q3zqp4vz.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/1k3b7g2st6-0i3buxo5is.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/84er2wu9dc-o1o13a6vjx.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/wjzdzii2te-ttgo8qnofa.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/uclpxe38th-2z0ns9nrw6.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/igemxyk2qm-muycvpuwrr.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/tjlucbxuv0-87fc7y1x7t.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/cqxxp6mh6s-mlv21k5csn.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/mz4azubuim-4sryfxpqlk.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/4ej8qvsbid-4sryfxpqlk.gz
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/staticwebassets.build.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/staticwebassets.build.json.cache
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/staticwebassets.development.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/staticwebassets.build.endpoints.json
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/WebApplication1.dll
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/refint/WebApplication1.dll
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/WebApplication1.pdb
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/WebApplication1.genruntimeconfig.cache
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/ref/WebApplication1.dll
+/Users/dominicstrain/Desktop/MIS/Csharp/MIS 555 Cloud Computing Main Project/WebApplication1 backup/MIS-555-ERP-Working-Website/obj/Debug/net9.0/compressed/87wud5rj38-0qjyx2i9r4.gz

@@ -1,0 +1,103 @@
+/* ========================================================================= */
+/* --- Default Bootstrap Overrides (Keep these at the top) --- */
+/* ========================================================================= */
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  /* Using Bootstrap's focus style */
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+/* Fix for form floating labels/placeholders */
+.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+  color: var(--bs-secondary-color);
+  text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+  text-align: start;
+}
+
+/* ========================================================================= */
+/* --- Layout Fix for Side Navigation Bar (CRITICAL FIX) --- */
+/* ========================================================================= */
+
+/* This fix adds padding to the right of your main content container(s) 
+   to prevent the content from being clipped by the fixed side navigation bar.
+   90px is used, assuming the navigation bar is about 60-70px wide. */
+.container, .container-fluid, .row {
+    padding-right: 90px !important; 
+}
+
+
+/* ========================================================================= */
+/* --- HRM Dashboard Custom Styling --- */
+/* ========================================================================= */
+
+/* Global Enhancements */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f9; /* Light gray background for contrast */
+}
+
+/* Page Title Style */
+h1 {
+    font-weight: 300;
+    color: #007bff; /* Primary brand color */
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 10px;
+    margin-bottom: 25px !important;
+}
+
+h2 {
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: #333;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+/* --- Section Cards Styling --- */
+.cards {
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    margin-bottom: 30px !important;
+    flex-wrap: wrap; 
+}
+
+/* Individual Card Appearance */
+.card {
+    flex: 1; 
+    min-width: 220px; 
+    
+    background-color: #ffffff;
+    border: none; 
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Card Hover Effect (for interactivity) */
+.card:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}

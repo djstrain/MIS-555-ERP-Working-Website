@@ -1,0 +1,88 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Sign In";
+    Layout = null; // keep layout null so page controls all styles
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CTRL+Freak</title>
+
+    <!-- Bootstrap (local) -->
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <!-- Site-wide styles -->
+    <link rel="stylesheet" href="/css/site.css" />
+    <!-- Page-specific styles -->
+    <link rel="stylesheet" href="/css/login.css" />
+</head>
+<body>
+
+<main class="login-page d-flex align-items-center justify-content-center">
+    <div class="card login-card shadow-lg p-0">
+        <div class="card-body p-0">
+            <div class="row g-0">
+                <div class="col-md-6 d-none d-md-flex bg-image"></div>
+                <div class="col-md-6">
+                    <div class="p-4 p-md-5 h-100 d-flex flex-column justify-content-center">
+                        <div class="text-center mb-4">
+                            <div class="slogan mb-3">"your system in our control"</div>
+                            <p class="text-muted">Sign in to continue to your account</p>
+                        </div>
+
+                        <form method="post" class="needs-validation" novalidate>
+                            <div class="mb-3 input-group">
+                                <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+                                <input type="text" name="username" class="form-control" placeholder="Email or username" required aria-label="Username" />
+                                <div class="invalid-feedback">Please enter your username or email.</div>
+                            </div>
+
+                            <div class="mb-3 input-group">
+                                <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+                                <input type="password" name="password" class="form-control" placeholder="Password" required aria-label="Password" />
+                                <div class="invalid-feedback">Please enter your password.</div>
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="rememberMe" checked>
+                                    <label class="form-check-label" for="rememberMe">Remember me</label>
+                                </div>
+                                <a href="#" class="small">Forgot password?</a>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100 mb-3">Sign in</button>
+
+                            <div class="text-center small text-muted">Don't have an account? <a href="#">Sign up</a></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    // Simple Bootstrap validation
+    (function () {
+        'use strict'
+        var forms = document.querySelectorAll('.needs-validation')
+        Array.prototype.slice.call(forms).forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+                form.classList.add('was-validated')
+            }, false)
+        })
+    })()
+</script>
+
+</body>
+</html>
