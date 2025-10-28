@@ -1,15 +1,31 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using WebApplication1.Data;
 
 namespace WebApplication1.Pages;
 
 public class IndexModel : PageModel
 {
-    // Bind the form fields
-    [BindProperty] public string username { get; set; } = string.Empty;
-    [BindProperty] public string password { get; set; } = string.Empty;
+    private readonly AppDbContents _context;
+
+    [BindProperty]
+    [Required(ErrorMessage = "Email is required")]
+    [EmailAddress(ErrorMessage = "Invalid email address")]
+    public string Email { get; set; } = string.Empty;
+
+    [BindProperty]
+    [Required(ErrorMessage = "Password is required")]
+    [DataType(DataType.Password)]
+    public string Password { get; set; } = string.Empty;
+
+    public IndexModel(AppDbContents context)
+    {
+        _context = context;
+    }
+
 
     // In-memory seeded credentials. THIS IS FOR DEMO PURPOSES ONLY.
     // Storing plaintext passwords is insecure. For production use ASP.NET Core Identity
@@ -35,20 +51,41 @@ public class IndexModel : PageModel
 
     public IActionResult OnPost()
     {
-        // normalize the username for comparison
-        var user = username?.Trim().ToLowerInvariant() ?? string.Empty;
-
-        if (!string.IsNullOrEmpty(user) && _validUsers.TryGetValue(user, out var expectedPassword))
+        if (!ModelState.IsValid)
         {
-            if (password == expectedPassword)
+            return Page();
+        }
+
+        // normalize the email for comparison
+        var normalizedEmail = Email?.Trim().ToLowerInvariant() ?? string.Empty;
+
+        // Check if user exists in database
+        var user = _context.UserCredentials
+            .FirstOrDefault(u => u.Email.ToLower() == normalizedEmail);
+
+        if (user != null && user.Password == Password)
+        {
+            // Login successful - you should use proper password hashing in production
+            var userRole = user.Role.ToLower();
+            
+            if (userRole == "admin")
             {
-                // Login successful
+                return RedirectToPage("/HRM");
+            }
+            else if (userRole == "user")
+            {
                 return RedirectToPage("/Privacy");
+            }
+            else
+            {
+                // Handle any other roles if needed
+                ModelState.AddModelError(string.Empty, "Invalid role assignment.");
+                return Page();
             }
         }
 
         // Invalid login attempt
-        ModelState.AddModelError(string.Empty, "Invalid username or password.");
+        ModelState.AddModelError(string.Empty, "Invalid email or password.");
         return Page();
     }
 }
