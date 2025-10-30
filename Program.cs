@@ -5,12 +5,24 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDistributedMemoryCache();
 // connect AppDbContents to database
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 // UseMySql method specifies that we are using MySQL database
 builder.Services.AddDbContext<AppDbContents>(options =>
     options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 21)))
 );
+
+// HttpContext accessor and Session support
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddSession(options =>
+{
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
+
+
 var app = builder.Build();
 
 // Ensure database exists (creates schema if it doesn't)
@@ -32,10 +44,13 @@ app.UseHttpsRedirection();
 
 app.UseRouting();
 
+// Enable session before endpoints
+app.UseSession();
+
 app.UseAuthorization();
 
 app.MapStaticAssets();
 app.MapRazorPages()
-   .WithStaticAssets();
+    .WithStaticAssets();
 
 app.Run();

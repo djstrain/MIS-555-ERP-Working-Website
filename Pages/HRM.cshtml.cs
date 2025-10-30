@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 namespace WebApplication1.Pages;
 
@@ -33,15 +34,38 @@ public class HRMmodel : PageModel
     }
 
     // OnGet handler to simulate fetching the data (for initial page load)
-    public void OnGet()
+    public async Task<IActionResult> OnGetAsync()
     {
+        //create a variable save UserRole values from session
+        var userRole = HttpContext.Session.GetString("UserRole");
+        //check if userrole is null or not admin (case-insensitive)
+        if (string.IsNullOrEmpty(userRole) || !userRole.Equals("Admin", StringComparison.OrdinalIgnoreCase))
+        {
+            TempData["ErrorMessage"] = "You do not have permission to access the HRM page.";
+            // redirect regular users to Privacy
+            return RedirectToPage("/Privacy");
+        }
+        // sprint 3: display employee data here later
+
+        //pretend these are loaded from a database
         // Load the hardcoded data to ensure the page shows content.
         LoadEmployeeData();
+
+        return Page();
     }
+
     
     // OnPost handler to process form submissions (e.g., when a user clicks 'Search')
     public IActionResult OnPost()
     {
+        // Enforce admin-only access on POST as well
+        var userRole = HttpContext.Session.GetString("UserRole");
+        if (string.IsNullOrEmpty(userRole) || !userRole.Equals("Admin", StringComparison.OrdinalIgnoreCase))
+        {
+            TempData["ErrorMessage"] = "You do not have permission to access the HRM page.";
+            return RedirectToPage("/Privacy");
+        }
+
         // Check if validation rules (like [Required]) have failed
         if (!ModelState.IsValid)
         {
