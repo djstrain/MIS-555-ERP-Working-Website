@@ -1,6 +1,4 @@
-# Change Summary — Explained for Beginners (2025-10-30)
-
-This guide explains what we changed in the website and how it all works, using simple language and complete sentences. If you are new to coding, read this section by section.
+# Change Summary 
 
 ## 1) How the database connection works
 - We store our app’s database login details in a file called `appsettings.json`. This includes the server address, the database name (`rxerp`), and the username.

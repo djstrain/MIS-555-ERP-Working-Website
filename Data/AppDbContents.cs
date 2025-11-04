@@ -10,6 +10,7 @@ namespace WebApplication1.Data
         }
 
         public DbSet<UserCredentials> UserCredentials { get; set; } = null!;
+        public DbSet<Employee> Employees { get; set; } = null!;
     }
 }
  

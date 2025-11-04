@@ -1,15 +1,24 @@
 using Microsoft.AspNetCore.Mvc; 
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
+using WebApplication1.Data;
 
 namespace WebApplication1.Pages;
 
 public class HRMmodel : PageModel
 {
+    private readonly AppDbContents _context;
+
+    public HRMmodel(AppDbContents context)
+    {
+        _context = context;
+    }
+
     // Model to bind search/form inputs and apply validation
     [BindProperty]
     public InputModel Input { get; set; } = new();
@@ -45,18 +54,16 @@ public class HRMmodel : PageModel
             // redirect regular users to Privacy
             return RedirectToPage("/Privacy");
         }
-        // sprint 3: display employee data here later
 
-        //pretend these are loaded from a database
-        // Load the hardcoded data to ensure the page shows content.
-        LoadEmployeeData();
+        // Load employee data from database
+        await LoadEmployeeDataAsync();
 
         return Page();
     }
 
     
     // OnPost handler to process form submissions (e.g., when a user clicks 'Search')
-    public IActionResult OnPost()
+    public async Task<IActionResult> OnPostAsync()
     {
         // Enforce admin-only access on POST as well
         var userRole = HttpContext.Session.GetString("UserRole");
@@ -69,12 +76,12 @@ public class HRMmodel : PageModel
         // Check if validation rules (like [Required]) have failed
         if (!ModelState.IsValid)
         {
-            LoadEmployeeData(); 
+            await LoadEmployeeDataAsync(); 
             return Page(); // Return to the page to show the error message
         }
         
-        // If valid, proceed with search/filter logic
-        LoadEmployeeData(); 
+        // Load all employees from database first
+        await LoadEmployeeDataAsync(); 
         
         // Optional: Simple filtering logic (if a search term is provided)
         if (!string.IsNullOrWhiteSpace(Input.SearchTerm))
@@ -98,72 +105,11 @@ public class HRMmodel : PageModel
         return Page(); // Stay on the HRM page
     }
 
-    // Helper method to load the pre-set data into memory.
-    private void LoadEmployeeData()
+    // Helper method to load employee data from the database
+    private async Task LoadEmployeeDataAsync()
     {
-        Employees = new List<Employee>
-        {
-            // Existing Employees
-            new Employee {
-                Name = "Jane Doe",
-                Department = "HR",
-                Role = "Specialist",
-                Address = "123 Main St",
-                Phone = "555-1234",
-                Salary = 75000.00m
-            },
-            new Employee {
-                Name = "John Smith",
-                Department = "Finance",
-                Role = "Manager",
-                Address = "456 Oak Ave",
-                Phone = "555-5678",
-                Salary = 120000.00m
-            },
-            new Employee {
-                Name = "Alex Lee",
-                Department = "IT",
-                Role = "Engineer",
-                Address = "789 Pine Ln",
-                Phone = "555-9012",
-                Salary = 110000.00m
-            },
-            
-            // --- NEW EMPLOYEES ADDED BELOW ---
-            new Employee {
-                Name = "Sarah Chen",
-                Department = "Sales",
-                Role = "Account Executive",
-                Address = "101 Market St",
-                Phone = "555-1010",
-                Salary = 95000.00m
-            },
-            new Employee {
-                Name = "David Brown",
-                Department = "IT",
-                Role = "Helpdesk Technician",
-                Address = "202 Tech Way",
-                Phone = "555-2020",
-                Salary = 65000.00m
-            },
-            new Employee {
-                Name = "Maria Garcia",
-                Department = "HR",
-                Role = "Recruiter",
-                Address = "303 River Rd",
-                Phone = "555-3030",
-                Salary = 80000.00m
-            },
-            new Employee {
-                Name = "Michael Clark",
-                Department = "Finance",
-                Role = "Analyst",
-                Address = "404 Corporate Dr",
-                Phone = "555-4040",
-                Salary = 105000.00m
-            }
-        };
-
+        Employees = await _context.Employees.ToListAsync();
+        
         // compute aggregated values once data is loaded
         ComputeMetrics();
     }
@@ -182,15 +128,4 @@ public class HRMmodel : PageModel
         // Monthly payroll = sum of salaries / 12
         MonthlyPayroll = Employees.Any() ? Math.Round(Employees.Sum(e => e.Salary) / 12m, 2) : 0m;
     }
-}
-
-// Simple employee model used by the HRM page
-public class Employee
-{
-    public string? Name { get; set; }
-    public string? Department { get; set; }
-    public string? Role { get; set; }
-    public string? Address { get; set; }
-    public string? Phone { get; set; }
-    public decimal Salary { get; set; } 
 }
