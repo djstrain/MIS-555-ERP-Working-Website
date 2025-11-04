@@ -6,92 +6,261 @@
 }
 
 <div class="container mt-4">
-    <h1 class="mb-4">Human Resource Management</h1>
+    <h1 class="mb-4"><i class="fas fa-users"></i> Human Resource Management</h1>
 
-    <section class="cards mb-5" aria-label="Key Metrics">
-        <article class="card">
-            <h3>Employees</h3>
-            <p>@Model.Employees.Count</p>
-        </article>
-        
-        <article class="card">
-            <h3>Departments</h3>
-            <p>@Model.DepartmentsCount</p>
-        </article>
-        
-        <article class="card">
-            <h3>Avg Salary</h3>
-            <p>@Model.AverageSalary.ToString("C0")</p>
-        </article>
-        
-        <article class="card">
-            <h3>Payroll (Mo)</h3>
-            <p>@Model.MonthlyPayroll.ToString("C0")</p>
-        </article>
-    </section>
-    
-    <div class="row mb-5">
-        <div class="col-md-4">
-            <form method="post">
-                <h2>Employee Search</h2>
-                <div class="input-group mb-2">
-                    <input type="text" asp-for="Input.SearchTerm" class="form-control" placeholder="Search by Name or ID..." />
-                    <button type="submit" class="btn btn-primary">Search</button>
-                </div>
-                
-                <span asp-validation-for="Input.SearchTerm" class="text-danger"></span>
-            </form>
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
-        
-        <div class="col-md-4">
-            <h2 class="mt-4 mt-md-0">Filter</h2>
-            <label for="dept" class="d-block">Departments</label>
-            <select asp-for="Input.DepartmentFilter" id="dept" class="form-control" style="width:100%" onchange="this.form.submit()">
-                <option value="">All Departments</option>
-                @foreach(var d in Model.Employees.Select(e => e.Department).Where(d => !string.IsNullOrWhiteSpace(d)).Distinct(StringComparer.OrdinalIgnoreCase))
-                {
-                    <option value="@d" selected="@(string.Equals(Model.Input.DepartmentFilter, d, StringComparison.OrdinalIgnoreCase) ? "selected" : null)">@d</option>
-                }
-            </select>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    <!-- Metrics Dashboard -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Employees</h5>
+                    <h2 class="text-primary">@Model.Employees.Count</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Departments</h5>
+                    <h2 class="text-success">@Model.DepartmentsCount</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Avg Salary</h5>
+                    <h2 class="text-warning">@Model.AverageSalary.ToString("C0")</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Payroll (Mo)</h5>
+                    <h2 class="text-info">@Model.MonthlyPayroll.ToString("C0")</h2>
+                </div>
+            </div>
         </div>
     </div>
 
-    <h2>Employee Directory</h2>
-    <table class="table table-striped" style="margin-top:20px">
-        <thead>
-            <tr class="table-dark">
-                <th>Name</th>
-                <th>Department</th>
-                <th>Role</th>
-                <th>Address</th>
-                <th>Phone</th>
-                <th>Salary</th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (Model.Employees != null && Model.Employees.Any())
-            {
-                @* Loop through each Employee object in the list *@
-                @foreach (var employee in Model.Employees)
-                {
-                    <tr>
-                        <td>@employee.Name</td>
-                        <td>@employee.Department</td>
-                        <td>@employee.Role</td>
-                        <td>@employee.Address</td>
-                        <td>@employee.Phone</td>
-                        <td>@employee.Salary.ToString("C0")</td>
-                    </tr>
-                }
-            }
-            else
-            {
-                <tr>
-                    <td colspan="6">No employees to display.</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <!-- Add New Employee Button -->
+    <div class="mb-3">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addEmployeeModal">
+            <i class="fas fa-user-plus"></i> Add New Employee
+        </button>
+    </div>
+
+    <!-- Search and Filter Section -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <form method="post" asp-page-handler="Search">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Search</label>
+                        <input type="text" class="form-control" asp-for="Input.SearchTerm" placeholder="Search by name...">
+                        <span asp-validation-for="Input.SearchTerm" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Department</label>
+                        <select class="form-select" asp-for="Input.DepartmentFilter">
+                            <option value="">All Departments</option>
+                            @foreach (var d in Model.Employees.Select(e => e.Department).Where(d => !string.IsNullOrWhiteSpace(d)).Distinct(StringComparer.OrdinalIgnoreCase))
+                            {
+                                <option value="@d" selected="@(string.Equals(Model.Input.DepartmentFilter, d, StringComparison.OrdinalIgnoreCase) ? "selected" : null)">@d</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-2 d-flex align-items-end">
+                        <button type="submit" class="btn btn-secondary w-100">
+                            <i class="fas fa-search"></i> Search
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Employees Table -->
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Name</th>
+                            <th>Department</th>
+                            <th>Role</th>
+                            <th>Address</th>
+                            <th>Phone</th>
+                            <th>Salary</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Employees.Any())
+                        {
+                            @foreach (var employee in Model.Employees)
+                            {
+                                <tr>
+                                    <td>@employee.Name</td>
+                                    <td>@employee.Department</td>
+                                    <td>@employee.Role</td>
+                                    <td>@(employee.Address ?? "N/A")</td>
+                                    <td>@(employee.Phone ?? "N/A")</td>
+                                    <td>@employee.Salary.ToString("C0")</td>
+                                    <td>
+                                        <button type="button" class="btn btn-sm btn-warning"
+                                                onclick="editEmployee(@employee.Id, '@employee.Name', '@employee.Department', '@employee.Role', '@(employee.Address ?? "")', '@(employee.Phone ?? "")', '@employee.Salary')">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <form method="post" asp-page-handler="Delete" asp-route-employeeId="@employee.Id" style="display:inline;">
+                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete @employee.Name?');">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="7" class="text-center text-muted">No employees found. Add your first employee to get started!</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
+
+<!-- Add Employee Modal -->
+<div class="modal fade" id="addEmployeeModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" asp-page-handler="Add">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Employee</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label asp-for="EmployeeInput.Name" class="form-label">Name *</label>
+                        <input asp-for="EmployeeInput.Name" class="form-control" required>
+                        <span asp-validation-for="EmployeeInput.Name" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="EmployeeInput.Department" class="form-label">Department *</label>
+                        <input asp-for="EmployeeInput.Department" class="form-control" required>
+                        <span asp-validation-for="EmployeeInput.Department" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="EmployeeInput.Role" class="form-label">Role *</label>
+                        <input asp-for="EmployeeInput.Role" class="form-control" required>
+                        <span asp-validation-for="EmployeeInput.Role" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="EmployeeInput.Address" class="form-label">Address</label>
+                        <input asp-for="EmployeeInput.Address" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="EmployeeInput.Phone" class="form-label">Phone</label>
+                        <input asp-for="EmployeeInput.Phone" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="EmployeeInput.Salary" class="form-label">Salary *</label>
+                        <input asp-for="EmployeeInput.Salary" type="number" step="0.01" min="0" class="form-control" required>
+                        <span asp-validation-for="EmployeeInput.Salary" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Employee</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+
+<!-- Edit Employee Modal -->
+<div class="modal fade" id="editEmployeeModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" asp-page-handler="Edit">
+                <input type="hidden" asp-for="EditingEmployeeId" id="editEmployeeId" />
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Employee</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label asp-for="EmployeeInput.Name" class="form-label">Name *</label>
+                        <input asp-for="EmployeeInput.Name" class="form-control" id="editName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="EmployeeInput.Department" class="form-label">Department *</label>
+                        <input asp-for="EmployeeInput.Department" class="form-control" id="editDepartment" required>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="EmployeeInput.Role" class="form-label">Role *</label>
+                        <input asp-for="EmployeeInput.Role" class="form-control" id="editRole" required>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="EmployeeInput.Address" class="form-label">Address</label>
+                        <input asp-for="EmployeeInput.Address" class="form-control" id="editAddress">
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="EmployeeInput.Phone" class="form-label">Phone</label>
+                        <input asp-for="EmployeeInput.Phone" class="form-control" id="editPhone">
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="EmployeeInput.Salary" class="form-label">Salary *</label>
+                        <input asp-for="EmployeeInput.Salary" type="number" step="0.01" min="0" class="form-control" id="editSalary" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-warning">Update Employee</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        function editEmployee(id, name, department, role, address, phone, salary) {
+            document.getElementById('editEmployeeId').value = id;
+            document.getElementById('editName').value = name;
+            document.getElementById('editDepartment').value = department;
+            document.getElementById('editRole').value = role;
+            document.getElementById('editAddress').value = address || '';
+            document.getElementById('editPhone').value = phone || '';
+            document.getElementById('editSalary').value = salary;
+
+            var editModal = new bootstrap.Modal(document.getElementById('editEmployeeModal'));
+            editModal.show();
+        }
+    </script>
+}
 
    

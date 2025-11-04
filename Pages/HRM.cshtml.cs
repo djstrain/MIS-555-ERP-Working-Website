@@ -19,9 +19,17 @@ public class HRMmodel : PageModel
         _context = context;
     }
 
-    // Model to bind search/form inputs and apply validation
+    // Model to bind search inputs and apply validation
     [BindProperty]
     public InputModel Input { get; set; } = new();
+
+    // Model to bind Add/Edit employee inputs
+    [BindProperty]
+    public EmployeeInputModel EmployeeInput { get; set; } = new();
+
+    // Track which employee is being edited
+    [BindProperty]
+    public int? EditingEmployeeId { get; set; }
 
     // Property to hold the list of employees for the view (HRM.cshtml)
     public List<Employee> Employees { get; set; } = new();
@@ -31,15 +39,38 @@ public class HRMmodel : PageModel
     public decimal AverageSalary { get; set; }
     public decimal MonthlyPayroll { get; set; }
 
-    // Nested class for form inputs with validation
+    // Nested class for search inputs with validation
     public class InputModel
     {
-    [Required(ErrorMessage = "Employee Name or ID is required for a search.")]
-    [StringLength(50, ErrorMessage = "Search term cannot exceed 50 characters.")]
-    [Display(Name = "Search Employee")]
-    public string? SearchTerm { get; set; }
-        
+        [StringLength(50, ErrorMessage = "Search term cannot exceed 50 characters.")]
+        [Display(Name = "Search Employee")]
+        public string? SearchTerm { get; set; }
         public string? DepartmentFilter { get; set; }
+    }
+
+    // Nested class for Add/Edit inputs
+    public class EmployeeInputModel
+    {
+        [Required]
+        [StringLength(100)]
+        public string Name { get; set; } = string.Empty;
+
+        [Required]
+        [StringLength(100)]
+        public string Department { get; set; } = string.Empty;
+
+        [Required]
+        [StringLength(100)]
+        public string Role { get; set; } = string.Empty;
+
+        [StringLength(255)]
+        public string? Address { get; set; }
+
+        [StringLength(20)]
+        public string? Phone { get; set; }
+
+        [Range(0, 10000000)]
+        public decimal Salary { get; set; }
     }
 
     // OnGet handler to simulate fetching the data (for initial page load)
@@ -62,8 +93,8 @@ public class HRMmodel : PageModel
     }
 
     
-    // OnPost handler to process form submissions (e.g., when a user clicks 'Search')
-    public async Task<IActionResult> OnPostAsync()
+    // Search handler to process search/filter submissions
+    public async Task<IActionResult> OnPostSearchAsync()
     {
         // Enforce admin-only access on POST as well
         var userRole = HttpContext.Session.GetString("UserRole");
@@ -103,6 +134,104 @@ public class HRMmodel : PageModel
         ComputeMetrics();
         
         return Page(); // Stay on the HRM page
+    }
+
+    // Add a new employee
+    public async Task<IActionResult> OnPostAddAsync()
+    {
+        // Enforce admin-only access on POST as well
+        var userRole = HttpContext.Session.GetString("UserRole");
+        if (string.IsNullOrEmpty(userRole) || !userRole.Equals("Admin", StringComparison.OrdinalIgnoreCase))
+        {
+            TempData["ErrorMessage"] = "You do not have permission to add employees.";
+            return RedirectToPage("/Privacy");
+        }
+
+        if (!ModelState.IsValid)
+        {
+            await LoadEmployeeDataAsync();
+            return Page();
+        }
+
+        var emp = new Employee
+        {
+            Name = EmployeeInput.Name,
+            Department = EmployeeInput.Department,
+            Role = EmployeeInput.Role,
+            Address = EmployeeInput.Address,
+            Phone = EmployeeInput.Phone,
+            Salary = EmployeeInput.Salary,
+            CreatedAt = DateTime.UtcNow
+        };
+
+        _context.Employees.Add(emp);
+        await _context.SaveChangesAsync();
+
+        TempData["SuccessMessage"] = $"Employee '{emp.Name}' added successfully!";
+        return RedirectToPage();
+    }
+
+    // Edit an existing employee
+    public async Task<IActionResult> OnPostEditAsync()
+    {
+        var userRole = HttpContext.Session.GetString("UserRole");
+        if (string.IsNullOrEmpty(userRole) || !userRole.Equals("Admin", StringComparison.OrdinalIgnoreCase))
+        {
+            TempData["ErrorMessage"] = "You do not have permission to edit employees.";
+            return RedirectToPage("/Privacy");
+        }
+
+        if (!EditingEmployeeId.HasValue)
+        {
+            TempData["ErrorMessage"] = "Invalid employee ID.";
+            return RedirectToPage();
+        }
+
+        if (!ModelState.IsValid)
+        {
+            await LoadEmployeeDataAsync();
+            return Page();
+        }
+
+        var emp = await _context.Employees.FindAsync(EditingEmployeeId.Value);
+        if (emp == null)
+        {
+            TempData["ErrorMessage"] = "Employee not found.";
+            return RedirectToPage();
+        }
+
+        emp.Name = EmployeeInput.Name;
+        emp.Department = EmployeeInput.Department;
+        emp.Role = EmployeeInput.Role;
+        emp.Address = EmployeeInput.Address;
+        emp.Phone = EmployeeInput.Phone;
+        emp.Salary = EmployeeInput.Salary;
+
+        await _context.SaveChangesAsync();
+
+        TempData["SuccessMessage"] = $"Employee '{emp.Name}' updated successfully!";
+        return RedirectToPage();
+    }
+
+    // Delete an employee
+    public async Task<IActionResult> OnPostDeleteAsync(int employeeId)
+    {
+        var userRole = HttpContext.Session.GetString("UserRole");
+        if (string.IsNullOrEmpty(userRole) || !userRole.Equals("Admin", StringComparison.OrdinalIgnoreCase))
+        {
+            TempData["ErrorMessage"] = "You do not have permission to delete employees.";
+            return RedirectToPage("/Privacy");
+        }
+
+        var emp = await _context.Employees.FindAsync(employeeId);
+        if (emp != null)
+        {
+            _context.Employees.Remove(emp);
+            await _context.SaveChangesAsync();
+            TempData["SuccessMessage"] = $"Employee '{emp.Name}' deleted successfully!";
+        }
+
+        return RedirectToPage();
     }
 
     // Helper method to load employee data from the database

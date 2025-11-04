@@ -1,0 +1,308 @@
+@page
+@model VendorManagementModel
+@{
+    ViewData["Title"] = "Vendor Management";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">
+        <i class="fas fa-truck"></i> Vendor Management
+    </h1>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    <!-- Metrics Dashboard -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Total Vendors</h5>
+                    <h2 class="text-primary">@Model.TotalVendors</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Active Vendors</h5>
+                    <h2 class="text-success">@Model.ActiveVendors</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Average Rating</h5>
+                    <h2 class="text-warning">@Model.AverageRating.ToString("F2") ★</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add New Vendor Button -->
+    <div class="mb-3">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addVendorModal">
+            <i class="fas fa-plus"></i> Add New Vendor
+        </button>
+    </div>
+
+    <!-- Search and Filter Section -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <form method="post" asp-page-handler="Search">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label class="form-label">Search</label>
+                        <input type="text" class="form-control" asp-for="SearchTerm" placeholder="Search by name, contact, or email">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Status</label>
+                        <select class="form-select" asp-for="StatusFilter">
+                            <option value="">All</option>
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Vendor Type</label>
+                        <select class="form-select" asp-for="TypeFilter">
+                            <option value="">All</option>
+                            <option value="Technology">Technology</option>
+                            <option value="Supplies">Supplies</option>
+                            <option value="Logistics">Logistics</option>
+                            <option value="Services">Services</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="Legal">Legal</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 d-flex align-items-end">
+                        <button type="submit" class="btn btn-secondary w-100">
+                            <i class="fas fa-search"></i> Search
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Vendors Table -->
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Vendor Name</th>
+                            <th>Contact Person</th>
+                            <th>Email</th>
+                            <th>Type</th>
+                            <th>Status</th>
+                            <th>Rating</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Vendors.Any())
+                        {
+                            @foreach (var vendor in Model.Vendors)
+                            {
+                                <tr>
+                                    <td>@vendor.VendorName</td>
+                                    <td>@(vendor.ContactPerson ?? "N/A")</td>
+                                    <td>@(vendor.Email ?? "N/A")</td>
+                                    <td>
+                                        <span class="badge bg-info">@(vendor.VendorType ?? "N/A")</span>
+                                    </td>
+                                    <td>
+                                        @if (vendor.Status == "Active")
+                                        {
+                                            <span class="badge bg-success">Active</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-secondary">Inactive</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (vendor.Rating.HasValue)
+                                        {
+                                            <span>@vendor.Rating.Value.ToString("F2") ★</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted">Not Rated</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-sm btn-warning" 
+                                                onclick="editVendor(@vendor.VendorID, '@vendor.VendorName', '@vendor.ContactPerson', '@vendor.Email', '@vendor.VendorType', '@vendor.Status', @(vendor.Rating?.ToString("F2") ?? "null"))">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <form method="post" asp-page-handler="Delete" asp-route-vendorId="@vendor.VendorID" style="display:inline;">
+                                            <button type="submit" class="btn btn-sm btn-danger" 
+                                                    onclick="return confirm('Are you sure you want to delete @vendor.VendorName?');">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="7" class="text-center text-muted">No vendors found. Add your first vendor to get started!</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Vendor Modal -->
+<div class="modal fade" id="addVendorModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" asp-page-handler="Add">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Vendor</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label asp-for="Input.VendorName" class="form-label">Vendor Name *</label>
+                        <input asp-for="Input.VendorName" class="form-control" required>
+                        <span asp-validation-for="Input.VendorName" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Input.ContactPerson" class="form-label">Contact Person</label>
+                        <input asp-for="Input.ContactPerson" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Input.Email" class="form-label">Email</label>
+                        <input asp-for="Input.Email" type="email" class="form-control">
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Input.VendorType" class="form-label">Vendor Type</label>
+                        <select asp-for="Input.VendorType" class="form-select">
+                            <option value="">Select Type</option>
+                            <option value="Technology">Technology</option>
+                            <option value="Supplies">Supplies</option>
+                            <option value="Logistics">Logistics</option>
+                            <option value="Services">Services</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="Legal">Legal</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Input.Status" class="form-label">Status *</label>
+                        <select asp-for="Input.Status" class="form-select" required>
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Input.Rating" class="form-label">Rating (0-5)</label>
+                        <input asp-for="Input.Rating" type="number" step="0.1" min="0" max="5" class="form-control">
+                        <span asp-validation-for="Input.Rating" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Vendor</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Vendor Modal -->
+<div class="modal fade" id="editVendorModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" asp-page-handler="Edit">
+                <input type="hidden" asp-for="EditingVendorId" id="editVendorId">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Vendor</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label asp-for="Input.VendorName" class="form-label">Vendor Name *</label>
+                        <input asp-for="Input.VendorName" class="form-control" id="editVendorName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Input.ContactPerson" class="form-label">Contact Person</label>
+                        <input asp-for="Input.ContactPerson" class="form-control" id="editContactPerson">
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Input.Email" class="form-label">Email</label>
+                        <input asp-for="Input.Email" type="email" class="form-control" id="editEmail">
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Input.VendorType" class="form-label">Vendor Type</label>
+                        <select asp-for="Input.VendorType" class="form-select" id="editVendorType">
+                            <option value="">Select Type</option>
+                            <option value="Technology">Technology</option>
+                            <option value="Supplies">Supplies</option>
+                            <option value="Logistics">Logistics</option>
+                            <option value="Services">Services</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="Legal">Legal</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Input.Status" class="form-label">Status *</label>
+                        <select asp-for="Input.Status" class="form-select" id="editStatus" required>
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Input.Rating" class="form-label">Rating (0-5)</label>
+                        <input asp-for="Input.Rating" type="number" step="0.1" min="0" max="5" class="form-control" id="editRating">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-warning">Update Vendor</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        function editVendor(id, name, contact, email, type, status, rating) {
+            document.getElementById('editVendorId').value = id;
+            document.getElementById('editVendorName').value = name;
+            document.getElementById('editContactPerson').value = contact || '';
+            document.getElementById('editEmail').value = email || '';
+            document.getElementById('editVendorType').value = type || '';
+            document.getElementById('editStatus').value = status;
+            document.getElementById('editRating').value = rating || '';
+            
+            var editModal = new bootstrap.Modal(document.getElementById('editVendorModal'));
+            editModal.show();
+        }
+    </script>
+}

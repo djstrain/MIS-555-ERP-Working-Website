@@ -1,68 +1,103 @@
-# Change Summary 
+# Feature-Oriented Change Summary for sprint 3
 
-## 1) How the database connection works
-- We store our app’s database login details in a file called `appsettings.json`. This includes the server address, the database name (`rxerp`), and the username.
-- In `Program.cs`, we tell the app to use MySQL and connect using those details. We register a special class called a “DbContext” (`AppDbContents`) that knows how to talk to the database.
-- When the app starts, it calls `EnsureCreated()`. This checks if the database tables exist and creates them if they do not. This is okay for development but we will switch to migrations later for production.
+This document organizes changes by feature: Login (UserCredentials), HRM (Employees), Vendors (Vendors), followed by cross-cutting security/session and setup notes.
 
-## 2) The table that stores users
-- We created a table called `UserCredentials` in the `rxerp` database. Each row has:
-  - `Email` (the user’s email address)
-  - `Password` (the user’s password for now in plain text)
-  - `Role` (either Admin or User)
-  - `CreatedAt` (when the account was created)
-- The C# class for this table lives in `Data/UserCredentials.cs`. The database context that exposes this table lives in `Data/AppDbContents.cs`.
+## 1) Login page + UserCredentials database
 
-## 3) How registration works (Register page)
-- The Register page is made of a form (`Pages/Register.cshtml`) and some code behind it (`Pages/Register.cshtml.cs`).
-- You type your email, password, confirm your password, and choose a role (Admin or User). The page checks that all required fields are filled and that the email looks valid.
-- When you submit, the server checks the database to make sure your email is not already in use. If it is not, the server saves a new `UserCredentials` record.
-- After saving, the page sets a friendly success message and sends you back to the Login page so you can sign in.
+- Database table: `UserCredentials`
+  - Columns: `Id` (PK), `Email` (unique), `Password` (plaintext for now), `Role` (Admin/User), `CreatedAt`.
+  - Created via `docs/database-setup.sql`.
+- EF Core
+  - Entity: `Data/UserCredentials.cs`
+  - DbContext: `Data/AppDbContents.cs` exposes `DbSet<UserCredentials>`
+- Page flow
+  - UI/Code: `Pages/Index.cshtml` + `Pages/Index.cshtml.cs`
+  - Validates email/password; looks up user by email; compares stored password (plaintext) to input.
+  - On success: stores session keys `UserRole` and `UserEmail` and redirects based on role:
+    - Admin → `/HRM`
+    - User → `/Privacy`
+  - On failure: shows “Invalid email or password.” and logs details.
+- Notes
+  - Logging is added for login attempts and outcomes.
+  - There is a legacy in-memory dictionary for demo users, but the logic first checks the database.
 
-## 4) How login works (pulling credentials from the database)
-- The Login page is also a form (`Pages/Index.cshtml`) with code (`Pages/Index.cshtml.cs`).
-- You enter your email and password. The server looks up your email in the `UserCredentials` table.
-- If it finds a match, it compares the password you entered with the one in the database. If they match, the login succeeds.
-- When the login succeeds, the server stores two small pieces of information in your session: your role (`UserRole`) and your email (`UserEmail`). A session is a short-term memory for your visit.
-- Based on your role, the app sends you to the correct page:
-  - Admins go to the HRM page (`/HRM`).
-  - Regular users go to the Privacy page (`/Privacy`).
+## 2) HRM page + Employees database
 
-## 5) What a session is and why we use it
-- A session is like a note the server keeps while you are using the site. It remembers who you are for the duration of your visit.
-- We store `UserRole` and `UserEmail` in the session after you log in. This lets the app quickly check your permissions and personalize the navigation bar.
-- Sessions are turned on in `Program.cs` with `AddSession()` and `UseSession()`.
+- Database table: `Employees`
+  - Columns: `Id`, `Name`, `Department`, `Role`, `Address`, `Phone`, `Salary` (DECIMAL), `CreatedAt`.
+  - Seed/script in `docs/database-setup.sql`.
+- EF Core
+  - Entity: `Data/Employee.cs`
+  - DbContext: `DbSet<Employee>` in `Data/AppDbContents.cs`
+- Page capabilities (Admin-only)
+  - UI/Code: `Pages/HRM.cshtml` + `Pages/HRM.cshtml.cs`
+  - Read from DB and render a searchable, filterable employee table.
+  - CRUD with Bootstrap modals:
+    - Add employee (validated server-side)
+    - Edit employee in place (ID-tracked)
+    - Delete with confirmation
+  - Metrics shown at top (computed on server):
+    - Distinct departments count
+    - Average salary
+    - Monthly payroll estimate (sum of salaries / 12)
+- Validation & UX
+  - Input models enforce required fields and ranges.
+  - Alerts use TempData for consistent success/error messaging.
 
-## 6) How we protect the HRM page (Admin only)
-- The HRM page (`Pages/HRM.cshtml.cs`) checks your session before it shows anything.
-- If `UserRole` is not "Admin" (the check ignores upper/lowercase), the page does not load. Instead, you are redirected to the Privacy page and you see an error message.
-- We do this check in both the `OnGet` method (when the page first loads) and the `OnPost` method (when you submit the form on that page).
+## 3) Vendor Management page + Vendors database
 
-## 7) The top navigation bar and what you see
-- The shared layout (`Pages/Shared/_Layout.cshtml`) builds the top navigation bar for every page.
-- If you are logged in, you see a Logout button. If your role is Admin, you also see the HRM link.
-- If you are not logged in, you do not see the Logout button. Regular users do not see the HRM link.
+- Database table: `Vendors`
+  - Columns: `VendorID` (PK), `VendorName`, `ContactPerson`, `Email`, `VendorType`, `Status` (Active/Inactive), `Rating` (0–5), `CreatedAt`, `UpdatedAt`.
+  - Seed/script in `docs/database-setup.sql`.
+- EF Core
+  - Entity: `Data/Vendor.cs`
+  - DbContext: `DbSet<Vendor>` in `Data/AppDbContents.cs`
+- Page capabilities (Admin-only)
+  - UI/Code: `Pages/VendorManagement.cshtml` + `Pages/VendorManagement.cshtml.cs`
+  - Search by vendor name/contact/email; filter by Status and Type.
+  - CRUD with Bootstrap modals: add, edit, delete vendors.
+  - Metrics: total vendors, active vendors, average rating (where provided).
+- UX alignment
+  - Styling matches HRM (Bootstrap cards/tables, Font Awesome icons, TempData alerts).
 
-## 8) How logout works
-- When you click Logout, the app runs a simple page (`Pages/Logout.cshtml.cs`) that clears your session.
-- Clearing the session removes the role and email from memory so the site treats you as logged out.
-- After that, you are sent back to the Login page with a message that confirms you logged out.
+## 4) Security, sessions, navigation, and logging
 
-## 9) Messages and logging
-- We use on-screen messages to tell you what happened. For example, after logging out you see a success message. If you try to open the HRM page without being an Admin, you see an error message.
-- Behind the scenes, we also write helpful logs (info, warnings, and errors). These logs make it easier to understand what happened if something goes wrong.
+- Sessions
+  - Keys: `UserRole`, `UserEmail` set at login.
+  - Configured in `Program.cs` with `AddSession()` and `UseSession()`.
+- Role-based access control (RBAC)
+  - HRM and Vendor Management pages check for Admin on both GET and POST.
+  - Unauthorized users are redirected to `/Privacy` with an error message.
+- Navigation
+  - `Pages/Shared/_Layout.cshtml` shows “HRM” and “Vendors” links only for Admins.
+  - Logout button visible when signed in.
+- Logout
+  - `Pages/Logout.cshtml.cs` clears session and redirects back to Login with a confirmation message.
+- Logging & alerts
+  - ILogger used for key events (login attempts, role routing, access denials).
+  - TempData-based success/error alerts provide user feedback.
+- Known security gaps (planned improvements)
+  - Passwords are plaintext; adopt hashing (e.g., ASP.NET Core Identity) next.
+  - Using `EnsureCreated()` in dev; move to EF Core migrations.
+  - Enforce HTTPS and secure cookie settings.
 
-## 10) Important security note
-- Right now, passwords are stored as plain text to keep the demo simple. This is not safe for a real system.
-- Next steps will be to hash passwords (for example, using ASP.NET Core Identity) and to use database migrations instead of `EnsureCreated()`.
-- We also plan to configure HTTPS properly so the browser does not warn about redirects.
+## 5) Setup and environment
 
-## 11) Quick recap of what changed
-- Connected the app to a MySQL database and created a `UserCredentials` table.
-- Built a Register page that saves new users into the database.
-- Built a Login page that checks the database and signs users in.
-- Saved the user’s role and email in a session so the app remembers who is who.
-- Protected the HRM page so only Admins can see it.
-- Updated the navigation bar to show the right links based on your login status and role.
-- Added a Logout feature that clears the session and returns you to Login.
-- Added user-friendly messages and server logs to help with understanding and troubleshooting.
+- Database bootstrap
+  - Run `docs/database-setup.sql` to create `rxerp` and tables: `UserCredentials`, `Employees`, `Vendors` with sample data.
+  - Sample Admin for testing: `admin@ctrlfreak.com` / `AdminPassword123!`.
+- Configuration
+  - Connection string in `appsettings.json` (MySQL/Pomelo provider).
+  - DbContext: `AppDbContents` registered in `Program.cs`.
+
+## 6) Quick references
+
+- Entities and DbContext
+  - `Data/UserCredentials.cs`, `Data/Employee.cs`, `Data/Vendor.cs`, `Data/AppDbContents.cs`
+- Pages
+  - Login: `Pages/Index.cshtml` + `Pages/Index.cshtml.cs`
+  - HRM: `Pages/HRM.cshtml` + `Pages/HRM.cshtml.cs`
+  - Vendors: `Pages/VendorManagement.cshtml` + `Pages/VendorManagement.cshtml.cs`
+- Shared
+  - Layout/navbar: `Pages/Shared/_Layout.cshtml`
+  - Logout: `Pages/Logout.cshtml.cs`
