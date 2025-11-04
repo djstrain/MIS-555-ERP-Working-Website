@@ -12,16 +12,18 @@ namespace WebApplication1.Data
  
         [Required]
         [EmailAddress]
+        [Column("email")]  // Match your database column name
         public string Email { get; set; } = string.Empty;
  
         [Required]
         [DataType(DataType.Password)]
+        [Column("password")]  // Match your database column name
         public string Password { get; set; } = string.Empty;
  
-        [Column("Role")]
-        public string Role { get; set; } = "User";
+        [Column("role")]  // Match your database column name
+        public string Role { get; set; } = "user";  // Default to lowercase
  
-        [Column("CreatedAt")]
+        [Column("created_at")]  // Match your database column name
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
  
         [NotMapped]

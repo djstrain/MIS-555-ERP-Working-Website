@@ -6,6 +6,7 @@ using System.Linq;
 using WebApplication1.Data;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebApplication1.Pages;
 
@@ -31,23 +32,7 @@ public class IndexModel : PageModel
     }
 
 
-    // In-memory seeded credentials. THIS IS FOR DEMO PURPOSES ONLY.
-    // Storing plaintext passwords is insecure. For production use ASP.NET Core Identity
-    // and store hashed passwords.
-    private static readonly Dictionary<string, string> _validUsers = new()
-    {
-        // Admin (existing)
-        ["admin@ctrlfreak.com"] = "password",
-
-        // Preset user credentials based on employees in the HRM sample data
-         ["jane.doe@ctrlfreak.com"] = "a1b2c3d4",
-        ["john.smith@ctrlfreak.com"] = "qWeRtY",
-        ["alex.lee@ctrlfreak.com"] = "Pencil12",
-        ["sarah.chen@ctrlfreak.com"] = "789_xyz",
-        ["david.brown@ctrlfreak.com"] = "m0ckUp",
-        ["maria.garcia@ctrlfreak.com"] = "zxcvbn",
-        ["michael.clark@ctrlfreak.com"] = "t3stP4ss"
-    };
+    // All authentication is now handled via the database
 
     public void OnGet()
     {
@@ -69,27 +54,30 @@ public class IndexModel : PageModel
 
             // Check if user exists in database
             var user = _context.UserCredentials
+                .AsNoTracking() // Optimize query for read-only
                 .FirstOrDefault(u => u.Email.ToLower() == normalizedEmail);
 
             if (user != null)
             {
                 _logger.LogInformation("User found in database. Role: {Role}", user.Role);
+                _logger.LogDebug("Comparing passwords - Input length: {InputLength}, Stored length: {StoredLength}", 
+                    Password?.Length ?? 0, user.Password?.Length ?? 0);
                 
-                if (user.Password == Password)
+                if (string.Equals(user.Password, Password, StringComparison.Ordinal))
                 {
                     // Login successful - you should use proper password hashing in production
                     // Store user information in session
                     HttpContext.Session.SetString("UserRole", user.Role);
                     HttpContext.Session.SetString("UserEmail", user.Email);
                     
-                    var userRole = user.Role.ToLower();
+                    var userRole = user.Role?.ToLower() ?? "";
                     _logger.LogInformation("Password matched. Session set. Redirecting based on role: {Role}", userRole);
                     
-                    if (userRole == "admin")
+                    if (userRole.Equals("admin", StringComparison.OrdinalIgnoreCase))
                     {
                         return RedirectToPage("/HRM");
                     }
-                    else if (userRole == "user")
+                    else if (userRole.Equals("user", StringComparison.OrdinalIgnoreCase))
                     {
                         return RedirectToPage("/Privacy");
                     }

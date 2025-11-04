@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using System.IO;
 using WebApplication1.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,10 +12,13 @@ builder.Services.AddRazorPages();
 builder.Services.AddDistributedMemoryCache();
 // connect AppDbContents to database
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-// UseMySql method specifies that we are using MySQL database
+
+// Always use MySQL with the newconnection101 user
 builder.Services.AddDbContext<AppDbContents>(options =>
-    options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 21)))
-);
+{
+    var connString = "Server=localhost;Database=rxerp;Uid=newconnection101;Pwd=YourPasswordHere;";
+    options.UseMySql(connString, new MySqlServerVersion(new Version(8, 0, 21)));
+});
 
 // HttpContext accessor and Session support
 builder.Services.AddHttpContextAccessor();
@@ -27,11 +32,38 @@ builder.Services.AddSession(options =>
 
 var app = builder.Build();
 
-// Ensure database exists (creates schema if it doesn't)
+// Ensure database exists and seed initial data
 using (var scope = app.Services.CreateScope())
 {
-    var db = scope.ServiceProvider.GetRequiredService<AppDbContents>();
-    db.Database.EnsureCreated();
+    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+    try
+    {
+        var db = scope.ServiceProvider.GetRequiredService<AppDbContents>();
+        
+        // Create database and tables
+        db.Database.EnsureCreated();
+        
+        // Seed admin user if none exists
+        if (!db.UserCredentials.Any())
+        {
+            var adminUser = new UserCredentials
+            {
+                Email = "admin@ctrlfreak.com",
+                Password = "AdminPassword123!", // This is the exact password to use
+                Role = "admin", // Changed to lowercase to match comparison
+                CreatedAt = DateTime.UtcNow
+            };
+            db.UserCredentials.Add(adminUser);
+            db.SaveChanges();
+            
+            logger.LogInformation("Seeded admin user: {Email}", adminUser.Email);
+        }
+    }
+    catch (Exception ex)
+    {
+        // Log and continue so the site can run for debugging even if the DB is unavailable.
+        logger.LogError(ex, "Database initialization failed. Continuing without database for local debug.");
+    }
 }
 
 // Configure the HTTP request pipeline.
