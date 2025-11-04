@@ -43,6 +43,8 @@
 # Environment settings
 appsettings.Development.json
 *.Development.json
+.appsettings.Local.json
+appsettings.Local.json
 .env
 *.secret.json
 
