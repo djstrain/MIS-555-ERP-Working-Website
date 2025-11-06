@@ -6,6 +6,8 @@ using System.Linq;
 using WebApplication1.Data;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 
 namespace WebApplication1.Pages;
 
@@ -13,6 +15,8 @@ public class IndexModel : PageModel
 {
     private readonly AppDbContents _context;
     private readonly ILogger<IndexModel> _logger;
+    private readonly IConfiguration _configuration;
+    private readonly IHostEnvironment _environment;
 
     [BindProperty]
     [Required(ErrorMessage = "Email is required")]
@@ -24,10 +28,12 @@ public class IndexModel : PageModel
     [DataType(DataType.Password)]
     public string Password { get; set; } = string.Empty;
 
-    public IndexModel(AppDbContents context, ILogger<IndexModel> logger)
+    public IndexModel(AppDbContents context, ILogger<IndexModel> logger, IConfiguration configuration, IHostEnvironment environment)
     {
         _context = context;
         _logger = logger;
+        _configuration = configuration;
+        _environment = environment;
     }
 
 
@@ -66,6 +72,22 @@ public class IndexModel : PageModel
             // normalize the email for comparison
             var normalizedEmail = Email?.Trim().ToLowerInvariant() ?? string.Empty;
             _logger.LogInformation("Attempting login for email: {Email}", normalizedEmail);
+
+            // Development-only demo login bypass (configurable)
+            if (TryDemoBypassLogin(normalizedEmail, Password, out var demoRole))
+            {
+                HttpContext.Session.SetString("UserRole", demoRole);
+                HttpContext.Session.SetString("UserEmail", Email ?? string.Empty);
+                _logger.LogInformation("DEMO login used for {Email} with role {Role}", normalizedEmail, demoRole);
+
+                if (demoRole.Equals("admin", System.StringComparison.OrdinalIgnoreCase))
+                    return RedirectToPage("/HRM");
+                if (demoRole.Equals("user", System.StringComparison.OrdinalIgnoreCase))
+                    return RedirectToPage("/Privacy");
+
+                ModelState.AddModelError(string.Empty, "Invalid role assignment.");
+                return Page();
+            }
 
             // Check if user exists in database
             var user = _context.UserCredentials
@@ -121,5 +143,37 @@ public class IndexModel : PageModel
             ModelState.AddModelError(string.Empty, "An error occurred during login. Please try again.");
             return Page();
         }
+    }
+
+    private bool TryDemoBypassLogin(string normalizedEmail, string password, out string role)
+    {
+        role = "";
+        // Only allow in Development
+        if (!_environment.IsDevelopment()) return false;
+
+        var enabled = _configuration.GetValue<bool>("DemoLogin:Enabled");
+        if (!enabled) return false;
+
+        // Option A: Configured single demo account
+        var demoEmail = (_configuration["DemoLogin:Email"] ?? string.Empty).Trim().ToLowerInvariant();
+        var demoPassword = _configuration["DemoLogin:Password"] ?? string.Empty;
+        var demoRole = _configuration["DemoLogin:Role"] ?? "Admin";
+
+        if (!string.IsNullOrEmpty(demoEmail) && normalizedEmail == demoEmail && password == demoPassword)
+        {
+            role = demoRole;
+            return true;
+        }
+
+        // Option B: Allow the in-memory dictionary when flagged
+        var allowDictionary = _configuration.GetValue<bool>("DemoLogin:UseDictionary");
+        if (allowDictionary && _validUsers.TryGetValue(normalizedEmail, out var dictPass) && dictPass == password)
+        {
+            // default role for dictionary entries: User, except admin email
+            role = normalizedEmail == "admin@ctrlfreak.com" ? "Admin" : "User";
+            return true;
+        }
+
+        return false;
     }
 }
