@@ -73,9 +73,35 @@ INSERT IGNORE INTO Vendors (VendorName, ContactPerson, Email, VendorType, Status
 ('IT Consulting Experts', 'Amanda White', 'awhite@itconsulting.com', 'Technology', 'Active', 4.95);
 
 -- ========================================
+-- 4. VendorFiles Table (attachments per vendor)
+-- ========================================
+CREATE TABLE IF NOT EXISTS VendorFiles (
+    FileID INT AUTO_INCREMENT PRIMARY KEY,
+    VendorID INT NOT NULL,
+    OriginalFileName VARCHAR(260) NOT NULL,
+    StoredFileName VARCHAR(255) NOT NULL,
+    ContentType VARCHAR(255),
+    SizeBytes BIGINT UNSIGNED NOT NULL,
+    Description VARCHAR(500),
+    SHA256 CHAR(64),
+    UploadedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    UploadedBy VARCHAR(255),
+    IsPublic TINYINT(1) NOT NULL DEFAULT 0,
+    CONSTRAINT fk_VendorFiles_Vendors
+        FOREIGN KEY (VendorID) REFERENCES Vendors(VendorID)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT ux_VendorFiles_StoredFileName UNIQUE (StoredFileName)
+) ENGINE=InnoDB;
+
+-- Helpful indexes
+CREATE INDEX IF NOT EXISTS ix_VendorFiles_VendorID_UploadedAt ON VendorFiles (VendorID, UploadedAt DESC);
+CREATE INDEX IF NOT EXISTS ix_VendorFiles_SHA256 ON VendorFiles (SHA256);
+
+-- ========================================
 -- Display Results
 -- ========================================
 SELECT 'Database setup complete!' AS Status;
 SELECT COUNT(*) AS UserCount FROM UserCredentials;
 SELECT COUNT(*) AS EmployeeCount FROM Employees;
 SELECT COUNT(*) AS VendorCount FROM Vendors;
+SELECT COUNT(*) AS VendorFileCount FROM VendorFiles;

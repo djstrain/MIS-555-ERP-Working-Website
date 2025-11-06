@@ -306,3 +306,129 @@
         }
     </script>
 }
+
+<!-- Attachments Section -->
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header d-flex align-items-center">
+            <i class="fas fa-paperclip me-2"></i>
+            <strong>Vendor Attachments</strong>
+        </div>
+        <div class="card-body">
+            <!-- Select Vendor to manage files -->
+            <form method="get" class="mb-3">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Select Vendor</label>
+                        <select class="form-select" name="SelectedVendorId">
+                            <option value="">-- Select a vendor --</option>
+                            @foreach (var v in Model.Vendors)
+                            {
+                                if (Model.SelectedVendorId.HasValue && Model.SelectedVendorId.Value == v.VendorID)
+                                {
+                                    <option value="@v.VendorID" selected="selected">@v.VendorName</option>
+                                }
+                                else
+                                {
+                                    <option value="@v.VendorID">@v.VendorName</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-2 d-flex align-items-end">
+                        <button type="submit" class="btn btn-outline-primary w-100">
+                            <i class="fas fa-folder-open"></i> Load Files
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            @if (Model.SelectedVendorId.HasValue)
+            {
+                <!-- Upload form -->
+                <form method="post" asp-page-handler="Upload" enctype="multipart/form-data" class="mb-4">
+                    <input type="hidden" asp-for="SelectedVendorId" />
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">File</label>
+                            <input type="file" class="form-control" name="UploadFile" required />
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="FileDescription" class="form-label">Description (optional)</label>
+                            <input asp-for="FileDescription" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-upload"></i> Upload
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Files list -->
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th>File</th>
+                                <th>Type</th>
+                                <th>Size</th>
+                                <th>Uploaded At (UTC)</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.VendorFiles.Any())
+                            {
+                                @foreach (var f in Model.VendorFiles)
+                                {
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                @if (!string.IsNullOrWhiteSpace(f.ContentType) && f.ContentType.StartsWith("image/"))
+                                                {
+                                                    <img src="?handler=Preview&fileId=@f.FileID" alt="preview" style="height:32px;width:32px;object-fit:cover;" class="me-2 rounded border" />
+                                                }
+                                                else
+                                                {
+                                                    <i class="fas fa-file me-2 text-secondary"></i>
+                                                }
+                                                <span>@f.OriginalFileName</span>
+                                            </div>
+                                        </td>
+                                        <td>@(string.IsNullOrWhiteSpace(f.ContentType) ? "unknown" : f.ContentType)</td>
+                                        <td>@Model.FormatBytes(f.SizeBytes)</td>
+                                        <td>@f.UploadedAt.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                                        <td>
+                                            <a class="btn btn-sm btn-primary" asp-page-handler="Download" asp-route-fileId="@f.FileID">
+                                                <i class="fas fa-download"></i>
+                                            </a>
+                                            <form method="post" asp-page-handler="DeleteFile" asp-route-fileId="@f.FileID" asp-route-selectedVendorId="@Model.SelectedVendorId" style="display:inline;">
+                                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete @f.OriginalFileName?');">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="5" class="text-center text-muted">No files uploaded for this vendor yet.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <div class="text-muted">Select a vendor to manage attachments.</div>
+            }
+        </div>
+    </div>
+    <div class="small text-muted mt-2">
+        Note: Files are stored securely on the server and are only downloadable by Admins.
+    </div>
+</div>
