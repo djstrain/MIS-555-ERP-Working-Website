@@ -16,8 +16,18 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 // Always use MySQL with the newconnection101 user
 builder.Services.AddDbContext<AppDbContents>(options =>
 {
+<<<<<<< Updated upstream
     var connString = "Server=localhost;Database=rxerp;Uid=newconnection101;Pwd=YourPasswordHere;";
     options.UseMySql(connString, new MySqlServerVersion(new Version(8, 0, 21)));
+=======
+    var serverVersion = new MySqlServerVersion(new Version(8, 0, 21));
+    options.UseMySql(connectionString, serverVersion, 
+        mySqlOptions => mySqlOptions.EnableRetryOnFailure(
+            maxRetryCount: 3,
+            maxRetryDelay: TimeSpan.FromSeconds(5),
+            errorNumbersToAdd: null)
+    );
+>>>>>>> Stashed changes
 });
 
 // HttpContext accessor and Session support
