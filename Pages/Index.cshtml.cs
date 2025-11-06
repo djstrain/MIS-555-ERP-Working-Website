@@ -84,6 +84,8 @@ public class IndexModel : PageModel
                     return RedirectToPage("/HRM");
                 if (demoRole.Equals("user", System.StringComparison.OrdinalIgnoreCase))
                     return RedirectToPage("/Privacy");
+                if (demoRole.Equals("vendor", System.StringComparison.OrdinalIgnoreCase))
+                    return RedirectToPage("/VendorManagement");
 
                 ModelState.AddModelError(string.Empty, "Invalid role assignment.");
                 return Page();
@@ -114,6 +116,10 @@ public class IndexModel : PageModel
                     else if (userRole == "user")
                     {
                         return RedirectToPage("/Privacy");
+                    }
+                    else if (userRole == "vendor")
+                    {
+                        return RedirectToPage("/VendorManagement");
                     }
                     else
                     {

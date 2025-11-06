@@ -20,7 +20,8 @@ CREATE TABLE IF NOT EXISTS UserCredentials (
 INSERT IGNORE INTO UserCredentials (Email, Password, Role, CreatedAt) VALUES
 ('admin@ctrlfreak.com', 'AdminPassword123!', 'Admin', NOW()),
 ('jane.doe@ctrlfreak.com', 'JanePassword123!', 'User', NOW()),
-('john.smith@ctrlfreak.com', 'JohnPassword123!', 'User', NOW());
+('john.smith@ctrlfreak.com', 'JohnPassword123!', 'User', NOW()),
+('vendor@ctrlfreak.com', 'VendorPassword123!', 'Vendor', NOW());
 
 -- ========================================
 -- 2. Employees Table

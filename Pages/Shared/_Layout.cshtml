@@ -2,6 +2,7 @@
 @{
     var role = Context?.Session?.GetString("UserRole");
     var isAdmin = string.Equals(role, "Admin", StringComparison.OrdinalIgnoreCase);
+    var isVendor = string.Equals(role, "Vendor", StringComparison.OrdinalIgnoreCase);
     var isLoggedIn = !string.IsNullOrEmpty(role);
 }
 
@@ -39,6 +40,9 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-page="/HRM">HRM</a>
                             </li>
+                        }
+                        @if (isVendor || isAdmin)
+                        {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-page="/VendorManagement">Vendors</a>
                             </li>
