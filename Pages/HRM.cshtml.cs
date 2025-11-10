@@ -34,6 +34,9 @@ public class HRMmodel : PageModel
     // Property to hold the list of employees for the view (HRM.cshtml)
     public List<Employee> Employees { get; set; } = new();
 
+    // Property to hold all departments for dropdown (unaffected by filters)
+    public List<string> AllDepartments { get; set; } = new();
+
     // Aggregated metrics for the UI
     public int DepartmentsCount { get; set; }
     public decimal AverageSalary { get; set; }
@@ -104,15 +107,16 @@ public class HRMmodel : PageModel
             return RedirectToPage("/Privacy");
         }
 
-        // Check if validation rules (like [Required]) have failed
-        if (!ModelState.IsValid)
-        {
-            await LoadEmployeeDataAsync(); 
-            return Page(); // Return to the page to show the error message
-        }
+        // Log search parameters
+        Console.WriteLine($"[HRM Search] SearchTerm: '{Input.SearchTerm}', DepartmentFilter: '{Input.DepartmentFilter}'");
+        
+        // For search, we don't need ModelState validation - search fields are optional
+        // Just proceed with filtering
+        Console.WriteLine("[HRM Search] Proceeding with filtering...");
         
         // Load all employees from database first
-        await LoadEmployeeDataAsync(); 
+        await LoadEmployeeDataAsync();
+        Console.WriteLine($"[HRM Search] Loaded {Employees.Count} employees from database");
         
         // Optional: Simple filtering logic (if a search term is provided)
         if (!string.IsNullOrWhiteSpace(Input.SearchTerm))
@@ -120,6 +124,7 @@ public class HRMmodel : PageModel
             Employees = Employees
                 .Where(e => e.Name!.Contains(Input.SearchTerm, System.StringComparison.OrdinalIgnoreCase))
                 .ToList();
+            Console.WriteLine($"[HRM Search] After name filter: {Employees.Count} employees");
         }
 
         // Apply department filter (if selected)
@@ -128,11 +133,13 @@ public class HRMmodel : PageModel
             Employees = Employees
                 .Where(e => string.Equals(e.Department, Input.DepartmentFilter, StringComparison.OrdinalIgnoreCase))
                 .ToList();
+            Console.WriteLine($"[HRM Search] After department filter: {Employees.Count} employees");
         }
 
         // Recompute metrics after filtering
         ComputeMetrics();
         
+        Console.WriteLine($"[HRM Search] Final employee count: {Employees.Count}");
         return Page(); // Stay on the HRM page
     }
 
@@ -238,6 +245,14 @@ public class HRMmodel : PageModel
     private async Task LoadEmployeeDataAsync()
     {
         Employees = await _context.Employees.ToListAsync();
+        
+        // Load all departments for the dropdown (unfiltered)
+        AllDepartments = await _context.Employees
+            .Where(e => !string.IsNullOrWhiteSpace(e.Department))
+            .Select(e => e.Department!)
+            .Distinct()
+            .OrderBy(d => d)
+            .ToListAsync();
         
         // compute aggregated values once data is loaded
         ComputeMetrics();

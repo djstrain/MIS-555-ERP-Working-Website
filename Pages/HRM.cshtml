@@ -81,9 +81,9 @@
                         <label class="form-label">Department</label>
                         <select class="form-select" asp-for="Input.DepartmentFilter">
                             <option value="">All Departments</option>
-                            @foreach (var d in Model.Employees.Select(e => e.Department).Where(d => !string.IsNullOrWhiteSpace(d)).Distinct(StringComparer.OrdinalIgnoreCase))
+                            @foreach (var d in Model.AllDepartments)
                             {
-                                <option value="@d" selected="@(string.Equals(Model.Input.DepartmentFilter, d, StringComparison.OrdinalIgnoreCase) ? "selected" : null)">@d</option>
+                                <option value="@d">@d</option>
                             }
                         </select>
                     </div>
