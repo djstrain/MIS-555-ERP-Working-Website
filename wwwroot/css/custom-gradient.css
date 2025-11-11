@@ -1,0 +1,109 @@
+/* Simple gradient with animated pixel overlay */
+
+html { height: 100%; }
+
+body {
+    background: linear-gradient(135deg, #0099ff 0%, #00ffaa 50%, #ffff00 100%);
+    background-attachment: fixed;
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    color: #000;
+}
+
+/* canvas for moving pixels sits below content */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* subtle grain overlay */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-repeat: repeat;
+    background-size: 100px 100px;
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+}
+
+@keyframes pixelDrift {
+    0% { background-position: 0 0; }
+    25% { background-position: -100px -100px; }
+    50% { background-position: -200px -50px; }
+    75% { background-position: -100px -150px; }
+    100% { background-position: 0 0; }
+}
+
+/* gradient controls styles */
+.gradient-controls { position: fixed; right: 14px; bottom: 14px; z-index: 9999; font-family: system-ui, Segoe UI, Roboto, sans-serif; }
+.gc-toggle { background: #fff; border-radius: 50%; width: 40px; height: 40px; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 4px 10px rgba(0,0,0,0.12); cursor: pointer; font-size: 18px; }
+.gc-panel { display: none; width: 220px; padding: 10px; margin-top: 8px; background: rgba(255,255,255,0.96); border-radius: 8px; box-shadow: 0 6px 20px rgba(0,0,0,0.18); }
+.gc-panel label { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 8px 0; font-size: 13px; color: #000; }
+.gc-panel select, .gc-panel input[type=range] { width: 120px; }
+.gc-panel .btn { width: 100%; margin-top: 6px; }
+.gradient-controls.open .gc-panel { display: block; }/* CONTENT VISIBILITY: Top priority -> white content boxes and black text */
+.container, header, footer, main, .navbar, .card, .card-body, .modal, .content {
+    position: relative;
+    z-index: 2;
+}
+
+.card, .card-body {
+    background-color: rgba(255,255,255,0.96) !important; /* almost full white */
+    border: 1px solid rgba(0,0,0,0.08) !important;
+    color: #000 !important;
+}
+
+.navbar, header {
+    background-color: rgba(255,255,255,0.98) !important;
+    border-bottom: 1px solid rgba(0,0,0,0.08) !important;
+    color: #000 !important;
+}
+
+/* Forms and inputs high contrast */
+.form-control, .form-select, input[type="text"], input[type="email"], input[type="password"], textarea {
+    background-color: #fff !important;
+    color: #000 !important;
+    border: 1px solid rgba(0,0,0,0.12) !important;
+}
+
+.form-control::placeholder, input::placeholder, textarea::placeholder {
+    color: #666 !important;
+}
+
+/* Buttons - use solid color but not pure black */
+.btn-primary { background-color: #0b4f9a !important; border-color: #053865 !important; color: #fff !important; }
+.btn-primary:hover { background-color: #083e7a !important; }
+
+.btn-secondary { background-color: #6c757d !important; color: #fff !important; }
+
+/* Links and headings black for readability */
+a { color: #0b4f9a !important; }
+a:hover { color: #083e7a !important; }
+
+h1,h2,h3,h4,h5,h6 { color: #000 !important; }
+p, label, span, li, td, th { color: #000 !important; }
+
+/* Charts/canvas should appear above background */
+canvas, svg { position: relative; z-index: 3; }
+
+/* make sure login page uses readable card */
+.login-card { background-color: rgba(255,255,255,0.98) !important; color: #000 !important; }
+
+/* subtle focus styles */
+.form-control:focus { box-shadow: 0 0 0 0.2rem rgba(11,79,154,0.15) !important; }
+
+/* Alerts contrast */
+.alert { background-color: #fff; color: #000; border: 1px solid rgba(0,0,0,0.12); }
+
+/* Ensure footer links visible */
+footer a { color: #0b4f9a !important; }
