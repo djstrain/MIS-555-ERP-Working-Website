@@ -22,6 +22,8 @@ namespace WebApplication1.Pages
         public List<Payment> Payments { get; set; } = new();
         public List<JournalEntry> JournalEntries { get; set; } = new();
         public List<TaxRate> TaxRates { get; set; } = new();
+    public List<InvoiceLine> InvoiceLines { get; set; } = new();
+    public List<JournalLine> JournalLines { get; set; } = new();
 
         // Aggregate Metrics
         public decimal TotalRevenue { get; set; }
@@ -150,6 +152,15 @@ namespace WebApplication1.Pages
                     .OrderByDescending(je => je.EntryDate)
                     .ToListAsync();
                 TaxRates = await _context.TaxRates.OrderBy(t => t.TaxCode).ToListAsync();
+                InvoiceLines = await _context.InvoiceLines
+                    .Include(il => il.Invoice)
+                    .OrderByDescending(il => il.CreatedAt)
+                    .ToListAsync();
+                JournalLines = await _context.JournalLines
+                    .Include(jl => jl.JournalEntry)
+                    .Include(jl => jl.Account)
+                    .OrderByDescending(jl => jl.CreatedAt)
+                    .ToListAsync();
 
                 // Calculate aggregate metrics
                 CalculateMetrics();

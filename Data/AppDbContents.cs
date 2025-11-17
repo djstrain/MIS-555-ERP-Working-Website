@@ -22,6 +22,8 @@ namespace WebApplication1.Data
         public DbSet<Payment> Payments { get; set; } = null!;
         public DbSet<JournalEntry> JournalEntries { get; set; } = null!;
         public DbSet<TaxRate> TaxRates { get; set; } = null!;
+    public DbSet<InvoiceLine> InvoiceLines { get; set; } = null!;
+    public DbSet<JournalLine> JournalLines { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -90,6 +92,21 @@ namespace WebApplication1.Data
                 new TaxRate { Id = 3, TaxCode = "STATE", TaxDescription = "State Income Tax", Rate = 0.065m, TaxType = "State", EffectiveDate = DateTime.UtcNow.AddDays(-365), CreatedAt = DateTime.UtcNow },
                 new TaxRate { Id = 4, TaxCode = "LOCAL", TaxDescription = "Local Sales Tax", Rate = 0.025m, TaxType = "Local", EffectiveDate = DateTime.UtcNow.AddDays(-365), CreatedAt = DateTime.UtcNow },
                 new TaxRate { Id = 5, TaxCode = "PAYROLL", TaxDescription = "Payroll Tax Rate", Rate = 0.15m, TaxType = "Payroll", EffectiveDate = DateTime.UtcNow.AddDays(-365), CreatedAt = DateTime.UtcNow }
+            );
+
+            // Seed Invoice Lines
+            modelBuilder.Entity<InvoiceLine>().HasData(
+                new InvoiceLine { Id = 1, InvoiceId = 1, Description = "Consulting Services", Quantity = 10, UnitPrice = 250m, LineTotal = 2500m, CreatedAt = DateTime.UtcNow },
+                new InvoiceLine { Id = 2, InvoiceId = 1, Description = "Software Licenses", Quantity = 5, UnitPrice = 500m, LineTotal = 2500m, CreatedAt = DateTime.UtcNow },
+                new InvoiceLine { Id = 3, InvoiceId = 2, Description = "Integration Work", Quantity = 15, UnitPrice = 300m, LineTotal = 4500m, CreatedAt = DateTime.UtcNow }
+            );
+
+            // Seed Journal Lines (split entries into debit/credit rows)
+            modelBuilder.Entity<JournalLine>().HasData(
+                new JournalLine { Id = 1, JournalEntryId = 1, AccountId = 1, Debit = 10000m, Credit = 0m, Description = "Cash Debited", CreatedAt = DateTime.UtcNow },
+                new JournalLine { Id = 2, JournalEntryId = 1, AccountId = 4, Debit = 0m, Credit = 10000m, Description = "AP Credited", CreatedAt = DateTime.UtcNow },
+                new JournalLine { Id = 3, JournalEntryId = 2, AccountId = 7, Debit = 5000m, Credit = 0m, Description = "COGS Debited", CreatedAt = DateTime.UtcNow },
+                new JournalLine { Id = 4, JournalEntryId = 2, AccountId = 3, Debit = 0m, Credit = 5000m, Description = "Inventory Credited", CreatedAt = DateTime.UtcNow }
             );
         }
     }

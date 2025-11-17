@@ -577,6 +577,78 @@
         </div>
     </div>
 
+    <!-- Invoice Lines Table -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Invoice Lines</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Invoice #</th>
+                            <th>Description</th>
+                            <th>Qty</th>
+                            <th>Unit Price</th>
+                            <th>Line Total</th>
+                            <th>Created</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var line in Model.InvoiceLines)
+                        {
+                            <tr>
+                                <td>@line.Invoice?.InvoiceNumber</td>
+                                <td>@line.Description</td>
+                                <td>@line.Quantity</td>
+                                <td>@line.UnitPrice.ToString("C")</td>
+                                <td>@line.LineTotal.ToString("C")</td>
+                                <td>@line.CreatedAt.ToString("MM/dd/yyyy")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Journal Lines Table -->
+    <div class="card mb-4">
+        <div class="card-header bg-secondary text-white">
+            <h5 class="mb-0">Journal Lines</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Journal #</th>
+                            <th>Account</th>
+                            <th>Debit</th>
+                            <th>Credit</th>
+                            <th>Description</th>
+                            <th>Created</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var jl in Model.JournalLines)
+                        {
+                            <tr>
+                                <td>@jl.JournalEntry?.JournalNumber</td>
+                                <td>@jl.Account?.AccountName (@jl.Account?.AccountNumber)</td>
+                                <td class="text-success">@jl.Debit.ToString("C")</td>
+                                <td class="text-danger">@jl.Credit.ToString("C")</td>
+                                <td>@jl.Description</td>
+                                <td>@jl.CreatedAt.ToString("MM/dd/yyyy")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
     <!-- Tax Rates Table -->
     <div class="card mb-4">
         <div class="card-header bg-dark text-white">

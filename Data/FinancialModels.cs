@@ -105,4 +105,41 @@ namespace WebApplication1.Data
         public DateTime EffectiveDate { get; set; } = DateTime.UtcNow;
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     }
+
+    // NEW: Invoice Line items linked to Invoices
+    public class InvoiceLine
+    {
+        public int Id { get; set; }
+        [Required]
+        public int InvoiceId { get; set; }
+        [Required]
+        [StringLength(200)]
+        public string Description { get; set; } = string.Empty;
+        public decimal Quantity { get; set; }
+        public decimal UnitPrice { get; set; }
+        public decimal LineTotal { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+        // Navigation
+        public Invoice? Invoice { get; set; }
+    }
+
+    // NEW: Journal lines linked to Journal Entries and Accounts
+    public class JournalLine
+    {
+        public int Id { get; set; }
+        [Required]
+        public int JournalEntryId { get; set; }
+        [Required]
+        public int AccountId { get; set; }
+        public decimal Debit { get; set; }
+        public decimal Credit { get; set; }
+        [StringLength(200)]
+        public string Description { get; set; } = string.Empty;
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+        // Navigation
+        public JournalEntry? JournalEntry { get; set; }
+        public Account? Account { get; set; }
+    }
 }
