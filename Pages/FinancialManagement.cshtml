@@ -123,12 +123,17 @@
                             <option value="Associate">Associate</option>
                         </select>
                     </div>
-                    <div class="col-md-4">
-                        <label for="NewPartnerContact" class="form-label">Contact Info</label>
-                        <input type="text" class="form-control" id="NewPartnerContact" asp-for="NewPartnerContact" 
-                               placeholder="Email or phone" />
+                    <div class="col-md-3">
+                        <label for="NewPartnerEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="NewPartnerEmail" asp-for="NewPartnerEmail"
+                               placeholder="email@example.com" />
                     </div>
-                    <div class="col-md-3 d-flex align-items-end">
+                    <div class="col-md-2">
+                        <label for="NewPartnerPhone" class="form-label">Phone</label>
+                        <input type="text" class="form-control" id="NewPartnerPhone" asp-for="NewPartnerPhone"
+                               placeholder="(555) 123-4567" />
+                    </div>
+                    <div class="col-md-2 d-flex align-items-end">
                         <button type="submit" class="btn btn-success w-100">
                             <i class="fas fa-save"></i> Add Partner
                         </button>
@@ -170,6 +175,10 @@
                     <div class="col-md-2">
                         <label for="NewInvoiceDate" class="form-label">Invoice Date</label>
                         <input type="date" class="form-control" id="NewInvoiceDate" asp-for="NewInvoiceDate" />
+                    </div>
+                    <div class="col-md-2">
+                        <label for="NewInvoiceDueDate" class="form-label">Due Date</label>
+                        <input type="date" class="form-control" id="NewInvoiceDueDate" asp-for="NewInvoiceDueDate" />
                     </div>
                     <div class="col-md-2">
                         <label for="NewInvoiceStatus" class="form-label">Status</label>
@@ -217,6 +226,10 @@
                         <label for="NewOpenBalanceDate" class="form-label">Balance Date</label>
                         <input type="date" class="form-control" id="NewOpenBalanceDate" asp-for="NewOpenBalanceDate" />
                     </div>
+                    <div class="col-md-3">
+                        <label for="NewOpenBalanceDescription" class="form-label">Description</label>
+                        <input type="text" class="form-control" id="NewOpenBalanceDescription" asp-for="NewOpenBalanceDescription" placeholder="Optional description" />
+                    </div>
                     <div class="col-md-3 d-flex align-items-end">
                         <button type="submit" class="btn btn-danger w-100">
                             <i class="fas fa-save"></i> Add Balance
@@ -236,6 +249,10 @@
             <form method="post">
                 <input type="hidden" asp-for="FormType" value="payment" />
                 <div class="row">
+                    <div class="col-md-2">
+                        <label for="NewPaymentNumber" class="form-label">Payment Number *</label>
+                        <input type="text" class="form-control" id="NewPaymentNumber" asp-for="NewPaymentNumber" placeholder="e.g., PAY-001" required />
+                    </div>
                     <div class="col-md-2">
                         <label for="NewPaymentInvoiceId" class="form-label">Invoice *</label>
                         <select class="form-select" id="NewPaymentInvoiceId" asp-for="NewPaymentInvoiceId" required>
@@ -284,6 +301,10 @@
             <form method="post">
                 <input type="hidden" asp-for="FormType" value="journalentry" />
                 <div class="row">
+                    <div class="col-md-2">
+                        <label for="NewJournalNumber" class="form-label">Journal Number *</label>
+                        <input type="text" class="form-control" id="NewJournalNumber" asp-for="NewJournalNumber" placeholder="e.g., JE-001" required />
+                    </div>
                     <div class="col-md-2">
                         <label for="NewJournalDebitAccountId" class="form-label">Debit Account *</label>
                         <select class="form-select" id="NewJournalDebitAccountId" asp-for="NewJournalDebitAccountId" required>
@@ -347,14 +368,63 @@
                         <input type="number" class="form-control" id="NewTaxPercentage" asp-for="NewTaxPercentage" 
                                placeholder="0.00" step="0.01" min="0" max="100" required />
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <label for="NewTaxDescription" class="form-label">Description</label>
                         <input type="text" class="form-control" id="NewTaxDescription" asp-for="NewTaxDescription" 
                                placeholder="e.g., Sales Tax Rate" />
                     </div>
+                    <div class="col-md-2">
+                        <label for="NewTaxType" class="form-label">Tax Type</label>
+                        <input type="text" class="form-control" id="NewTaxType" asp-for="NewTaxType" placeholder="Sales Tax / State / Federal" />
+                    </div>
+                    <div class="col-md-2">
+                        <label for="NewTaxEffectiveDate" class="form-label">Effective Date</label>
+                        <input type="date" class="form-control" id="NewTaxEffectiveDate" asp-for="NewTaxEffectiveDate" />
+                    </div>
                     <div class="col-md-2 d-flex align-items-end">
                         <button type="submit" class="btn btn-dark w-100">
                             <i class="fas fa-save"></i> Add Tax Rate
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Invoice Line Form -->
+    <div class="card mb-4 bg-light border-primary">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0"><i class="fas fa-plus-circle"></i> Add Invoice Line</h5>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                <input type="hidden" asp-for="FormType" value="invoiceline" />
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="NewInvoiceLineInvoiceId" class="form-label">Invoice *</label>
+                        <select class="form-select" id="NewInvoiceLineInvoiceId" asp-for="NewInvoiceLineInvoiceId" required>
+                            <option value="0">-- Select Invoice --</option>
+                            @foreach (var invoice in Model.Invoices)
+                            {
+                                <option value="@invoice.Id">@invoice.InvoiceNumber</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="NewInvoiceLineDescription" class="form-label">Description *</label>
+                        <input type="text" class="form-control" id="NewInvoiceLineDescription" asp-for="NewInvoiceLineDescription" required />
+                    </div>
+                    <div class="col-md-2">
+                        <label for="NewInvoiceLineQuantity" class="form-label">Qty *</label>
+                        <input type="number" step="0.01" min="0" class="form-control" id="NewInvoiceLineQuantity" asp-for="NewInvoiceLineQuantity" required />
+                    </div>
+                    <div class="col-md-2">
+                        <label for="NewInvoiceLineUnitPrice" class="form-label">Unit Price *</label>
+                        <input type="number" step="0.01" min="0" class="form-control" id="NewInvoiceLineUnitPrice" asp-for="NewInvoiceLineUnitPrice" required />
+                    </div>
+                    <div class="col-md-1 d-flex align-items-end">
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fas fa-save"></i>
                         </button>
                     </div>
                 </div>
@@ -610,6 +680,55 @@
                     </tbody>
                 </table>
             </div>
+        </div>
+    </div>
+
+    <!-- Add Journal Line Form -->
+    <div class="card mb-4 bg-light border-secondary">
+        <div class="card-header bg-secondary text-white">
+            <h5 class="mb-0"><i class="fas fa-plus-circle"></i> Add Journal Line</h5>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                <input type="hidden" asp-for="FormType" value="journalline" />
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="NewJournalLineEntryId" class="form-label">Journal Entry *</label>
+                        <select class="form-select" id="NewJournalLineEntryId" asp-for="NewJournalLineEntryId" required>
+                            <option value="0">-- Select Entry --</option>
+                            @foreach (var entry in Model.JournalEntries)
+                            {
+                                <option value="@entry.Id">@entry.JournalNumber</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="NewJournalLineAccountId" class="form-label">Account *</label>
+                        <select class="form-select" id="NewJournalLineAccountId" asp-for="NewJournalLineAccountId" required>
+                            <option value="0">-- Select Account --</option>
+                            @foreach (var account in Model.Accounts)
+                            {
+                                <option value="@account.Id">@account.AccountNumber - @account.AccountName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="NewJournalLineDebit" class="form-label">Debit</label>
+                        <input type="number" step="0.01" min="0" class="form-control" id="NewJournalLineDebit" asp-for="NewJournalLineDebit" />
+                    </div>
+                    <div class="col-md-2">
+                        <label for="NewJournalLineCredit" class="form-label">Credit</label>
+                        <input type="number" step="0.01" min="0" class="form-control" id="NewJournalLineCredit" asp-for="NewJournalLineCredit" />
+                    </div>
+                    <div class="col-md-1">
+                        <label for="NewJournalLineDescription" class="form-label">Desc</label>
+                        <input type="text" class="form-control" id="NewJournalLineDescription" asp-for="NewJournalLineDescription" />
+                    </div>
+                    <div class="col-md-1 d-flex align-items-end">
+                        <button type="submit" class="btn btn-secondary w-100"><i class="fas fa-save"></i></button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 

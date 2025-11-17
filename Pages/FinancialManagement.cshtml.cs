@@ -53,6 +53,13 @@ namespace WebApplication1.Pages
         [BindProperty]
         public string NewPartnerType { get; set; } = string.Empty;
 
+    // Separate fields to capture all Partner columns
+    [BindProperty]
+    public string NewPartnerEmail { get; set; } = string.Empty;
+
+    [BindProperty]
+    public string NewPartnerPhone { get; set; } = string.Empty;
+
         [BindProperty]
         public string NewPartnerContact { get; set; } = string.Empty;
 
@@ -69,6 +76,9 @@ namespace WebApplication1.Pages
         [BindProperty]
         public DateTime NewInvoiceDate { get; set; } = DateTime.Today;
 
+    [BindProperty]
+    public DateTime NewInvoiceDueDate { get; set; } = DateTime.Today.AddDays(30);
+
         [BindProperty]
         public string NewInvoiceStatus { get; set; } = "Pending";
 
@@ -82,9 +92,15 @@ namespace WebApplication1.Pages
         [BindProperty]
         public DateTime NewOpenBalanceDate { get; set; } = DateTime.Today;
 
+    [BindProperty]
+    public string NewOpenBalanceDescription { get; set; } = string.Empty;
+
         // Form Properties for Add Payment
         [BindProperty]
         public int NewPaymentInvoiceId { get; set; }
+
+    [BindProperty]
+    public string NewPaymentNumber { get; set; } = string.Empty;
 
         [BindProperty]
         public decimal NewPaymentAmount { get; set; }
@@ -97,6 +113,9 @@ namespace WebApplication1.Pages
 
         // Form Properties for Add Journal Entry
         [BindProperty]
+    public string NewJournalNumber { get; set; } = string.Empty;
+
+    [BindProperty]
         public int NewJournalDebitAccountId { get; set; }
 
         [BindProperty]
@@ -120,6 +139,41 @@ namespace WebApplication1.Pages
 
         [BindProperty]
         public string NewTaxDescription { get; set; } = string.Empty;
+
+    [BindProperty]
+    public string NewTaxType { get; set; } = string.Empty;
+
+    [BindProperty]
+    public DateTime NewTaxEffectiveDate { get; set; } = DateTime.Today;
+
+    // Form Properties for Add Invoice Line
+    [BindProperty]
+    public int NewInvoiceLineInvoiceId { get; set; }
+
+    [BindProperty]
+    public string NewInvoiceLineDescription { get; set; } = string.Empty;
+
+    [BindProperty]
+    public decimal NewInvoiceLineQuantity { get; set; }
+
+    [BindProperty]
+    public decimal NewInvoiceLineUnitPrice { get; set; }
+
+    // Form Properties for Add Journal Line
+    [BindProperty]
+    public int NewJournalLineEntryId { get; set; }
+
+    [BindProperty]
+    public int NewJournalLineAccountId { get; set; }
+
+    [BindProperty]
+    public decimal NewJournalLineDebit { get; set; }
+
+    [BindProperty]
+    public decimal NewJournalLineCredit { get; set; }
+
+    [BindProperty]
+    public string NewJournalLineDescription { get; set; } = string.Empty;
 
         [BindProperty]
         public string FormType { get; set; } = string.Empty;
@@ -225,6 +279,14 @@ namespace WebApplication1.Pages
                 {
                     return await AddTaxRate();
                 }
+                else if (FormType == "invoiceline")
+                {
+                    return await AddInvoiceLine();
+                }
+                else if (FormType == "journalline")
+                {
+                    return await AddJournalLine();
+                }
 
                 ErrorMessage = "Invalid form submission.";
                 await OnGetAsync();
@@ -291,7 +353,8 @@ namespace WebApplication1.Pages
             {
                 PartnerName = NewPartnerName,
                 PartnerType = NewPartnerType,
-                Email = NewPartnerContact ?? string.Empty,
+                Email = string.IsNullOrWhiteSpace(NewPartnerEmail) ? string.Empty : NewPartnerEmail,
+                Phone = string.IsNullOrWhiteSpace(NewPartnerPhone) ? string.Empty : NewPartnerPhone,
                 CreatedAt = DateTime.UtcNow
             };
 
@@ -327,6 +390,7 @@ namespace WebApplication1.Pages
                 InvoiceNumber = NewInvoiceNumber,
                 Amount = NewInvoiceAmount,
                 InvoiceDate = NewInvoiceDate,
+                DueDate = NewInvoiceDueDate,
                 Status = NewInvoiceStatus,
                 CreatedAt = DateTime.UtcNow
             };
@@ -362,6 +426,7 @@ namespace WebApplication1.Pages
                 AccountId = NewOpenBalanceAccountId,
                 OpeningBalance = NewOpenBalanceAmount,
                 BalanceDate = NewOpenBalanceDate,
+                Description = NewOpenBalanceDescription ?? string.Empty,
                 CreatedAt = DateTime.UtcNow
             };
 
@@ -376,9 +441,9 @@ namespace WebApplication1.Pages
 
         private async Task<IActionResult> AddPayment()
         {
-            if (NewPaymentInvoiceId <= 0 || NewPaymentAmount <= 0)
+            if (NewPaymentInvoiceId <= 0 || string.IsNullOrWhiteSpace(NewPaymentNumber) || NewPaymentAmount <= 0)
             {
-                ErrorMessage = "Invoice and Payment amount are required.";
+                ErrorMessage = "Invoice, Payment Number, and Payment amount are required.";
                 await OnGetAsync();
                 return Page();
             }
@@ -391,8 +456,17 @@ namespace WebApplication1.Pages
                 return Page();
             }
 
+            var dupPayment = await _context.Payments.FirstOrDefaultAsync(p => p.PaymentNumber == NewPaymentNumber);
+            if (dupPayment != null)
+            {
+                ErrorMessage = $"Payment number '{NewPaymentNumber}' already exists.";
+                await OnGetAsync();
+                return Page();
+            }
+
             var newPayment = new Payment
             {
+                PaymentNumber = NewPaymentNumber,
                 InvoiceId = NewPaymentInvoiceId,
                 PaymentAmount = NewPaymentAmount,
                 PaymentDate = NewPaymentDate,
@@ -411,9 +485,9 @@ namespace WebApplication1.Pages
 
         private async Task<IActionResult> AddJournalEntry()
         {
-            if (NewJournalDebitAccountId <= 0 || NewJournalCreditAccountId <= 0 || NewJournalAmount <= 0)
+            if (string.IsNullOrWhiteSpace(NewJournalNumber) || NewJournalDebitAccountId <= 0 || NewJournalCreditAccountId <= 0 || NewJournalAmount <= 0)
             {
-                ErrorMessage = "Debit Account, Credit Account, and Amount are required.";
+                ErrorMessage = "Journal Number, Debit Account, Credit Account, and Amount are required.";
                 await OnGetAsync();
                 return Page();
             }
@@ -435,8 +509,17 @@ namespace WebApplication1.Pages
                 return Page();
             }
 
+            var jeExists = await _context.JournalEntries.FirstOrDefaultAsync(j => j.JournalNumber == NewJournalNumber);
+            if (jeExists != null)
+            {
+                ErrorMessage = $"Journal number '{NewJournalNumber}' already exists.";
+                await OnGetAsync();
+                return Page();
+            }
+
             var newJournalEntry = new JournalEntry
             {
+                JournalNumber = NewJournalNumber,
                 DebitAccountId = NewJournalDebitAccountId,
                 CreditAccountId = NewJournalCreditAccountId,
                 Amount = NewJournalAmount,
@@ -478,6 +561,8 @@ namespace WebApplication1.Pages
                 TaxCode = NewTaxCode,
                 Rate = NewTaxPercentage / 100m,
                 TaxDescription = NewTaxDescription ?? string.Empty,
+                TaxType = NewTaxType ?? string.Empty,
+                EffectiveDate = NewTaxEffectiveDate,
                 CreatedAt = DateTime.UtcNow
             };
 
@@ -485,6 +570,86 @@ namespace WebApplication1.Pages
             await _context.SaveChangesAsync();
 
             Message = $"Tax Rate '{NewTaxCode}' ({NewTaxPercentage}%) has been successfully added!";
+            ResetAllForms();
+            await OnGetAsync();
+            return Page();
+        }
+
+        private async Task<IActionResult> AddInvoiceLine()
+        {
+            if (NewInvoiceLineInvoiceId <= 0 || string.IsNullOrWhiteSpace(NewInvoiceLineDescription) || NewInvoiceLineQuantity <= 0 || NewInvoiceLineUnitPrice < 0)
+            {
+                ErrorMessage = "Invoice, Description, Quantity and Unit Price are required.";
+                await OnGetAsync();
+                return Page();
+            }
+
+            var invoice = await _context.Invoices.FindAsync(NewInvoiceLineInvoiceId);
+            if (invoice == null)
+            {
+                ErrorMessage = "Selected invoice not found.";
+                await OnGetAsync();
+                return Page();
+            }
+
+            var line = new InvoiceLine
+            {
+                InvoiceId = NewInvoiceLineInvoiceId,
+                Description = NewInvoiceLineDescription,
+                Quantity = NewInvoiceLineQuantity,
+                UnitPrice = NewInvoiceLineUnitPrice,
+                LineTotal = NewInvoiceLineQuantity * NewInvoiceLineUnitPrice,
+                CreatedAt = DateTime.UtcNow
+            };
+
+            _context.InvoiceLines.Add(line);
+            await _context.SaveChangesAsync();
+
+            Message = "Invoice line added.";
+            ResetAllForms();
+            await OnGetAsync();
+            return Page();
+        }
+
+        private async Task<IActionResult> AddJournalLine()
+        {
+            if (NewJournalLineEntryId <= 0 || NewJournalLineAccountId <= 0)
+            {
+                ErrorMessage = "Journal Entry and Account are required.";
+                await OnGetAsync();
+                return Page();
+            }
+
+            if (NewJournalLineDebit < 0 || NewJournalLineCredit < 0)
+            {
+                ErrorMessage = "Debit and Credit must be non-negative.";
+                await OnGetAsync();
+                return Page();
+            }
+
+            var entry = await _context.JournalEntries.FindAsync(NewJournalLineEntryId);
+            var account = await _context.Accounts.FindAsync(NewJournalLineAccountId);
+            if (entry == null || account == null)
+            {
+                ErrorMessage = "Selected entry or account not found.";
+                await OnGetAsync();
+                return Page();
+            }
+
+            var jl = new JournalLine
+            {
+                JournalEntryId = NewJournalLineEntryId,
+                AccountId = NewJournalLineAccountId,
+                Debit = NewJournalLineDebit,
+                Credit = NewJournalLineCredit,
+                Description = NewJournalLineDescription ?? string.Empty,
+                CreatedAt = DateTime.UtcNow
+            };
+
+            _context.JournalLines.Add(jl);
+            await _context.SaveChangesAsync();
+
+            Message = "Journal line added.";
             ResetAllForms();
             await OnGetAsync();
             return Page();
@@ -499,23 +664,29 @@ namespace WebApplication1.Pages
 
             NewPartnerName = string.Empty;
             NewPartnerType = string.Empty;
-            NewPartnerContact = string.Empty;
+            NewPartnerEmail = string.Empty;
+            NewPartnerPhone = string.Empty;
+            NewPartnerContact = string.Empty; // legacy field, unused
 
             NewInvoicePartnerId = 0;
             NewInvoiceNumber = string.Empty;
             NewInvoiceAmount = 0;
             NewInvoiceDate = DateTime.Today;
+            NewInvoiceDueDate = DateTime.Today.AddDays(30);
             NewInvoiceStatus = "Pending";
 
             NewOpenBalanceAccountId = 0;
             NewOpenBalanceAmount = 0;
             NewOpenBalanceDate = DateTime.Today;
+            NewOpenBalanceDescription = string.Empty;
 
             NewPaymentInvoiceId = 0;
+            NewPaymentNumber = string.Empty;
             NewPaymentAmount = 0;
             NewPaymentDate = DateTime.Today;
             NewPaymentMethod = "Bank Transfer";
 
+            NewJournalNumber = string.Empty;
             NewJournalDebitAccountId = 0;
             NewJournalCreditAccountId = 0;
             NewJournalAmount = 0;
@@ -525,6 +696,19 @@ namespace WebApplication1.Pages
             NewTaxCode = string.Empty;
             NewTaxPercentage = 0;
             NewTaxDescription = string.Empty;
+            NewTaxType = string.Empty;
+            NewTaxEffectiveDate = DateTime.Today;
+
+            NewInvoiceLineInvoiceId = 0;
+            NewInvoiceLineDescription = string.Empty;
+            NewInvoiceLineQuantity = 0;
+            NewInvoiceLineUnitPrice = 0;
+
+            NewJournalLineEntryId = 0;
+            NewJournalLineAccountId = 0;
+            NewJournalLineDebit = 0;
+            NewJournalLineCredit = 0;
+            NewJournalLineDescription = string.Empty;
 
             FormType = string.Empty;
         }
