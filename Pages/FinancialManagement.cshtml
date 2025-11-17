@@ -435,10 +435,33 @@
     <!-- Data Tables Section -->
     <hr class="my-5" />
     <h2 class="mb-4">Financial Data</h2>
+
+    <!-- Accounts Table -->
+    <div class="card mb-4">
         <div class="card-header bg-primary text-white">
             <h5 class="mb-0">Accounts</h5>
         </div>
         <div class="card-body">
+            <!-- Filter Toolbar -->
+            <form method="get" class="mb-3">
+                <div class="row align-items-end">
+                    <div class="col-md-3">
+                        <label class="form-label">Filter by Account Type</label>
+                        <select class="form-select" asp-for="AccountTypeFilter" onchange="this.form.submit()">
+                            @foreach (var type in Model.AllAccountTypes)
+                            {
+                                <option value="@type" selected="@(Model.AccountTypeFilter == type)">@type</option>
+                            }
+                        </select>
+                    </div>
+                    @if (!string.IsNullOrWhiteSpace(Model.AccountTypeFilter) && Model.AccountTypeFilter != "All")
+                    {
+                        <div class="col-md-2">
+                            <a href="/FinancialManagement" class="btn btn-secondary">Clear Filter</a>
+                        </div>
+                    }
+                </div>
+            </form>
             <div class="table-responsive">
                 <table class="table table-striped table-hover">
                     <thead class="table-light">
@@ -473,6 +496,26 @@
             <h5 class="mb-0">Partners</h5>
         </div>
         <div class="card-body">
+            <!-- Filter Toolbar -->
+            <form method="get" class="mb-3">
+                <div class="row align-items-end">
+                    <div class="col-md-3">
+                        <label class="form-label">Filter by Partner Type</label>
+                        <select class="form-select" asp-for="PartnerTypeFilter" onchange="this.form.submit()">
+                            @foreach (var type in Model.AllPartnerTypes)
+                            {
+                                <option value="@type" selected="@(Model.PartnerTypeFilter == type)">@type</option>
+                            }
+                        </select>
+                    </div>
+                    @if (!string.IsNullOrWhiteSpace(Model.PartnerTypeFilter) && Model.PartnerTypeFilter != "All")
+                    {
+                        <div class="col-md-2">
+                            <a href="/FinancialManagement" class="btn btn-secondary">Clear Filter</a>
+                        </div>
+                    }
+                </div>
+            </form>
             <div class="table-responsive">
                 <table class="table table-striped table-hover">
                     <thead class="table-light">
@@ -507,6 +550,26 @@
             <h5 class="mb-0">Invoices</h5>
         </div>
         <div class="card-body">
+            <!-- Filter Toolbar -->
+            <form method="get" class="mb-3">
+                <div class="row align-items-end">
+                    <div class="col-md-3">
+                        <label class="form-label">Filter by Status</label>
+                        <select class="form-select" asp-for="InvoiceStatusFilter" onchange="this.form.submit()">
+                            @foreach (var status in Model.AllInvoiceStatuses)
+                            {
+                                <option value="@status" selected="@(Model.InvoiceStatusFilter == status)">@status</option>
+                            }
+                        </select>
+                    </div>
+                    @if (!string.IsNullOrWhiteSpace(Model.InvoiceStatusFilter) && Model.InvoiceStatusFilter != "All")
+                    {
+                        <div class="col-md-2">
+                            <a href="/FinancialManagement" class="btn btn-secondary">Clear Filter</a>
+                        </div>
+                    }
+                </div>
+            </form>
             <div class="table-responsive">
                 <table class="table table-striped table-hover">
                     <thead class="table-light">
@@ -583,6 +646,26 @@
             <h5 class="mb-0">Payments</h5>
         </div>
         <div class="card-body">
+            <!-- Filter Toolbar -->
+            <form method="get" class="mb-3">
+                <div class="row align-items-end">
+                    <div class="col-md-3">
+                        <label class="form-label">Filter by Payment Method</label>
+                        <select class="form-select" asp-for="PaymentMethodFilter" onchange="this.form.submit()">
+                            @foreach (var method in Model.AllPaymentMethods)
+                            {
+                                <option value="@method" selected="@(Model.PaymentMethodFilter == method)">@method</option>
+                            }
+                        </select>
+                    </div>
+                    @if (!string.IsNullOrWhiteSpace(Model.PaymentMethodFilter) && Model.PaymentMethodFilter != "All")
+                    {
+                        <div class="col-md-2">
+                            <a href="/FinancialManagement" class="btn btn-secondary">Clear Filter</a>
+                        </div>
+                    }
+                </div>
+            </form>
             <div class="table-responsive">
                 <table class="table table-striped table-hover">
                     <thead class="table-light">
@@ -774,6 +857,26 @@
             <h5 class="mb-0">Tax Rates</h5>
         </div>
         <div class="card-body">
+            <!-- Filter Toolbar -->
+            <form method="get" class="mb-3">
+                <div class="row align-items-end">
+                    <div class="col-md-3">
+                        <label class="form-label">Filter by Tax Type</label>
+                        <select class="form-select" asp-for="TaxTypeFilter" onchange="this.form.submit()">
+                            @foreach (var type in Model.AllTaxTypes)
+                            {
+                                <option value="@type" selected="@(Model.TaxTypeFilter == type)">@type</option>
+                            }
+                        </select>
+                    </div>
+                    @if (!string.IsNullOrWhiteSpace(Model.TaxTypeFilter) && Model.TaxTypeFilter != "All")
+                    {
+                        <div class="col-md-2">
+                            <a href="/FinancialManagement" class="btn btn-secondary">Clear Filter</a>
+                        </div>
+                    }
+                </div>
+            </form>
             <div class="table-responsive">
                 <table class="table table-striped table-hover">
                     <thead class="table-light">

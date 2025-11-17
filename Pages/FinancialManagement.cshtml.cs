@@ -33,6 +33,29 @@ namespace WebApplication1.Pages
         public int PaidInvoices { get; set; }
         public int PendingInvoices { get; set; }
 
+        // Filter Properties (persisted via query string)
+        [BindProperty(SupportsGet = true)]
+        public string? AccountTypeFilter { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public string? PartnerTypeFilter { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public string? InvoiceStatusFilter { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public string? PaymentMethodFilter { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public string? TaxTypeFilter { get; set; }
+
+        // Lists for filter dropdowns
+        public List<string> AllAccountTypes { get; set; } = new();
+        public List<string> AllPartnerTypes { get; set; } = new();
+        public List<string> AllInvoiceStatuses { get; set; } = new();
+        public List<string> AllPaymentMethods { get; set; } = new();
+        public List<string> AllTaxTypes { get; set; } = new();
+
         // Form Properties for Add Account
         [BindProperty]
         public string NewAccountNumber { get; set; } = string.Empty;
@@ -185,27 +208,93 @@ namespace WebApplication1.Pages
         {
             try
             {
-                // Retrieve all data from database
-                Accounts = await _context.Accounts.OrderBy(a => a.AccountNumber).ToListAsync();
-                Partners = await _context.Partners.OrderBy(p => p.PartnerName).ToListAsync();
-                Invoices = await _context.Invoices
-                    .Include(i => i.Partner)
-                    .OrderByDescending(i => i.InvoiceDate)
+                // Load distinct values for filter dropdowns
+                AllAccountTypes = await _context.Accounts
+                    .Select(a => a.AccountType)
+                    .Distinct()
+                    .OrderBy(t => t)
                     .ToListAsync();
+                AllAccountTypes.Insert(0, "All");
+
+                AllPartnerTypes = await _context.Partners
+                    .Select(p => p.PartnerType)
+                    .Distinct()
+                    .OrderBy(t => t)
+                    .ToListAsync();
+                AllPartnerTypes.Insert(0, "All");
+
+                AllInvoiceStatuses = await _context.Invoices
+                    .Select(i => i.Status)
+                    .Distinct()
+                    .OrderBy(s => s)
+                    .ToListAsync();
+                AllInvoiceStatuses.Insert(0, "All");
+
+                AllPaymentMethods = await _context.Payments
+                    .Select(p => p.PaymentMethod)
+                    .Distinct()
+                    .OrderBy(m => m)
+                    .ToListAsync();
+                AllPaymentMethods.Insert(0, "All");
+
+                AllTaxTypes = await _context.TaxRates
+                    .Select(t => t.TaxType)
+                    .Where(t => !string.IsNullOrEmpty(t))
+                    .Distinct()
+                    .OrderBy(t => t)
+                    .ToListAsync();
+                AllTaxTypes.Insert(0, "All");
+
+                // Apply filters to Accounts
+                var accountsQuery = _context.Accounts.AsQueryable();
+                if (!string.IsNullOrWhiteSpace(AccountTypeFilter) && AccountTypeFilter != "All")
+                {
+                    accountsQuery = accountsQuery.Where(a => a.AccountType == AccountTypeFilter);
+                }
+                Accounts = await accountsQuery.OrderBy(a => a.AccountNumber).ToListAsync();
+
+                // Apply filters to Partners
+                var partnersQuery = _context.Partners.AsQueryable();
+                if (!string.IsNullOrWhiteSpace(PartnerTypeFilter) && PartnerTypeFilter != "All")
+                {
+                    partnersQuery = partnersQuery.Where(p => p.PartnerType == PartnerTypeFilter);
+                }
+                Partners = await partnersQuery.OrderBy(p => p.PartnerName).ToListAsync();
+
+                // Apply filters to Invoices
+                var invoicesQuery = _context.Invoices.Include(i => i.Partner).AsQueryable();
+                if (!string.IsNullOrWhiteSpace(InvoiceStatusFilter) && InvoiceStatusFilter != "All")
+                {
+                    invoicesQuery = invoicesQuery.Where(i => i.Status == InvoiceStatusFilter);
+                }
+                Invoices = await invoicesQuery.OrderByDescending(i => i.InvoiceDate).ToListAsync();
+
+                // Apply filters to Payments
+                var paymentsQuery = _context.Payments.Include(p => p.Invoice).AsQueryable();
+                if (!string.IsNullOrWhiteSpace(PaymentMethodFilter) && PaymentMethodFilter != "All")
+                {
+                    paymentsQuery = paymentsQuery.Where(p => p.PaymentMethod == PaymentMethodFilter);
+                }
+                Payments = await paymentsQuery.OrderByDescending(p => p.PaymentDate).ToListAsync();
+
+                // Apply filters to Tax Rates
+                var taxRatesQuery = _context.TaxRates.AsQueryable();
+                if (!string.IsNullOrWhiteSpace(TaxTypeFilter) && TaxTypeFilter != "All")
+                {
+                    taxRatesQuery = taxRatesQuery.Where(t => t.TaxType == TaxTypeFilter);
+                }
+                TaxRates = await taxRatesQuery.OrderBy(t => t.TaxCode).ToListAsync();
+
+                // Load remaining entities without filters
                 OpenBalances = await _context.OpenBalances
                     .Include(ob => ob.Account)
                     .OrderByDescending(ob => ob.BalanceDate)
-                    .ToListAsync();
-                Payments = await _context.Payments
-                    .Include(p => p.Invoice)
-                    .OrderByDescending(p => p.PaymentDate)
                     .ToListAsync();
                 JournalEntries = await _context.JournalEntries
                     .Include(je => je.DebitAccount)
                     .Include(je => je.CreditAccount)
                     .OrderByDescending(je => je.EntryDate)
                     .ToListAsync();
-                TaxRates = await _context.TaxRates.OrderBy(t => t.TaxCode).ToListAsync();
                 InvoiceLines = await _context.InvoiceLines
                     .Include(il => il.Invoice)
                     .OrderByDescending(il => il.CreatedAt)
