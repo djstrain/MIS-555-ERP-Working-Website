@@ -56,6 +56,10 @@ namespace WebApplication1.Pages
         public List<string> AllPaymentMethods { get; set; } = new();
         public List<string> AllTaxTypes { get; set; } = new();
 
+    // Active category selector for dashboard view switching
+    [BindProperty(SupportsGet = true)]
+    public string? ActiveCategory { get; set; } = "Accounts";
+
         // Form Properties for Add Account
         [BindProperty]
         public string NewAccountNumber { get; set; } = string.Empty;
@@ -314,6 +318,46 @@ namespace WebApplication1.Pages
             }
         }
 
+        private IActionResult RedirectWithCategory()
+        {
+            // Preserve which section should be open and keep any active filters
+            var cat = NormalizeActiveCategory();
+            return RedirectToPage(new
+            {
+                ActiveCategory = cat,
+                AccountTypeFilter = AccountTypeFilter,
+                PartnerTypeFilter = PartnerTypeFilter,
+                InvoiceStatusFilter = InvoiceStatusFilter,
+                PaymentMethodFilter = PaymentMethodFilter,
+                TaxTypeFilter = TaxTypeFilter
+            });
+        }
+
+        private string NormalizeActiveCategory()
+        {
+            // Use posted ActiveCategory when available; otherwise infer from FormType
+            var cat = (ActiveCategory ?? string.Empty).Trim();
+            if (string.IsNullOrEmpty(cat))
+            {
+                cat = FormType?.ToLowerInvariant() switch
+                {
+                    "account" => "accounts",
+                    "partner" => "partners",
+                    "invoice" => "invoices",
+                    "openbalance" => "openbalances",
+                    "payment" => "payments",
+                    "journalentry" => "journalentries",
+                    "taxrate" => "taxrates",
+                    "invoiceline" => "invoicelines",
+                    "journalline" => "journallines",
+                    _ => string.Empty
+                };
+            }
+
+            // Normalize to the CSS class key e.g., "accounts"
+            return cat.ToLowerInvariant();
+        }
+
         private void CalculateMetrics()
         {
             // Calculate total revenue (invoices with Paid or Pending status)
@@ -424,8 +468,7 @@ namespace WebApplication1.Pages
 
             Message = $"Account '{NewAccountName}' ({NewAccountNumber}) has been successfully added!";
             ResetAllForms();
-            await OnGetAsync();
-            return Page();
+            return RedirectWithCategory();
         }
 
         private async Task<IActionResult> AddPartner()
@@ -452,8 +495,7 @@ namespace WebApplication1.Pages
 
             Message = $"Partner '{NewPartnerName}' has been successfully added!";
             ResetAllForms();
-            await OnGetAsync();
-            return Page();
+            return RedirectWithCategory();
         }
 
         private async Task<IActionResult> AddInvoice()
@@ -489,8 +531,7 @@ namespace WebApplication1.Pages
 
             Message = $"Invoice '{NewInvoiceNumber}' ({NewInvoiceAmount:C}) has been successfully added!";
             ResetAllForms();
-            await OnGetAsync();
-            return Page();
+            return RedirectWithCategory();
         }
 
         private async Task<IActionResult> AddOpenBalance()
@@ -524,8 +565,12 @@ namespace WebApplication1.Pages
 
             Message = $"Open Balance ({NewOpenBalanceAmount:C}) for '{account.AccountName}' has been successfully added!";
             ResetAllForms();
-            await OnGetAsync();
-            return Page();
+            // Fallback: if ActiveCategory wasn't posted, ensure Open Balances stays open
+            if (string.IsNullOrWhiteSpace(ActiveCategory))
+            {
+                ActiveCategory = "openbalances";
+            }
+            return RedirectWithCategory();
         }
 
         private async Task<IActionResult> AddPayment()
@@ -568,8 +613,7 @@ namespace WebApplication1.Pages
 
             Message = $"Payment ({NewPaymentAmount:C}) has been successfully added!";
             ResetAllForms();
-            await OnGetAsync();
-            return Page();
+            return RedirectWithCategory();
         }
 
         private async Task<IActionResult> AddJournalEntry()
@@ -622,8 +666,7 @@ namespace WebApplication1.Pages
 
             Message = $"Journal Entry ({NewJournalAmount:C}) has been successfully added!";
             ResetAllForms();
-            await OnGetAsync();
-            return Page();
+            return RedirectWithCategory();
         }
 
         private async Task<IActionResult> AddTaxRate()
@@ -660,8 +703,7 @@ namespace WebApplication1.Pages
 
             Message = $"Tax Rate '{NewTaxCode}' ({NewTaxPercentage}%) has been successfully added!";
             ResetAllForms();
-            await OnGetAsync();
-            return Page();
+            return RedirectWithCategory();
         }
 
         private async Task<IActionResult> AddInvoiceLine()
@@ -696,8 +738,7 @@ namespace WebApplication1.Pages
 
             Message = "Invoice line added.";
             ResetAllForms();
-            await OnGetAsync();
-            return Page();
+            return RedirectWithCategory();
         }
 
         private async Task<IActionResult> AddJournalLine()
@@ -740,8 +781,7 @@ namespace WebApplication1.Pages
 
             Message = "Journal line added.";
             ResetAllForms();
-            await OnGetAsync();
-            return Page();
+            return RedirectWithCategory();
         }
 
         private void ResetAllForms()

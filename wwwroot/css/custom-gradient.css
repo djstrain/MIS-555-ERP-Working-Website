@@ -1,9 +1,9 @@
-/* Simple gradient with animated pixel overlay */
+/* Simple plain white background */
 
 html { height: 100%; }
 
 body {
-    background: linear-gradient(135deg, #0099ff 0%, #00ffaa 50%, #ffff00 100%);
+    background: #ffffff;
     background-attachment: fixed;
     position: relative;
     min-height: 100vh;
