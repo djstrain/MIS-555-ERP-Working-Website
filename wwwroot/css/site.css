@@ -101,3 +101,13 @@ h2 {
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
     transform: translateY(-2px);
 }
+
+/* ========================================================================= */
+/* --- CRM Modules Styling --- */
+/* ========================================================================= */
+.crm-module, .financial-module { border: 1px solid #e5e5e5; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+.crm-module .card-header, .financial-module .card-header { background:#f8f9fa; border-bottom:1px solid #e5e5e5; }
+.crm-module .card-header h5, .financial-module .card-header h5 { font-size: 1rem; font-weight:500; }
+.crm-module .table td, .crm-module .table th, .financial-module .table td, .financial-module .table th { vertical-align: middle; }
+.crm-module form .form-control, .financial-module form .form-control { font-size: .85rem; }
+.crm-module .toggle-btn, .financial-module .toggle-btn { min-width: 70px; }

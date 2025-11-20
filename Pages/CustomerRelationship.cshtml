@@ -1,0 +1,362 @@
+@page
+@model WebApplication1.Pages.CustomerRelationshipModel
+@{
+    ViewData["Title"] = "Customer Relationship";
+}
+
+<div class="container py-3">
+    <h2 class="mb-4">Customer Relationship Management</h2>
+
+    @if (!string.IsNullOrWhiteSpace(Model.ActiveModule) && ViewContext.ModelState.IsValid == false)
+    {
+        <div class="alert alert-danger py-2 mb-3">
+            <strong>Validation failed.</strong>
+            @if (Model.ValidationErrors?.Any() == true)
+            {
+                <ul class="mb-0 small">
+                    @foreach (var err in Model.ValidationErrors)
+                    {
+                        <li>@err</li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <span>Please check required fields.</span>
+            }
+        </div>
+    }
+
+    <div class="mb-3 d-flex flex-wrap gap-2">
+        <button type="button" class="btn btn-outline-primary" data-module="companies">Companies</button>
+        <button type="button" class="btn btn-outline-primary" data-module="contacts">Contacts</button>
+        <button type="button" class="btn btn-outline-primary" data-module="opportunities">Opportunities</button>
+        <button type="button" class="btn btn-outline-primary" data-module="activities">Activities</button>
+        <button type="button" class="btn btn-outline-primary" data-module="notes">Notes</button>
+    </div>
+
+    <!-- Companies Module -->
+    <div class="card mb-3 crm-module" id="module-companies">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Companies</h5>
+            <button class="btn btn-sm btn-secondary toggle-btn" data-bs-toggle="collapse" data-bs-target="#companiesCollapse" aria-expanded="false">Toggle</button>
+        </div>
+        <div id="companiesCollapse" class="collapse" data-module-collapse="companies">
+            <div class="card-body">
+                <form method="post" asp-page-handler="AddCompany" asp-antiforgery="true" class="row g-2 mb-3">
+                    <div class="col-md-4">
+                        <input asp-for="NewCompany.Name" class="form-control" placeholder="Name *" required />
+                        <span asp-validation-for="NewCompany.Name" class="text-danger small"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <input asp-for="NewCompany.Industry" class="form-control" placeholder="Industry" />
+                    </div>
+                    <div class="col-md-3">
+                        <input asp-for="NewCompany.Website" class="form-control" placeholder="Website" />
+                    </div>
+                    <div class="col-md-2 d-grid">
+                        <button type="submit" class="btn btn-primary">Add</button>
+                    </div>
+                </form>
+                <div class="table-responsive">
+                    <table class="table table-sm table-striped mb-0">
+                        <thead>
+                            <tr>
+                                <th>Name</th><th>Industry</th><th>Website</th><th>Created</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var c in Model.Companies)
+                            {
+                                <tr>
+                                    <td>@c.Name</td>
+                                    <td>@(string.IsNullOrWhiteSpace(c.Industry)?"-":c.Industry)</td>
+                                    <td>@(string.IsNullOrWhiteSpace(c.Website)?"-":c.Website)</td>
+                                    <td>@c.CreatedAt.ToLocalTime().ToString("MM/dd/yyyy")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contacts Module -->
+    <div class="card mb-3 crm-module" id="module-contacts">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Contacts</h5>
+            <button class="btn btn-sm btn-secondary toggle-btn" data-bs-toggle="collapse" data-bs-target="#contactsCollapse" aria-expanded="false">Toggle</button>
+        </div>
+        <div id="contactsCollapse" class="collapse" data-module-collapse="contacts">
+            <div class="card-body">
+                <form method="post" asp-page-handler="AddContact" asp-antiforgery="true" class="row g-2 mb-3">
+                    <div class="col-md-2">
+                        <input asp-for="NewContact.FirstName" class="form-control" placeholder="First Name *" required />
+                        <span asp-validation-for="NewContact.FirstName" class="text-danger small"></span>
+                    </div>
+                    <div class="col-md-2">
+                        <input asp-for="NewContact.LastName" class="form-control" placeholder="Last Name *" required />
+                        <span asp-validation-for="NewContact.LastName" class="text-danger small"></span>
+                    </div>
+                    <div class="col-md-2">
+                        <input asp-for="NewContact.Email" class="form-control" placeholder="Email" />
+                    </div>
+                    <div class="col-md-2">
+                        <input asp-for="NewContact.Phone" class="form-control" placeholder="Phone" />
+                    </div>
+                    <div class="col-md-3">
+                        <input asp-for="NewContactCompanyName" class="form-control" placeholder="Company (optional – type to create or match)" />
+                        <small class="text-muted">Leave blank or type a new/existing company name.</small>
+                    </div>
+                    <div class="col-md-1 d-grid">
+                        <button type="submit" class="btn btn-primary">Add</button>
+                    </div>
+                </form>
+                <div class="table-responsive">
+                    <table class="table table-sm table-striped mb-0">
+                        <thead>
+                            <tr>
+                                <th>Name</th><th>Email</th><th>Phone</th><th>Company</th><th>Created</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var c in Model.Contacts)
+                            {
+                                <tr>
+                                    <td>@c.FirstName @c.LastName</td>
+                                    <td>@(string.IsNullOrWhiteSpace(c.Email)?"-":c.Email)</td>
+                                    <td>@(string.IsNullOrWhiteSpace(c.Phone)?"-":c.Phone)</td>
+                                    <td>@(c.Company?.Name ?? "-")</td>
+                                    <td>@c.CreatedAt.ToLocalTime().ToString("MM/dd/yyyy")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Opportunities Module -->
+    <div class="card mb-3 crm-module" id="module-opportunities">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Opportunities</h5>
+            <button class="btn btn-sm btn-secondary toggle-btn" data-bs-toggle="collapse" data-bs-target="#opportunitiesCollapse" aria-expanded="false">Toggle</button>
+        </div>
+        <div id="opportunitiesCollapse" class="collapse" data-module-collapse="opportunities">
+            <div class="card-body">
+                <form method="post" asp-page-handler="AddOpportunity" asp-antiforgery="true" class="row g-2 mb-3">
+                    <div class="col-md-3">
+                        <input asp-for="NewOpportunityCompanyName" class="form-control" placeholder="Company * (type to create or match)" required />
+                        <small class="text-muted">Type a new or existing company name.</small>
+                    </div>
+                    <div class="col-md-3">
+                        <input asp-for="NewOpportunity.Name" class="form-control" placeholder="Name *" required />
+                        <span asp-validation-for="NewOpportunity.Name" class="text-danger small"></span>
+                    </div>
+                    <div class="col-md-2">
+                        <input asp-for="NewOpportunity.Stage" class="form-control" placeholder="Stage" />
+                    </div>
+                    <div class="col-md-2">
+                        <input asp-for="NewOpportunity.Value" type="number" class="form-control" placeholder="Value" step="0.01" />
+                    </div>
+                    <div class="col-md-1">
+                        <input asp-for="NewOpportunity.CloseDate" type="date" class="form-control" />
+                    </div>
+                    <div class="col-md-1 d-grid">
+                        <button type="submit" class="btn btn-primary">Add</button>
+                    </div>
+                </form>
+                <div class="table-responsive">
+                    <table class="table table-sm table-striped mb-0">
+                        <thead>
+                            <tr>
+                                <th>Name</th><th>Stage</th><th>Value</th><th>Close Date</th><th>Company</th><th>Created</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var o in Model.Opportunities)
+                            {
+                                <tr>
+                                    <td>@o.Name</td>
+                                    <td>@(string.IsNullOrWhiteSpace(o.Stage)?"-":o.Stage)</td>
+                                    <td>@(o.Value?.ToString("C") ?? "-")</td>
+                                    <td>@(o.CloseDate?.ToLocalTime().ToString("MM/dd/yyyy") ?? "-")</td>
+                                    <td>@(o.Company?.Name ?? "-")</td>
+                                    <td>@o.CreatedAt.ToLocalTime().ToString("MM/dd/yyyy")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Activities Module (read only list for now) -->
+    <div class="card mb-3 crm-module" id="module-activities">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Recent Activities</h5>
+            <button class="btn btn-sm btn-secondary toggle-btn" data-bs-toggle="collapse" data-bs-target="#activitiesCollapse" aria-expanded="false">Toggle</button>
+        </div>
+        <div id="activitiesCollapse" class="collapse" data-module-collapse="activities">
+            <div class="card-body">
+                <form method="post" asp-page-handler="AddActivity" asp-antiforgery="true" class="row g-2 mb-3">
+                    <div class="col-md-2">
+                        <input asp-for="NewActivity.ActivityType" class="form-control" placeholder="Type (e.g. Call)" />
+                    </div>
+                    <div class="col-md-3">
+                        <input asp-for="NewActivity.Subject" class="form-control" placeholder="Subject" />
+                    </div>
+                    <div class="col-md-2">
+                        <input asp-for="NewActivity.ActivityDate" type="date" class="form-control" />
+                    </div>
+                    <div class="col-md-2">
+                        <select asp-for="NewActivity.CompanyId" class="form-select">
+                            <option value="">-- Optional Company --</option>
+                            @foreach (var comp in Model.Companies)
+                            {
+                                <option value="@comp.Id">@comp.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <select asp-for="NewActivity.ContactId" class="form-select">
+                            <option value="">-- Optional Contact --</option>
+                            @foreach (var con in Model.Contacts)
+                            {
+                                <option value="@con.Id">@con.FirstName @con.LastName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-1 d-grid">
+                        <button type="submit" class="btn btn-primary">Add</button>
+                    </div>
+                </form>
+                <div class="table-responsive">
+                    <table class="table table-sm table-striped mb-0">
+                        <thead>
+                            <tr>
+                                <th>Date</th><th>Type</th><th>Subject</th><th>Company</th><th>Contact</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var a in Model.Activities)
+                            {
+                                <tr>
+                                    <td>@a.ActivityDate.ToLocalTime().ToString("MM/dd/yyyy")</td>
+                                    <td>@(string.IsNullOrWhiteSpace(a.ActivityType)?"-":a.ActivityType)</td>
+                                    <td>@(string.IsNullOrWhiteSpace(a.Subject)?"-":a.Subject)</td>
+                                    <td>@(a.Company?.Name ?? "-")</td>
+                                    <td>@((a.Contact != null) ? a.Contact.FirstName + " " + a.Contact.LastName : "-")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notes Module (read only list for now) -->
+    <div class="card mb-3 crm-module" id="module-notes">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Recent Notes</h5>
+            <button class="btn btn-sm btn-secondary toggle-btn" data-bs-toggle="collapse" data-bs-target="#notesCollapse" aria-expanded="false">Toggle</button>
+        </div>
+        <div id="notesCollapse" class="collapse" data-module-collapse="notes">
+            <div class="card-body">
+                <form method="post" asp-page-handler="AddNote" asp-antiforgery="true" class="row g-2 mb-3">
+                    <div class="col-md-5">
+                        <textarea asp-for="NewNote.Content" class="form-control" rows="2" placeholder="Note Content *" required></textarea>
+                        <span asp-validation-for="NewNote.Content" class="text-danger small"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <select asp-for="NewNote.CompanyId" class="form-select">
+                            <option value="">-- Optional Company --</option>
+                            @foreach (var comp in Model.Companies)
+                            {
+                                <option value="@comp.Id">@comp.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select asp-for="NewNote.ContactId" class="form-select">
+                            <option value="">-- Optional Contact --</option>
+                            @foreach (var con in Model.Contacts)
+                            {
+                                <option value="@con.Id">@con.FirstName @con.LastName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-1 d-grid">
+                        <button type="submit" class="btn btn-primary">Add</button>
+                    </div>
+                </form>
+                <div class="table-responsive">
+                    <table class="table table-sm table-striped mb-0">
+                        <thead>
+                            <tr>
+                                <th>Content</th><th>Company</th><th>Contact</th><th>Created</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var n in Model.Notes)
+                            {
+                                <tr>
+                                    <td>@(n.Content.Length > 80 ? n.Content.Substring(0,80) + "..." : n.Content)</td>
+                                    <td>@(n.Company?.Name ?? "-")</td>
+                                    <td>@((n.Contact != null) ? n.Contact.FirstName + " " + n.Contact.LastName : "-")</td>
+                                    <td>@n.CreatedAt.ToLocalTime().ToString("MM/dd/yyyy")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        (function(){
+            const qs = new URLSearchParams(window.location.search);
+            let active = (qs.get('ActiveModule') || localStorage.getItem('crm_active_module') || '').toLowerCase();
+            const valid = ['companies','contacts','opportunities','activities','notes'];
+            if(!valid.includes(active)) active = 'companies';
+            localStorage.setItem('crm_active_module', active);
+
+            // Expand selected collapse
+            const targetCollapse = document.querySelector(`[data-module-collapse="${active}"]`);
+            if(targetCollapse){
+                new bootstrap.Collapse(targetCollapse, { toggle: true });
+            }
+
+            // Highlight toolbar button
+            document.querySelectorAll('[data-module]').forEach(btn => {
+                if(btn.getAttribute('data-module') === active){
+                    btn.classList.remove('btn-outline-primary');
+                    btn.classList.add('btn-primary');
+                } else {
+                    btn.classList.remove('btn-primary');
+                    btn.classList.add('btn-outline-primary');
+                }
+            });
+
+            // Clicking toolbar buttons navigates with query param
+            document.querySelectorAll('[data-module]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const mod = btn.getAttribute('data-module');
+                    if(!mod) return;
+                    localStorage.setItem('crm_active_module', mod);
+                    const url = new URL(window.location.href);
+                    url.searchParams.set('ActiveModule', mod);
+                    window.location.href = url.toString();
+                });
+            });
+        })();
+    </script>
+}

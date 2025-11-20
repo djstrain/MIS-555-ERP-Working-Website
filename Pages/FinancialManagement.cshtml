@@ -4,8 +4,8 @@
     ViewData["Title"] = "Financial Management";
 }
 
-<div class="container mt-5">
-    <h1 class="mb-4">Financial Management Dashboard</h1>
+<div class="container py-3">
+    <h2 class="mb-4">Financial Management Dashboard</h2>
 
     <!-- Display Messages -->
     @if (!string.IsNullOrEmpty(Model.Message))
@@ -24,73 +24,69 @@
     }
 
     <!-- Aggregate Metrics Cards -->
-    <div class="row mb-5">
+    <div class="row mb-4">
         <div class="col-md-4">
-            <div class="card bg-light border-primary">
-                <div class="card-body">
-                    <h5 class="card-title">Total Revenue</h5>
-                    <h3 class="text-primary">@Model.TotalRevenue.ToString("C")</h3>
+            <div class="card border-primary shadow-sm">
+                <div class="card-body text-center">
+                    <h6 class="card-title text-muted mb-1">Total Revenue</h6>
+                    <h3 class="text-primary mb-0">@Model.TotalRevenue.ToString("C")</h3>
                     <small class="text-muted">@Model.Invoices.Count invoices</small>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card bg-light border-danger">
-                <div class="card-body">
-                    <h5 class="card-title">Total Expenses</h5>
-                    <h3 class="text-danger">@Model.TotalExpenses.ToString("C")</h3>
-                    <small class="text-muted">@Model.Accounts.Count(a => a.AccountType == "Expense") expense accounts</small>
+            <div class="card border-danger shadow-sm">
+                <div class="card-body text-center">
+                    <h6 class="card-title text-muted mb-1">Total Expenses</h6>
+                    <h3 class="text-danger mb-0">@Model.TotalExpenses.ToString("C")</h3>
+                    <small class="text-muted">@Model.Accounts.Count(a => a.AccountType == "Expense") accounts</small>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card bg-light border-success">
-                <div class="card-body">
-                    <h5 class="card-title">Net Balance</h5>
-                    <h3 class="text-success">@Model.NetBalance.ToString("C")</h3>
-                    <small class="text-muted">@Model.PaidInvoices paid invoices</small>
+            <div class="card border-success shadow-sm">
+                <div class="card-body text-center">
+                    <h6 class="card-title text-muted mb-1">Net Balance</h6>
+                    <h3 class="text-success mb-0">@Model.NetBalance.ToString("C")</h3>
+                    <small class="text-muted">@Model.PaidInvoices paid</small>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Category Toggles -->
-    <div class="d-flex flex-wrap gap-2 mb-4">
-        <button class="btn btn-primary bg-white text-primary border-primary" type="button" data-bs-toggle="collapse" data-bs-target=".category-accounts" aria-expanded="false">Accounts</button>
-        <button class="btn btn-primary bg-white text-primary border-primary" type="button" data-bs-toggle="collapse" data-bs-target=".category-partners" aria-expanded="false">Partners</button>
-        <button class="btn btn-primary bg-white text-primary border-primary" type="button" data-bs-toggle="collapse" data-bs-target=".category-invoices" aria-expanded="false">Invoices</button>
-        <button class="btn btn-primary bg-white text-primary border-primary" type="button" data-bs-toggle="collapse" data-bs-target=".category-openbalances" aria-expanded="false">Open Balances</button>
-        <button class="btn btn-primary bg-white text-primary border-primary" type="button" data-bs-toggle="collapse" data-bs-target=".category-payments" aria-expanded="false">Payments</button>
-        <button class="btn btn-primary bg-white text-primary border-primary" type="button" data-bs-toggle="collapse" data-bs-target=".category-journalentries" aria-expanded="false">Journal Entries</button>
-        <button class="btn btn-primary bg-white text-primary border-primary" type="button" data-bs-toggle="collapse" data-bs-target=".category-invoicelines" aria-expanded="false">Invoice Lines</button>
-        <button class="btn btn-primary bg-white text-primary border-primary" type="button" data-bs-toggle="collapse" data-bs-target=".category-journallines" aria-expanded="false">Journal Lines</button>
-        <button class="btn btn-primary bg-white text-primary border-primary" type="button" data-bs-toggle="collapse" data-bs-target=".category-taxrates" aria-expanded="false">Tax Rates</button>
+    <!-- Category Toolbar -->
+    <div class="mb-3 d-flex flex-wrap gap-2">
+        <button type="button" class="btn btn-outline-primary" data-category="accounts">Accounts</button>
+        <button type="button" class="btn btn-outline-primary" data-category="partners">Partners</button>
+        <button type="button" class="btn btn-outline-primary" data-category="invoices">Invoices</button>
+        <button type="button" class="btn btn-outline-primary" data-category="openbalances">Open Balances</button>
+        <button type="button" class="btn btn-outline-primary" data-category="payments">Payments</button>
+        <button type="button" class="btn btn-outline-primary" data-category="journalentries">Journal Entries</button>
+        <button type="button" class="btn btn-outline-primary" data-category="invoicelines">Invoice Lines</button>
+        <button type="button" class="btn btn-outline-primary" data-category="journallines">Journal Lines</button>
+        <button type="button" class="btn btn-outline-primary" data-category="taxrates">Tax Rates</button>
     </div>
 
-    <!-- Add Account Form -->
-    <div class="card mb-4 bg-light border-primary collapse category-accounts" data-category="Accounts">
-        <div class="card-header bg-primary text-white">
-            <h5 class="mb-0"><i class="fas fa-plus-circle"></i> Add New Account</h5>
+    <!-- ========== ACCOUNTS MODULE ========== -->
+    <div class="card mb-3 financial-module" id="module-accounts">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Accounts</h5>
+            <button class="btn btn-sm btn-secondary toggle-btn" data-bs-toggle="collapse" data-bs-target="#accountsCollapse" aria-expanded="false">Toggle</button>
         </div>
-        <div class="card-body">
-            <form method="post">
-                <input type="hidden" asp-for="ActiveCategory" />
-                <input type="hidden" asp-for="FormType" value="account" />
-                <div class="row">
+        <div id="accountsCollapse" class="collapse" data-category-collapse="accounts">
+            <div class="card-body">
+                <form method="post" class="row g-2 mb-3" asp-antiforgery="true">
+                    <input type="hidden" asp-for="ActiveCategory" />
+                    <input type="hidden" asp-for="FormType" value="account" />
                     <div class="col-md-3">
-                        <label for="NewAccountNumber" class="form-label">Account Number *</label>
-                        <input type="text" class="form-control" id="NewAccountNumber" asp-for="NewAccountNumber" 
-                               placeholder="e.g., 1500" required />
+                        <input asp-for="NewAccountNumber" class="form-control" placeholder="Account Number" required />
                     </div>
                     <div class="col-md-3">
-                        <label for="NewAccountName" class="form-label">Account Name *</label>
-                        <input type="text" class="form-control" id="NewAccountName" asp-for="NewAccountName" 
-                               placeholder="e.g., Marketing Expense" required />
+                        <input asp-for="NewAccountName" class="form-control" placeholder="Account Name" required />
                     </div>
                     <div class="col-md-2">
-                        <label for="NewAccountType" class="form-label">Account Type *</label>
-                        <select class="form-select" id="NewAccountType" asp-for="NewAccountType" required>
-                            <option value="">-- Select Type --</option>
+                        <select asp-for="NewAccountType" class="form-select" required>
+                            <option value="">Type</option>
                             <option value="Asset">Asset</option>
                             <option value="Liability">Liability</option>
                             <option value="Equity">Equity</option>
@@ -99,39 +95,52 @@
                         </select>
                     </div>
                     <div class="col-md-2">
-                        <label for="NewAccountBalance" class="form-label">Opening Balance</label>
-                        <input type="number" class="form-control" id="NewAccountBalance" asp-for="NewAccountBalance" 
-                               placeholder="0.00" step="0.01" />
+                        <input asp-for="NewAccountBalance" type="number" class="form-control" placeholder="Balance" step="0.01" />
                     </div>
-                    <div class="col-md-2 d-flex align-items-end">
-                        <button type="submit" class="btn btn-primary w-100">
-                            <i class="fas fa-save"></i> Add Account
-                        </button>
+                    <div class="col-md-2 d-grid">
+                        <button type="submit" class="btn btn-primary">Add</button>
                     </div>
+                </form>
+                <div class="table-responsive">
+                    <table class="table table-sm table-striped mb-0">
+                        <thead>
+                            <tr><th>Number</th><th>Name</th><th>Type</th><th>Balance</th><th>Created</th></tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var a in Model.Accounts)
+                            {
+                                <tr>
+                                    <td>@a.AccountNumber</td>
+                                    <td>@a.AccountName</td>
+                                    <td>@a.AccountType</td>
+                                    <td>@a.Balance.ToString("C")</td>
+                                    <td>@a.CreatedAt.ToLocalTime().ToString("MM/dd/yyyy")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 
-    <!-- Add Partner Form -->
-    <div class="card mb-4 bg-light border-success collapse category-partners" data-category="Partners">
-        <div class="card-header bg-success text-white">
-            <h5 class="mb-0"><i class="fas fa-plus-circle"></i> Add New Partner</h5>
+    <!-- ========== PARTNERS MODULE ========== -->
+    <div class="card mb-3 financial-module" id="module-partners">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Partners</h5>
+            <button class="btn btn-sm btn-secondary toggle-btn" data-bs-toggle="collapse" data-bs-target="#partnersCollapse" aria-expanded="false">Toggle</button>
         </div>
-        <div class="card-body">
-            <form method="post">
-                <input type="hidden" asp-for="ActiveCategory" />
-                <input type="hidden" asp-for="FormType" value="partner" />
-                <div class="row">
+        <div id="partnersCollapse" class="collapse" data-category-collapse="partners">
+            <div class="card-body">
+                <form method="post" class="row g-2 mb-3" asp-antiforgery="true">
+                    <input type="hidden" asp-for="ActiveCategory" />
+                    <input type="hidden" asp-for="FormType" value="partner" />
                     <div class="col-md-3">
-                        <label for="NewPartnerName" class="form-label">Partner Name *</label>
-                        <input type="text" class="form-control" id="NewPartnerName" asp-for="NewPartnerName" 
-                               placeholder="e.g., Acme Corp" required />
+                        <input asp-for="NewPartnerName" class="form-control" placeholder="Partner Name" required />
                     </div>
                     <div class="col-md-2">
-                        <label for="NewPartnerType" class="form-label">Partner Type *</label>
-                        <select class="form-select" id="NewPartnerType" asp-for="NewPartnerType" required>
-                            <option value="">-- Select Type --</option>
+                        <select asp-for="NewPartnerType" class="form-select" required>
+                            <option value="">Type</option>
                             <option value="Vendor">Vendor</option>
                             <option value="Customer">Customer</option>
                             <option value="Supplier">Supplier</option>
@@ -139,160 +148,193 @@
                         </select>
                     </div>
                     <div class="col-md-3">
-                        <label for="NewPartnerEmail" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="NewPartnerEmail" asp-for="NewPartnerEmail"
-                               placeholder="email@example.com" />
+                        <input asp-for="NewPartnerEmail" type="email" class="form-control" placeholder="Email" />
                     </div>
                     <div class="col-md-2">
-                        <label for="NewPartnerPhone" class="form-label">Phone</label>
-                        <input type="text" class="form-control" id="NewPartnerPhone" asp-for="NewPartnerPhone"
-                               placeholder="(555) 123-4567" />
+                        <input asp-for="NewPartnerPhone" class="form-control" placeholder="Phone" />
                     </div>
-                    <div class="col-md-2 d-flex align-items-end">
-                        <button type="submit" class="btn btn-success w-100">
-                            <i class="fas fa-save"></i> Add Partner
-                        </button>
+                    <div class="col-md-2 d-grid">
+                        <button type="submit" class="btn btn-primary">Add</button>
                     </div>
+                </form>
+                <div class="table-responsive">
+                    <table class="table table-sm table-striped mb-0">
+                        <thead>
+                            <tr><th>Name</th><th>Type</th><th>Email</th><th>Phone</th><th>Created</th></tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var p in Model.Partners)
+                            {
+                                <tr>
+                                    <td>@p.PartnerName</td>
+                                    <td>@p.PartnerType</td>
+                                    <td>@(string.IsNullOrWhiteSpace(p.Email) ? "-" : p.Email)</td>
+                                    <td>@(string.IsNullOrWhiteSpace(p.Phone) ? "-" : p.Phone)</td>
+                                    <td>@p.CreatedAt.ToLocalTime().ToString("MM/dd/yyyy")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 
-    <!-- Add Invoice Form -->
-    <div class="card mb-4 bg-light border-warning collapse category-invoices" data-category="Invoices">
-        <div class="card-header bg-warning text-dark">
-            <h5 class="mb-0"><i class="fas fa-plus-circle"></i> Add New Invoice</h5>
+    <!-- ========== INVOICES MODULE ========== -->
+    <div class="card mb-3 financial-module" id="module-invoices">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Invoices</h5>
+            <button class="btn btn-sm btn-secondary toggle-btn" data-bs-toggle="collapse" data-bs-target="#invoicesCollapse" aria-expanded="false">Toggle</button>
         </div>
-        <div class="card-body">
-            <form method="post">
-                <input type="hidden" asp-for="ActiveCategory" />
-                <input type="hidden" asp-for="FormType" value="invoice" />
-                <div class="row">
+        <div id="invoicesCollapse" class="collapse" data-category-collapse="invoices">
+            <div class="card-body">
+                <form method="post" class="row g-2 mb-3" asp-antiforgery="true">
+                    <input type="hidden" asp-for="ActiveCategory" />
+                    <input type="hidden" asp-for="FormType" value="invoice" />
                     <div class="col-md-2">
-                        <label for="NewInvoicePartnerId" class="form-label">Partner *</label>
-                        <select class="form-select" id="NewInvoicePartnerId" asp-for="NewInvoicePartnerId" required>
-                            <option value="0">-- Select Partner --</option>
-                            @foreach (var partner in Model.Partners)
+                        <select asp-for="NewInvoicePartnerId" class="form-select" required>
+                            <option value="0">Partner</option>
+                            @foreach (var p in Model.Partners)
                             {
-                                <option value="@partner.Id">@partner.PartnerName</option>
+                                <option value="@p.Id">@p.PartnerName</option>
                             }
                         </select>
                     </div>
                     <div class="col-md-2">
-                        <label for="NewInvoiceNumber" class="form-label">Invoice Number *</label>
-                        <input type="text" class="form-control" id="NewInvoiceNumber" asp-for="NewInvoiceNumber" 
-                               placeholder="e.g., INV-001" required />
+                        <input asp-for="NewInvoiceNumber" class="form-control" placeholder="Invoice #" required />
                     </div>
                     <div class="col-md-2">
-                        <label for="NewInvoiceAmount" class="form-label">Amount *</label>
-                        <input type="number" class="form-control" id="NewInvoiceAmount" asp-for="NewInvoiceAmount" 
-                               placeholder="0.00" step="0.01" required />
+                        <input asp-for="NewInvoiceAmount" type="number" class="form-control" placeholder="Amount" step="0.01" required />
                     </div>
                     <div class="col-md-2">
-                        <label for="NewInvoiceDate" class="form-label">Invoice Date</label>
-                        <input type="date" class="form-control" id="NewInvoiceDate" asp-for="NewInvoiceDate" />
+                        <input asp-for="NewInvoiceDate" type="date" class="form-control" />
                     </div>
                     <div class="col-md-2">
-                        <label for="NewInvoiceDueDate" class="form-label">Due Date</label>
-                        <input type="date" class="form-control" id="NewInvoiceDueDate" asp-for="NewInvoiceDueDate" />
+                        <input asp-for="NewInvoiceDueDate" type="date" class="form-control" />
                     </div>
-                    <div class="col-md-2">
-                        <label for="NewInvoiceStatus" class="form-label">Status</label>
-                        <select class="form-select" id="NewInvoiceStatus" asp-for="NewInvoiceStatus">
+                    <div class="col-md-1">
+                        <select asp-for="NewInvoiceStatus" class="form-select">
                             <option value="Pending">Pending</option>
                             <option value="Paid">Paid</option>
                             <option value="Overdue">Overdue</option>
                         </select>
                     </div>
-                    <div class="col-md-2 d-flex align-items-end">
-                        <button type="submit" class="btn btn-warning w-100">
-                            <i class="fas fa-save"></i> Add Invoice
-                        </button>
+                    <div class="col-md-1 d-grid">
+                        <button type="submit" class="btn btn-primary">Add</button>
                     </div>
+                </form>
+                <div class="table-responsive">
+                    <table class="table table-sm table-striped mb-0">
+                        <thead>
+                            <tr><th>Invoice #</th><th>Partner</th><th>Amount</th><th>Status</th><th>Invoice Date</th><th>Due Date</th></tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var i in Model.Invoices)
+                            {
+                                var partner = Model.Partners.FirstOrDefault(p => p.Id == i.PartnerId);
+                                <tr>
+                                    <td>@i.InvoiceNumber</td>
+                                    <td>@(partner?.PartnerName ?? "-")</td>
+                                    <td>@i.Amount.ToString("C")</td>
+                                    <td>@i.Status</td>
+                                    <td>@i.InvoiceDate.ToLocalTime().ToString("MM/dd/yyyy")</td>
+                                    <td>@i.DueDate.ToLocalTime().ToString("MM/dd/yyyy")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 
-    <!-- Add Open Balance Form -->
-    <div class="card mb-4 bg-light border-danger collapse category-openbalances" data-category="OpenBalances">
-        <div class="card-header bg-danger text-white">
-            <h5 class="mb-0"><i class="fas fa-plus-circle"></i> Add Opening Balance</h5>
+    <!-- ========== OPEN BALANCES MODULE ========== -->
+    <div class="card mb-3 financial-module" id="module-openbalances">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Open Balances</h5>
+            <button class="btn btn-sm btn-secondary toggle-btn" data-bs-toggle="collapse" data-bs-target="#openbalancesCollapse" aria-expanded="false">Toggle</button>
         </div>
+        <div id="openbalancesCollapse" class="collapse" data-category-collapse="openbalances">
             <div class="card-body">
-            <form method="post">
-                <input type="hidden" asp-for="ActiveCategory" />
-                <input type="hidden" asp-for="FormType" value="openbalance" />
-                <div class="row">
-                    <div class="col-md-3">
-                        <label for="NewOpenBalanceAccountId" class="form-label">Account *</label>
-                        <select class="form-select" id="NewOpenBalanceAccountId" asp-for="NewOpenBalanceAccountId" required>
-                            <option value="0">-- Select Account --</option>
-                            @foreach (var account in Model.Accounts)
+                <form method="post" class="row g-2 mb-3" asp-antiforgery="true">
+                    <input type="hidden" asp-for="ActiveCategory" />
+                    <input type="hidden" asp-for="FormType" value="openbalance" />
+                    <div class="col-md-4">
+                        <select asp-for="NewOpenBalanceAccountId" class="form-select" required>
+                            <option value="0">Account</option>
+                            @foreach (var a in Model.Accounts)
                             {
-                                <option value="@account.Id">@account.AccountNumber - @account.AccountName</option>
+                                <option value="@a.Id">@a.AccountNumber - @a.AccountName</option>
                             }
                         </select>
                     </div>
-                    <div class="col-md-3">
-                        <label for="NewOpenBalanceAmount" class="form-label">Balance Amount *</label>
-                        <input type="number" class="form-control" id="NewOpenBalanceAmount" asp-for="NewOpenBalanceAmount" 
-                               placeholder="0.00" step="0.01" required />
+                    <div class="col-md-2">
+                        <input asp-for="NewOpenBalanceAmount" type="number" class="form-control" placeholder="Amount" step="0.01" required />
+                    </div>
+                    <div class="col-md-2">
+                        <input asp-for="NewOpenBalanceDate" type="date" class="form-control" />
                     </div>
                     <div class="col-md-3">
-                        <label for="NewOpenBalanceDate" class="form-label">Balance Date</label>
-                        <input type="date" class="form-control" id="NewOpenBalanceDate" asp-for="NewOpenBalanceDate" />
+                        <input asp-for="NewOpenBalanceDescription" class="form-control" placeholder="Description" />
                     </div>
-                    <div class="col-md-3">
-                        <label for="NewOpenBalanceDescription" class="form-label">Description</label>
-                        <input type="text" class="form-control" id="NewOpenBalanceDescription" asp-for="NewOpenBalanceDescription" placeholder="Optional description" />
+                    <div class="col-md-1 d-grid">
+                        <button type="submit" class="btn btn-primary">Add</button>
                     </div>
-                    <div class="col-md-3 d-flex align-items-end">
-                        <button type="submit" class="btn btn-danger w-100">
-                            <i class="fas fa-save"></i> Add Balance
-                        </button>
-                    </div>
+                </form>
+                <div class="table-responsive">
+                    <table class="table table-sm table-striped mb-0">
+                        <thead>
+                            <tr><th>Account</th><th>Balance</th><th>Date</th><th>Description</th></tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var ob in Model.OpenBalances)
+                            {
+                                var account = Model.Accounts.FirstOrDefault(a => a.Id == ob.AccountId);
+                                <tr>
+                                    <td>@(account != null ? $"{account.AccountNumber} - {account.AccountName}" : "-")</td>
+                                    <td>@ob.OpeningBalance.ToString("C")</td>
+                                    <td>@ob.BalanceDate.ToLocalTime().ToString("MM/dd/yyyy")</td>
+                                    <td>@(string.IsNullOrWhiteSpace(ob.Description) ? "-" : ob.Description)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 
-    <!-- Add Payment Form -->
-    <div class="card mb-4 bg-light border-info collapse category-payments" data-category="Payments">
-        <div class="card-header bg-info text-white">
-            <h5 class="mb-0"><i class="fas fa-plus-circle"></i> Record Payment</h5>
+    <!-- ========== PAYMENTS MODULE ========== -->
+    <div class="card mb-3 financial-module" id="module-payments">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Payments</h5>
+            <button class="btn btn-sm btn-secondary toggle-btn" data-bs-toggle="collapse" data-bs-target="#paymentsCollapse" aria-expanded="false">Toggle</button>
         </div>
-        <div class="card-body">
-            <form method="post">
-                <input type="hidden" asp-for="ActiveCategory" />
-                <input type="hidden" asp-for="FormType" value="payment" />
-                <div class="row">
+        <div id="paymentsCollapse" class="collapse" data-category-collapse="payments">
+            <div class="card-body">
+                <form method="post" class="row g-2 mb-3" asp-antiforgery="true">
+                    <input type="hidden" asp-for="ActiveCategory" />
+                    <input type="hidden" asp-for="FormType" value="payment" />
                     <div class="col-md-2">
-                        <label for="NewPaymentNumber" class="form-label">Payment Number *</label>
-                        <input type="text" class="form-control" id="NewPaymentNumber" asp-for="NewPaymentNumber" placeholder="e.g., PAY-001" required />
+                        <input asp-for="NewPaymentNumber" class="form-control" placeholder="Payment #" required />
                     </div>
-                    <div class="col-md-2">
-                        <label for="NewPaymentInvoiceId" class="form-label">Invoice *</label>
-                        <select class="form-select" id="NewPaymentInvoiceId" asp-for="NewPaymentInvoiceId" required>
-                            <option value="0">-- Select Invoice --</option>
-                            @foreach (var invoice in Model.Invoices)
+                    <div class="col-md-3">
+                        <select asp-for="NewPaymentInvoiceId" class="form-select" required>
+                            <option value="0">Invoice</option>
+                            @foreach (var i in Model.Invoices)
                             {
-                                <option value="@invoice.Id">@invoice.InvoiceNumber (@invoice.Amount.ToString("C"))</option>
+                                <option value="@i.Id">@i.InvoiceNumber (@i.Amount.ToString("C"))</option>
                             }
                         </select>
                     </div>
                     <div class="col-md-2">
-                        <label for="NewPaymentAmount" class="form-label">Payment Amount *</label>
-                        <input type="number" class="form-control" id="NewPaymentAmount" asp-for="NewPaymentAmount" 
-                               placeholder="0.00" step="0.01" required />
+                        <input asp-for="NewPaymentAmount" type="number" class="form-control" placeholder="Amount" step="0.01" required />
                     </div>
                     <div class="col-md-2">
-                        <label for="NewPaymentDate" class="form-label">Payment Date</label>
-                        <input type="date" class="form-control" id="NewPaymentDate" asp-for="NewPaymentDate" />
+                        <input asp-for="NewPaymentDate" type="date" class="form-control" />
                     </div>
-                    <div class="col-md-3">
-                        <label for="NewPaymentMethod" class="form-label">Payment Method</label>
-                        <select class="form-select" id="NewPaymentMethod" asp-for="NewPaymentMethod">
+                    <div class="col-md-2">
+                        <select asp-for="NewPaymentMethod" class="form-select">
                             <option value="Bank Transfer">Bank Transfer</option>
                             <option value="Check">Check</option>
                             <option value="Wire">Wire</option>
@@ -300,800 +342,320 @@
                             <option value="Cash">Cash</option>
                         </select>
                     </div>
-                    <div class="col-md-3 d-flex align-items-end">
-                        <button type="submit" class="btn btn-info w-100">
-                            <i class="fas fa-save"></i> Record Payment
-                        </button>
+                    <div class="col-md-1 d-grid">
+                        <button type="submit" class="btn btn-primary">Add</button>
                     </div>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Add Journal Entry Form -->
-    <div class="card mb-4 bg-light border-secondary collapse category-journalentries" data-category="JournalEntries">
-        <div class="card-header bg-secondary text-white">
-            <h5 class="mb-0"><i class="fas fa-plus-circle"></i> Add Journal Entry</h5>
-        </div>
-        <div class="card-body">
-            <form method="post">
-                <input type="hidden" asp-for="ActiveCategory" />
-                <input type="hidden" asp-for="FormType" value="journalentry" />
-                <div class="row">
-                    <div class="col-md-2">
-                        <label for="NewJournalNumber" class="form-label">Journal Number *</label>
-                        <input type="text" class="form-control" id="NewJournalNumber" asp-for="NewJournalNumber" placeholder="e.g., JE-001" required />
-                    </div>
-                    <div class="col-md-2">
-                        <label for="NewJournalDebitAccountId" class="form-label">Debit Account *</label>
-                        <select class="form-select" id="NewJournalDebitAccountId" asp-for="NewJournalDebitAccountId" required>
-                            <option value="0">-- Select Account --</option>
-                            @foreach (var account in Model.Accounts)
+                </form>
+                <div class="table-responsive">
+                    <table class="table table-sm table-striped mb-0">
+                        <thead>
+                            <tr><th>Payment #</th><th>Invoice</th><th>Amount</th><th>Date</th><th>Method</th></tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var pay in Model.Payments)
                             {
-                                <option value="@account.Id">@account.AccountNumber</option>
+                                var invoice = Model.Invoices.FirstOrDefault(i => i.Id == pay.InvoiceId);
+                                <tr>
+                                    <td>@pay.PaymentNumber</td>
+                                    <td>@(invoice?.InvoiceNumber ?? "-")</td>
+                                    <td>@pay.PaymentAmount.ToString("C")</td>
+                                    <td>@pay.PaymentDate.ToLocalTime().ToString("MM/dd/yyyy")</td>
+                                    <td>@pay.PaymentMethod</td>
+                                </tr>
                             }
-                        </select>
-                    </div>
-                    <div class="col-md-2">
-                        <label for="NewJournalCreditAccountId" class="form-label">Credit Account *</label>
-                        <select class="form-select" id="NewJournalCreditAccountId" asp-for="NewJournalCreditAccountId" required>
-                            <option value="0">-- Select Account --</option>
-                            @foreach (var account in Model.Accounts)
-                            {
-                                <option value="@account.Id">@account.AccountNumber</option>
-                            }
-                        </select>
-                    </div>
-                    <div class="col-md-2">
-                        <label for="NewJournalAmount" class="form-label">Amount *</label>
-                        <input type="number" class="form-control" id="NewJournalAmount" asp-for="NewJournalAmount" 
-                               placeholder="0.00" step="0.01" required />
-                    </div>
-                    <div class="col-md-3">
-                        <label for="NewJournalDescription" class="form-label">Description</label>
-                        <input type="text" class="form-control" id="NewJournalDescription" asp-for="NewJournalDescription" 
-                               placeholder="Optional description" />
-                    </div>
-                    <div class="col-md-2">
-                        <label for="NewJournalDate" class="form-label">Entry Date</label>
-                        <input type="date" class="form-control" id="NewJournalDate" asp-for="NewJournalDate" />
-                    </div>
-                    <div class="col-md-1 d-flex align-items-end">
-                        <button type="submit" class="btn btn-secondary w-100">
-                            <i class="fas fa-save"></i> Add
-                        </button>
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Add Tax Rate Form -->
-    <div class="card mb-4 bg-light collapse category-taxrates" data-category="TaxRates" style="border-color: #6f42c1;">
-        <div class="card-header text-white" style="background-color: #6f42c1;">
-            <h5 class="mb-0"><i class="fas fa-plus-circle"></i> Add Tax Rate</h5>
-        </div>
-        <div class="card-body">
-            <form method="post">
-                <input type="hidden" asp-for="ActiveCategory" />
-                <input type="hidden" asp-for="FormType" value="taxrate" />
-                <div class="row">
-                    <div class="col-md-2">
-                        <label for="NewTaxCode" class="form-label">Tax Code *</label>
-                        <input type="text" class="form-control" id="NewTaxCode" asp-for="NewTaxCode" 
-                               placeholder="e.g., SALES-TAX" required />
-                    </div>
-                    <div class="col-md-2">
-                        <label for="NewTaxPercentage" class="form-label">Percentage * (0-100)</label>
-                        <input type="number" class="form-control" id="NewTaxPercentage" asp-for="NewTaxPercentage" 
-                               placeholder="0.00" step="0.01" min="0" max="100" required />
-                    </div>
-                    <div class="col-md-3">
-                        <label for="NewTaxDescription" class="form-label">Description</label>
-                        <input type="text" class="form-control" id="NewTaxDescription" asp-for="NewTaxDescription" 
-                               placeholder="e.g., Sales Tax Rate" />
-                    </div>
-                    <div class="col-md-2">
-                        <label for="NewTaxType" class="form-label">Tax Type</label>
-                        <input type="text" class="form-control" id="NewTaxType" asp-for="NewTaxType" placeholder="Sales Tax / State / Federal" />
-                    </div>
-                    <div class="col-md-2">
-                        <label for="NewTaxEffectiveDate" class="form-label">Effective Date</label>
-                        <input type="date" class="form-control" id="NewTaxEffectiveDate" asp-for="NewTaxEffectiveDate" />
-                    </div>
-                    <div class="col-md-2 d-flex align-items-end">
-                        <button type="submit" class="btn btn-dark w-100">
-                            <i class="fas fa-save"></i> Add Tax Rate
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Add Invoice Line Form -->
-    <div class="card mb-4 bg-light border-primary collapse category-invoicelines" data-category="InvoiceLines">
-        <div class="card-header bg-primary text-white">
-            <h5 class="mb-0"><i class="fas fa-plus-circle"></i> Add Invoice Line</h5>
-        </div>
-        <div class="card-body">
-            <form method="post">
-                <input type="hidden" asp-for="ActiveCategory" />
-                <input type="hidden" asp-for="FormType" value="invoiceline" />
-                <div class="row">
-                    <div class="col-md-3">
-                        <label for="NewInvoiceLineInvoiceId" class="form-label">Invoice *</label>
-                        <select class="form-select" id="NewInvoiceLineInvoiceId" asp-for="NewInvoiceLineInvoiceId" required>
-                            <option value="0">-- Select Invoice --</option>
-                            @foreach (var invoice in Model.Invoices)
-                            {
-                                <option value="@invoice.Id">@invoice.InvoiceNumber</option>
-                            }
-                        </select>
-                    </div>
-                    <div class="col-md-4">
-                        <label for="NewInvoiceLineDescription" class="form-label">Description *</label>
-                        <input type="text" class="form-control" id="NewInvoiceLineDescription" asp-for="NewInvoiceLineDescription" required />
-                    </div>
-                    <div class="col-md-2">
-                        <label for="NewInvoiceLineQuantity" class="form-label">Qty *</label>
-                        <input type="number" step="0.01" min="0" class="form-control" id="NewInvoiceLineQuantity" asp-for="NewInvoiceLineQuantity" required />
-                    </div>
-                    <div class="col-md-2">
-                        <label for="NewInvoiceLineUnitPrice" class="form-label">Unit Price *</label>
-                        <input type="number" step="0.01" min="0" class="form-control" id="NewInvoiceLineUnitPrice" asp-for="NewInvoiceLineUnitPrice" required />
-                    </div>
-                    <div class="col-md-1 d-flex align-items-end">
-                        <button type="submit" class="btn btn-primary w-100">
-                            <i class="fas fa-save"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Data Tables Section -->
-    <hr class="my-5" />
-    <h2 class="mb-4">Financial Data</h2>
-
-    <!-- Accounts Table -->
-    <div class="card mb-4 collapse category-accounts" data-category="Accounts">
-        <div class="card-header bg-primary text-white">
-            <h5 class="mb-0">Accounts</h5>
-        </div>
-        <div class="card-body">
-            <!-- Filter Toolbar -->
-            <form method="get" class="mb-3">
-                <input type="hidden" asp-for="ActiveCategory" />
-                <div class="row align-items-end">
-                    <div class="col-md-3">
-                        <label class="form-label">Filter by Account Type</label>
-                        <select class="form-select" asp-for="AccountTypeFilter" onchange="this.form.submit()">
-                            @foreach (var type in Model.AllAccountTypes)
-                            {
-                                <option value="@type" selected="@(Model.AccountTypeFilter == type)">@type</option>
-                            }
-                        </select>
-                    </div>
-                    @if (!string.IsNullOrWhiteSpace(Model.AccountTypeFilter) && Model.AccountTypeFilter != "All")
-                    {
-                        <div class="col-md-2">
-                            <a href="/FinancialManagement" class="btn btn-secondary">Clear Filter</a>
-                        </div>
-                    }
-                </div>
-            </form>
-            <div class="table-responsive">
-                <table class="table table-striped table-hover">
-                    <thead class="table-light">
-                        <tr>
-                            <th>Account Number</th>
-                            <th>Account Name</th>
-                            <th>Account Type</th>
-                            <th>Balance</th>
-                            <th>Created</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var account in Model.Accounts)
-                        {
-                            <tr>
-                                <td>@account.AccountNumber</td>
-                                <td>@account.AccountName</td>
-                                <td><span class="badge bg-info">@account.AccountType</span></td>
-                                <td>@account.Balance.ToString("C")</td>
-                                <td>@account.CreatedAt.ToString("MM/dd/yyyy")</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>
 
-    <!-- Partners Table -->
-    <div class="card mb-4 collapse category-partners" data-category="Partners">
-        <div class="card-header bg-success text-white">
-            <h5 class="mb-0">Partners</h5>
-        </div>
-        <div class="card-body">
-            <!-- Filter Toolbar -->
-            <form method="get" class="mb-3">
-                <input type="hidden" asp-for="ActiveCategory" />
-                <div class="row align-items-end">
-                    <div class="col-md-3">
-                        <label class="form-label">Filter by Partner Type</label>
-                        <select class="form-select" asp-for="PartnerTypeFilter" onchange="this.form.submit()">
-                            @foreach (var type in Model.AllPartnerTypes)
-                            {
-                                <option value="@type" selected="@(Model.PartnerTypeFilter == type)">@type</option>
-                            }
-                        </select>
-                    </div>
-                    @if (!string.IsNullOrWhiteSpace(Model.PartnerTypeFilter) && Model.PartnerTypeFilter != "All")
-                    {
-                        <div class="col-md-2">
-                            <a href="/FinancialManagement" class="btn btn-secondary">Clear Filter</a>
-                        </div>
-                    }
-                </div>
-            </form>
-            <div class="table-responsive">
-                <table class="table table-striped table-hover">
-                    <thead class="table-light">
-                        <tr>
-                            <th>Partner Name</th>
-                            <th>Partner Type</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Created</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var partner in Model.Partners)
-                        {
-                            <tr>
-                                <td>@partner.PartnerName</td>
-                                <td><span class="badge bg-warning">@partner.PartnerType</span></td>
-                                <td>@partner.Email</td>
-                                <td>@partner.Phone</td>
-                                <td>@partner.CreatedAt.ToString("MM/dd/yyyy")</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- Invoices Table -->
-    <div class="card mb-4 collapse category-invoices" data-category="Invoices">
-        <div class="card-header bg-warning text-dark">
-            <h5 class="mb-0">Invoices</h5>
-        </div>
-        <div class="card-body">
-            <!-- Filter Toolbar -->
-            <form method="get" class="mb-3">
-                <input type="hidden" asp-for="ActiveCategory" />
-                <div class="row align-items-end">
-                    <div class="col-md-3">
-                        <label class="form-label">Filter by Status</label>
-                        <select class="form-select" asp-for="InvoiceStatusFilter" onchange="this.form.submit()">
-                            @foreach (var status in Model.AllInvoiceStatuses)
-                            {
-                                <option value="@status" selected="@(Model.InvoiceStatusFilter == status)">@status</option>
-                            }
-                        </select>
-                    </div>
-                    @if (!string.IsNullOrWhiteSpace(Model.InvoiceStatusFilter) && Model.InvoiceStatusFilter != "All")
-                    {
-                        <div class="col-md-2">
-                            <a href="/FinancialManagement" class="btn btn-secondary">Clear Filter</a>
-                        </div>
-                    }
-                </div>
-            </form>
-            <div class="table-responsive">
-                <table class="table table-striped table-hover">
-                    <thead class="table-light">
-                        <tr>
-                            <th>Invoice Number</th>
-                            <th>Partner</th>
-                            <th>Amount</th>
-                            <th>Status</th>
-                            <th>Invoice Date</th>
-                            <th>Due Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var invoice in Model.Invoices)
-                        {
-                            <tr>
-                                <td>@invoice.InvoiceNumber</td>
-                                <td>@invoice.Partner?.PartnerName</td>
-                                <td>@invoice.Amount.ToString("C")</td>
-                                <td>
-                                    @{
-                                        var badgeClass = invoice.Status == "Paid" ? "bg-success" :
-                                                       invoice.Status == "Pending" ? "bg-warning" : "bg-danger";
-                                    }
-                                    <span class="badge @badgeClass">@invoice.Status</span>
-                                </td>
-                                <td>@invoice.InvoiceDate.ToString("MM/dd/yyyy")</td>
-                                <td>@invoice.DueDate.ToString("MM/dd/yyyy")</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <!-- Open Balances Table -->
-    <div class="card mb-4 collapse category-openbalances" data-category="OpenBalances">
-        <div class="card-header bg-danger text-white">
-            <h5 class="mb-0">Open Balances</h5>
-        </div>
-            <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-striped table-hover">
-                    <thead class="table-light">
-                        <tr>
-                            <th>Account</th>
-                            <th>Opening Balance</th>
-                            <th>Balance Date</th>
-                            <th>Description</th>
-                            <th>Created</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var balance in Model.OpenBalances)
-                        {
-                            <tr>
-                                <td>@balance.Account?.AccountName</td>
-                                <td>@balance.OpeningBalance.ToString("C")</td>
-                                <td>@balance.BalanceDate.ToString("MM/dd/yyyy")</td>
-                                <td>@balance.Description</td>
-                                <td>@balance.CreatedAt.ToString("MM/dd/yyyy")</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <!-- Payments Table -->
-    <div class="card mb-4 collapse category-payments" data-category="Payments">
-        <div class="card-header bg-info text-white">
-            <h5 class="mb-0">Payments</h5>
-        </div>
-        <div class="card-body">
-            <!-- Filter Toolbar -->
-            <form method="get" class="mb-3">
-                <input type="hidden" asp-for="ActiveCategory" />
-                <div class="row align-items-end">
-                    <div class="col-md-3">
-                        <label class="form-label">Filter by Payment Method</label>
-                        <select class="form-select" asp-for="PaymentMethodFilter" onchange="this.form.submit()">
-                            @foreach (var method in Model.AllPaymentMethods)
-                            {
-                                <option value="@method" selected="@(Model.PaymentMethodFilter == method)">@method</option>
-                            }
-                        </select>
-                    </div>
-                    @if (!string.IsNullOrWhiteSpace(Model.PaymentMethodFilter) && Model.PaymentMethodFilter != "All")
-                    {
-                        <div class="col-md-2">
-                            <a href="/FinancialManagement" class="btn btn-secondary">Clear Filter</a>
-                        </div>
-                    }
-                </div>
-            </form>
-            <div class="table-responsive">
-                <table class="table table-striped table-hover">
-                    <thead class="table-light">
-                        <tr>
-                            <th>Payment Number</th>
-                            <th>Invoice</th>
-                            <th>Payment Amount</th>
-                            <th>Payment Date</th>
-                            <th>Payment Method</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var payment in Model.Payments)
-                        {
-                            <tr>
-                                <td>@payment.PaymentNumber</td>
-                                <td>@payment.Invoice?.InvoiceNumber</td>
-                                <td>@payment.PaymentAmount.ToString("C")</td>
-                                <td>@payment.PaymentDate.ToString("MM/dd/yyyy")</td>
-                                <td><span class="badge bg-secondary">@payment.PaymentMethod</span></td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <!-- Journal Entries Table -->
-    <div class="card mb-4 collapse category-journalentries" data-category="JournalEntries">
-        <div class="card-header bg-secondary text-white">
+    <!-- ========== JOURNAL ENTRIES MODULE ========== -->
+    <div class="card mb-3 financial-module" id="module-journalentries">
+        <div class="card-header d-flex justify-content-between align-items-center">
             <h5 class="mb-0">Journal Entries</h5>
+            <button class="btn btn-sm btn-secondary toggle-btn" data-bs-toggle="collapse" data-bs-target="#journalentriesCollapse" aria-expanded="false">Toggle</button>
         </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-striped table-hover">
-                    <thead class="table-light">
-                        <tr>
-                            <th>Journal Number</th>
-                            <th>Debit Account</th>
-                            <th>Credit Account</th>
-                            <th>Amount</th>
-                            <th>Description</th>
-                            <th>Entry Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var entry in Model.JournalEntries)
-                        {
-                            <tr>
-                                <td>@entry.JournalNumber</td>
-                                <td>@entry.DebitAccount?.AccountName</td>
-                                <td>@entry.CreditAccount?.AccountName</td>
-                                <td>@entry.Amount.ToString("C")</td>
-                                <td title="@entry.Description">@(!string.IsNullOrWhiteSpace(entry.Description) ? entry.Description : "—")</td>
-                                <td>@entry.EntryDate.ToString("MM/dd/yyyy")</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <!-- Invoice Lines Table -->
-    <div class="card mb-4 collapse category-invoicelines" data-category="InvoiceLines">
-        <div class="card-header bg-primary text-white">
-            <h5 class="mb-0">Invoice Lines</h5>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-striped table-hover">
-                    <thead class="table-light">
-                        <tr>
-                            <th>Invoice #</th>
-                            <th>Description</th>
-                            <th>Qty</th>
-                            <th>Unit Price</th>
-                            <th>Line Total</th>
-                            <th>Created</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var line in Model.InvoiceLines)
-                        {
-                            <tr>
-                                <td>@line.Invoice?.InvoiceNumber</td>
-                                <td>@line.Description</td>
-                                <td>@line.Quantity</td>
-                                <td>@line.UnitPrice.ToString("C")</td>
-                                <td>@line.LineTotal.ToString("C")</td>
-                                <td>@line.CreatedAt.ToString("MM/dd/yyyy")</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <!-- Add Journal Line Form -->
-    <div class="card mb-4 bg-light border-secondary collapse category-journallines" data-category="JournalLines">
-        <div class="card-header bg-secondary text-white">
-            <h5 class="mb-0"><i class="fas fa-plus-circle"></i> Add Journal Line</h5>
-        </div>
-        <div class="card-body">
-            <form method="post">
-                <input type="hidden" asp-for="ActiveCategory" />
-                <input type="hidden" asp-for="FormType" value="journalline" />
-                <div class="row">
+        <div id="journalentriesCollapse" class="collapse" data-category-collapse="journalentries">
+            <div class="card-body">
+                <form method="post" class="row g-2 mb-3" asp-antiforgery="true">
+                    <input type="hidden" asp-for="ActiveCategory" />
+                    <input type="hidden" asp-for="FormType" value="journalentry" />
+                    <div class="col-md-2">
+                        <input asp-for="NewJournalNumber" class="form-control" placeholder="Journal #" required />
+                    </div>
                     <div class="col-md-3">
-                        <label for="NewJournalLineEntryId" class="form-label">Journal Entry *</label>
-                        <select class="form-select" id="NewJournalLineEntryId" asp-for="NewJournalLineEntryId" required>
-                            <option value="0">-- Select Entry --</option>
-                            @foreach (var entry in Model.JournalEntries)
+                        <select asp-for="NewJournalDebitAccountId" class="form-select" required>
+                            <option value="0">Debit Account</option>
+                            @foreach (var a in Model.Accounts)
                             {
-                                <option value="@entry.Id">@entry.JournalNumber</option>
+                                <option value="@a.Id">@a.AccountNumber - @a.AccountName</option>
                             }
                         </select>
                     </div>
                     <div class="col-md-3">
-                        <label for="NewJournalLineAccountId" class="form-label">Account *</label>
-                        <select class="form-select" id="NewJournalLineAccountId" asp-for="NewJournalLineAccountId" required>
-                            <option value="0">-- Select Account --</option>
-                            @foreach (var account in Model.Accounts)
+                        <select asp-for="NewJournalCreditAccountId" class="form-select" required>
+                            <option value="0">Credit Account</option>
+                            @foreach (var a in Model.Accounts)
                             {
-                                <option value="@account.Id">@account.AccountNumber - @account.AccountName</option>
+                                <option value="@a.Id">@a.AccountNumber - @a.AccountName</option>
                             }
                         </select>
                     </div>
                     <div class="col-md-2">
-                        <label for="NewJournalLineDebit" class="form-label">Debit</label>
-                        <input type="number" step="0.01" min="0" class="form-control" id="NewJournalLineDebit" asp-for="NewJournalLineDebit" />
-                    </div>
-                    <div class="col-md-2">
-                        <label for="NewJournalLineCredit" class="form-label">Credit</label>
-                        <input type="number" step="0.01" min="0" class="form-control" id="NewJournalLineCredit" asp-for="NewJournalLineCredit" />
+                        <input asp-for="NewJournalAmount" type="number" class="form-control" placeholder="Amount" step="0.01" required />
                     </div>
                     <div class="col-md-1">
-                        <label for="NewJournalLineDescription" class="form-label">Desc</label>
-                        <input type="text" class="form-control" id="NewJournalLineDescription" asp-for="NewJournalLineDescription" />
+                        <input asp-for="NewJournalDate" type="date" class="form-control" />
                     </div>
-                    <div class="col-md-1 d-flex align-items-end">
-                        <button type="submit" class="btn btn-secondary w-100"><i class="fas fa-save"></i></button>
+                    <div class="col-md-1 d-grid">
+                        <button type="submit" class="btn btn-primary">Add</button>
                     </div>
+                    <div class="col-md-12">
+                        <input asp-for="NewJournalDescription" class="form-control" placeholder="Description" />
+                    </div>
+                </form>
+                <div class="table-responsive">
+                    <table class="table table-sm table-striped mb-0">
+                        <thead>
+                            <tr><th>Journal #</th><th>Debit Acct</th><th>Credit Acct</th><th>Amount</th><th>Date</th><th>Description</th></tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var je in Model.JournalEntries)
+                            {
+                                var debit = Model.Accounts.FirstOrDefault(a => a.Id == je.DebitAccountId);
+                                var credit = Model.Accounts.FirstOrDefault(a => a.Id == je.CreditAccountId);
+                                <tr>
+                                    <td>@je.JournalNumber</td>
+                                    <td>@(debit != null ? $"{debit.AccountNumber}" : "-")</td>
+                                    <td>@(credit != null ? $"{credit.AccountNumber}" : "-")</td>
+                                    <td>@je.Amount.ToString("C")</td>
+                                    <td>@je.EntryDate.ToLocalTime().ToString("MM/dd/yyyy")</td>
+                                    <td title="@je.Description">@(string.IsNullOrWhiteSpace(je.Description) ? "-" : (je.Description.Length > 30 ? je.Description.Substring(0,30) + "..." : je.Description))</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
                 </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Journal Lines Table -->
-    <div class="card mb-4 collapse category-journallines" data-category="JournalLines">
-        <div class="card-header bg-secondary text-white">
-            <h5 class="mb-0">Journal Lines</h5>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-striped table-hover">
-                    <thead class="table-light">
-                        <tr>
-                            <th>Journal #</th>
-                            <th>Account</th>
-                            <th>Debit</th>
-                            <th>Credit</th>
-                            <th>Description</th>
-                            <th>Created</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var jl in Model.JournalLines)
-                        {
-                            <tr>
-                                <td>@jl.JournalEntry?.JournalNumber</td>
-                                <td>@jl.Account?.AccountName (@jl.Account?.AccountNumber)</td>
-                                <td class="text-success">@jl.Debit.ToString("C")</td>
-                                <td class="text-danger">@jl.Credit.ToString("C")</td>
-                                <td>@jl.Description</td>
-                                <td>@jl.CreatedAt.ToString("MM/dd/yyyy")</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>
 
-    <!-- Tax Rates Table -->
-    <div class="card mb-4 collapse category-taxrates" data-category="TaxRates" style="border-color: #6f42c1;">
-        <div class="card-header text-white" style="background-color: #6f42c1;">
-            <h5 class="mb-0">Tax Rates</h5>
+    <!-- ========== INVOICE LINES MODULE ========== -->
+    <div class="card mb-3 financial-module" id="module-invoicelines">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Invoice Lines</h5>
+            <button class="btn btn-sm btn-secondary toggle-btn" data-bs-toggle="collapse" data-bs-target="#invoicelinesCollapse" aria-expanded="false">Toggle</button>
         </div>
-        <div class="card-body">
-            <!-- Filter Toolbar -->
-            <form method="get" class="mb-3">
-                <div class="row align-items-end">
+        <div id="invoicelinesCollapse" class="collapse" data-category-collapse="invoicelines">
+            <div class="card-body">
+                <form method="post" class="row g-2 mb-3" asp-antiforgery="true">
+                    <input type="hidden" asp-for="ActiveCategory" />
+                    <input type="hidden" asp-for="FormType" value="invoiceline" />
                     <div class="col-md-3">
-                        <label class="form-label">Filter by Tax Type</label>
-                        <select class="form-select" asp-for="TaxTypeFilter" onchange="this.form.submit()">
-                            @foreach (var type in Model.AllTaxTypes)
+                        <select asp-for="NewInvoiceLineInvoiceId" class="form-select" required>
+                            <option value="0">Invoice</option>
+                            @foreach (var i in Model.Invoices)
                             {
-                                <option value="@type" selected="@(Model.TaxTypeFilter == type)">@type</option>
+                                <option value="@i.Id">@i.InvoiceNumber</option>
                             }
                         </select>
                     </div>
-                    @if (!string.IsNullOrWhiteSpace(Model.TaxTypeFilter) && Model.TaxTypeFilter != "All")
-                    {
-                        <div class="col-md-2">
-                            <a href="/FinancialManagement" class="btn btn-secondary">Clear Filter</a>
-                        </div>
-                    }
+                    <div class="col-md-3">
+                        <input asp-for="NewInvoiceLineDescription" class="form-control" placeholder="Description" required />
+                    </div>
+                    <div class="col-md-2">
+                        <input asp-for="NewInvoiceLineQuantity" type="number" class="form-control" placeholder="Qty" required />
+                    </div>
+                    <div class="col-md-2">
+                        <input asp-for="NewInvoiceLineUnitPrice" type="number" class="form-control" placeholder="Unit Price" step="0.01" required />
+                    </div>
+                    <div class="col-md-2 d-grid">
+                        <button type="submit" class="btn btn-primary">Add</button>
+                    </div>
+                </form>
+                <div class="table-responsive">
+                    <table class="table table-sm table-striped mb-0">
+                        <thead>
+                            <tr><th>Invoice</th><th>Description</th><th>Qty</th><th>Unit Price</th><th>Total</th></tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var il in Model.InvoiceLines)
+                            {
+                                var invoice = Model.Invoices.FirstOrDefault(i => i.Id == il.InvoiceId);
+                                <tr>
+                                    <td>@(invoice?.InvoiceNumber ?? "-")</td>
+                                    <td>@il.Description</td>
+                                    <td>@il.Quantity</td>
+                                    <td>@il.UnitPrice.ToString("C")</td>
+                                    <td>@il.LineTotal.ToString("C")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
                 </div>
-            </form>
-            <div class="table-responsive">
-                <table class="table table-striped table-hover">
-                    <thead class="table-light">
-                        <tr>
-                            <th>Tax Code</th>
-                            <th>Tax Description</th>
-                            <th>Rate</th>
-                            <th>Tax Type</th>
-                            <th>Effective Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var taxRate in Model.TaxRates)
-                        {
-                            <tr>
-                                <td>@taxRate.TaxCode</td>
-                                <td>@taxRate.TaxDescription</td>
-                                <td>@(taxRate.Rate * 100)%</td>
-                                <td><span class="badge bg-primary">@taxRate.TaxType</span></td>
-                                <td>@taxRate.EffectiveDate.ToString("MM/dd/yyyy")</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== JOURNAL LINES MODULE ========== -->
+    <div class="card mb-3 financial-module" id="module-journallines">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Journal Lines</h5>
+            <button class="btn btn-sm btn-secondary toggle-btn" data-bs-toggle="collapse" data-bs-target="#journallinesCollapse" aria-expanded="false">Toggle</button>
+        </div>
+        <div id="journallinesCollapse" class="collapse" data-category-collapse="journallines">
+            <div class="card-body">
+                <form method="post" class="row g-2 mb-3" asp-antiforgery="true">
+                    <input type="hidden" asp-for="ActiveCategory" />
+                    <input type="hidden" asp-for="FormType" value="journalline" />
+                    <div class="col-md-3">
+                        <select asp-for="NewJournalLineEntryId" class="form-select" required>
+                            <option value="0">Journal Entry</option>
+                            @foreach (var je in Model.JournalEntries)
+                            {
+                                <option value="@je.Id">@je.JournalNumber</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select asp-for="NewJournalLineAccountId" class="form-select" required>
+                            <option value="0">Account</option>
+                            @foreach (var a in Model.Accounts)
+                            {
+                                <option value="@a.Id">@a.AccountNumber - @a.AccountName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <input asp-for="NewJournalLineDebit" type="number" class="form-control" placeholder="Debit" step="0.01" />
+                    </div>
+                    <div class="col-md-2">
+                        <input asp-for="NewJournalLineCredit" type="number" class="form-control" placeholder="Credit" step="0.01" />
+                    </div>
+                    <div class="col-md-2 d-grid">
+                        <button type="submit" class="btn btn-primary">Add</button>
+                    </div>
+                    <div class="col-md-12">
+                        <input asp-for="NewJournalLineDescription" class="form-control" placeholder="Description" />
+                    </div>
+                </form>
+                <div class="table-responsive">
+                    <table class="table table-sm table-striped mb-0">
+                        <thead>
+                            <tr><th>Journal Entry</th><th>Account</th><th>Debit</th><th>Credit</th><th>Description</th></tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var jl in Model.JournalLines)
+                            {
+                                var je = Model.JournalEntries.FirstOrDefault(j => j.Id == jl.JournalEntryId);
+                                var account = Model.Accounts.FirstOrDefault(a => a.Id == jl.AccountId);
+                                <tr>
+                                    <td>@(je?.JournalNumber ?? "-")</td>
+                                    <td>@(account != null ? $"{account.AccountNumber}" : "-")</td>
+                                    <td>@jl.Debit.ToString("C")</td>
+                                    <td>@jl.Credit.ToString("C")</td>
+                                    <td>@(string.IsNullOrWhiteSpace(jl.Description) ? "-" : jl.Description)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== TAX RATES MODULE ========== -->
+    <div class="card mb-3 financial-module" id="module-taxrates">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Tax Rates</h5>
+            <button class="btn btn-sm btn-secondary toggle-btn" data-bs-toggle="collapse" data-bs-target="#taxratesCollapse" aria-expanded="false">Toggle</button>
+        </div>
+        <div id="taxratesCollapse" class="collapse" data-category-collapse="taxrates">
+            <div class="card-body">
+                <form method="post" class="row g-2 mb-3" asp-antiforgery="true">
+                    <input type="hidden" asp-for="ActiveCategory" />
+                    <input type="hidden" asp-for="FormType" value="taxrate" />
+                    <div class="col-md-2">
+                        <input asp-for="NewTaxCode" class="form-control" placeholder="Tax Code" required />
+                    </div>
+                    <div class="col-md-3">
+                        <input asp-for="NewTaxDescription" class="form-control" placeholder="Description" required />
+                    </div>
+                    <div class="col-md-2">
+                        <input asp-for="NewTaxPercentage" type="number" class="form-control" placeholder="Rate (0.08)" step="0.0001" required />
+                    </div>
+                    <div class="col-md-2">
+                        <input asp-for="NewTaxType" class="form-control" placeholder="Type" />
+                    </div>
+                    <div class="col-md-2">
+                        <input asp-for="NewTaxEffectiveDate" type="date" class="form-control" />
+                    </div>
+                    <div class="col-md-1 d-grid">
+                        <button type="submit" class="btn btn-primary">Add</button>
+                    </div>
+                </form>
+                <div class="table-responsive">
+                    <table class="table table-sm table-striped mb-0">
+                        <thead>
+                            <tr><th>Code</th><th>Description</th><th>Rate</th><th>Type</th><th>Effective Date</th></tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var tr in Model.TaxRates)
+                            {
+                                <tr>
+                                    <td>@tr.TaxCode</td>
+                                    <td>@tr.TaxDescription</td>
+                                    <td>@tr.Rate.ToString("P2")</td>
+                                    <td>@(string.IsNullOrWhiteSpace(tr.TaxType) ? "-" : tr.TaxType)</td>
+                                    <td>@tr.EffectiveDate.ToLocalTime().ToString("MM/dd/yyyy")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<style>
-    body {
-        background-color: #ffffff;
-    }
-    
-    .card {
-        background-color: #ffffff;
-        border: 1px solid #ddd;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    
-    .card-header {
-        font-weight: bold;
-    }
-    
-    .table {
-        margin-bottom: 0;
-        color: #000;
-    }
-    
-    .table-hover tbody tr:hover {
-        background-color: #f5f5f5;
-    }
-    
-    h1 {
-        color: #000;
-        font-weight: bold;
-    }
-    
-    .container {
-        background-color: #ffffff;
-        border-radius: 8px;
-        padding: 20px;
-    }
+@section Scripts {
+    <script>
+        (function(){
+            const qs = new URLSearchParams(window.location.search);
+            let active = (qs.get('ActiveCategory') || localStorage.getItem('financial_active_category') || '').toLowerCase();
+            const valid = ['accounts','partners','invoices','openbalances','payments','journalentries','invoicelines','journallines','taxrates'];
+            if(!valid.includes(active)) active = 'accounts';
+            localStorage.setItem('financial_active_category', active);
 
-</style>
+            // Expand selected collapse
+            const targetCollapse = document.querySelector(`[data-category-collapse="${active}"]`);
+            if(targetCollapse){
+                new bootstrap.Collapse(targetCollapse, { toggle: true });
+            }
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Get all category toggle buttons
-        const toggleButtons = document.querySelectorAll('[data-bs-toggle="collapse"]');
-        
-        // Store active category in localStorage when button is clicked
-        toggleButtons.forEach(button => {
-            // Add click event listener to each button
-            button.addEventListener('click', function() {
-                const target = button.getAttribute('data-bs-target');
-                const categoryName = target.replace('.category-', '');
-                
-                // Store or remove the active category
-                const targetElements = document.querySelectorAll(target);
-                const isCurrentlyExpanded = button.getAttribute('aria-expanded') === 'true';
-                
-                if (!isCurrentlyExpanded) {
-                    // Will be expanded, so store it
-                    localStorage.setItem('activeFinancialCategory', categoryName);
+            // Highlight toolbar button
+            document.querySelectorAll('[data-category]').forEach(btn => {
+                if(btn.getAttribute('data-category') === active){
+                    btn.classList.remove('btn-outline-primary');
+                    btn.classList.add('btn-primary');
                 } else {
-                    // Will be collapsed, check if we should remove storage
-                    const storedCategory = localStorage.getItem('activeFinancialCategory');
-                    if (storedCategory === categoryName) {
-                        localStorage.removeItem('activeFinancialCategory');
-                    }
+                    btn.classList.remove('btn-primary');
+                    btn.classList.add('btn-outline-primary');
                 }
-                
-                // Toggle checkmark after a short delay to let Bootstrap finish
-                setTimeout(() => {
-                    const isExpanded = button.getAttribute('aria-expanded') === 'true';
-                    
-                    // Remove or add checkmark icon
-                    const existingCheck = button.querySelector('.fa-check');
-                    if (isExpanded && !existingCheck) {
-                        const checkIcon = document.createElement('i');
-                        checkIcon.className = 'fas fa-check me-2';
-                        button.insertBefore(checkIcon, button.firstChild);
-                    } else if (!isExpanded && existingCheck) {
-                        existingCheck.remove();
-                    }
-                }, 100);
             });
-            
-            // Listen to Bootstrap collapse events for more reliable state tracking
-            const target = button.getAttribute('data-bs-target');
-            const targetElements = document.querySelectorAll(target);
-            
-            targetElements.forEach(element => {
-                element.addEventListener('shown.bs.collapse', function() {
-                    const existingCheck = button.querySelector('.fa-check');
-                    if (!existingCheck) {
-                        const checkIcon = document.createElement('i');
-                        checkIcon.className = 'fas fa-check me-2';
-                        button.insertBefore(checkIcon, button.firstChild);
-                    }
-                });
-                
-                element.addEventListener('hidden.bs.collapse', function() {
-                    // Only remove checkmark if ALL target elements are hidden
-                    const allHidden = Array.from(targetElements).every(el => !el.classList.contains('show'));
-                    if (allHidden) {
-                        const existingCheck = button.querySelector('.fa-check');
-                        if (existingCheck) {
-                            existingCheck.remove();
-                        }
-                    }
-                });
-            });
-        });
-        
-        // On page load, restore the active category from localStorage or query string
-        const params = new URLSearchParams(window.location.search);
-        const queryCategory = (params.get('ActiveCategory') || params.get('activeCategory') || '').toString();
-        if (queryCategory) {
-            // Normalize and persist for subsequent navigations
-            const normalized = queryCategory.trim().toLowerCase();
-            if (normalized) {
-                localStorage.setItem('activeFinancialCategory', normalized);
-            }
-        }
 
-        const activeCategory = localStorage.getItem('activeFinancialCategory');
-        if (activeCategory) {
-            const targetSelector = '.category-' + activeCategory;
-            const categoryElements = document.querySelectorAll(targetSelector);
-            
-            if (categoryElements.length > 0) {
-                // Find the button that controls this category
-                const controlButton = Array.from(toggleButtons).find(btn => 
-                    btn.getAttribute('data-bs-target') === targetSelector
-                );
-                
-                // Show the category sections
-                categoryElements.forEach(element => {
-                    element.classList.add('show');
+            // Clicking toolbar buttons navigates with query param
+            document.querySelectorAll('[data-category]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const cat = btn.getAttribute('data-category');
+                    if(!cat) return;
+                    localStorage.setItem('financial_active_category', cat);
+                    const url = new URL(window.location.href);
+                    url.searchParams.set('ActiveCategory', cat);
+                    window.location.href = url.toString();
                 });
-                
-                // Update button state and add checkmark
-                if (controlButton) {
-                    controlButton.setAttribute('aria-expanded', 'true');
-                    const existingCheck = controlButton.querySelector('.fa-check');
-                    if (!existingCheck) {
-                        const checkIcon = document.createElement('i');
-                        checkIcon.className = 'fas fa-check me-2';
-                        controlButton.insertBefore(checkIcon, controlButton.firstChild);
-                    }
-                }
-            }
-        }
-        
-        // Attach submit handlers to all forms to populate ActiveCategory before submission
-        const allForms = document.querySelectorAll('form[method="post"]');
-        allForms.forEach(form => {
-            form.addEventListener('submit', function(e) {
-                // Find the hidden ActiveCategory input in this form
-                const activeCategoryInput = form.querySelector('input[name="ActiveCategory"]');
-                if (activeCategoryInput) {
-                    // Get the stored active category
-                    const storedCategory = localStorage.getItem('activeFinancialCategory');
-                    if (storedCategory) {
-                        activeCategoryInput.value = storedCategory;
-                    }
-                }
             });
-        });
-    });
-</script>
+        })();
+    </script>
+}

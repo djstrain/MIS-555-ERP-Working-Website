@@ -25,6 +25,13 @@ namespace WebApplication1.Data
     public DbSet<InvoiceLine> InvoiceLines { get; set; } = null!;
     public DbSet<JournalLine> JournalLines { get; set; } = null!;
 
+        // CRM Management
+        public DbSet<Company> Companies { get; set; } = null!;
+        public DbSet<Contact> Contacts { get; set; } = null!;
+        public DbSet<Opportunity> Opportunities { get; set; } = null!;
+        public DbSet<Activity> Activities { get; set; } = null!;
+        public DbSet<Note> Notes { get; set; } = null!;
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -108,6 +115,13 @@ namespace WebApplication1.Data
                 new JournalLine { Id = 3, JournalEntryId = 2, AccountId = 7, Debit = 5000m, Credit = 0m, Description = "COGS Debited", CreatedAt = DateTime.UtcNow },
                 new JournalLine { Id = 4, JournalEntryId = 2, AccountId = 3, Debit = 0m, Credit = 5000m, Description = "Inventory Credited", CreatedAt = DateTime.UtcNow }
             );
+
+            // Basic configuration for CRM tables (ensure plural table names map if conventions differ)
+            modelBuilder.Entity<Company>().ToTable("Companies");
+            modelBuilder.Entity<Contact>().ToTable("Contacts");
+            modelBuilder.Entity<Opportunity>().ToTable("Opportunities");
+            modelBuilder.Entity<Activity>().ToTable("Activities");
+            modelBuilder.Entity<Note>().ToTable("Notes");
         }
     }
 }

@@ -8,10 +8,12 @@ namespace WebApplication1.Pages
     public class FinancialManagementModel : PageModel
     {
         private readonly AppDbContents _context;
+        private readonly ILogger<FinancialManagementModel> _logger;
 
-        public FinancialManagementModel(AppDbContents context)
+        public FinancialManagementModel(AppDbContents context, ILogger<FinancialManagementModel> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // Data Collections
@@ -383,50 +385,62 @@ namespace WebApplication1.Pages
         {
             try
             {
+                _logger.LogInformation("Financial POST received FormType='{FormType}' ActiveCategory='{ActiveCategory}'", FormType, ActiveCategory);
                 // Determine which form was submitted
                 if (FormType == "account")
                 {
+                    _logger.LogDebug("Attempting to add Account: Number={Number} Name={Name} Type={Type}", NewAccountNumber, NewAccountName, NewAccountType);
                     return await AddAccount();
                 }
                 else if (FormType == "partner")
                 {
+                    _logger.LogDebug("Attempting to add Partner: Name={Name} Type={Type}", NewPartnerName, NewPartnerType);
                     return await AddPartner();
                 }
                 else if (FormType == "invoice")
                 {
+                    _logger.LogDebug("Attempting to add Invoice: Number={Number} PartnerId={PartnerId} Amount={Amount}", NewInvoiceNumber, NewInvoicePartnerId, NewInvoiceAmount);
                     return await AddInvoice();
                 }
                 else if (FormType == "openbalance")
                 {
+                    _logger.LogDebug("Attempting to add OpenBalance: AccountId={AccountId} Amount={Amount}", NewOpenBalanceAccountId, NewOpenBalanceAmount);
                     return await AddOpenBalance();
                 }
                 else if (FormType == "payment")
                 {
+                    _logger.LogDebug("Attempting to add Payment: Number={Number} InvoiceId={InvoiceId} Amount={Amount}", NewPaymentNumber, NewPaymentInvoiceId, NewPaymentAmount);
                     return await AddPayment();
                 }
                 else if (FormType == "journalentry")
                 {
+                    _logger.LogDebug("Attempting to add JournalEntry: Number={Number} Debit={Debit} Credit={Credit} Amount={Amount}", NewJournalNumber, NewJournalDebitAccountId, NewJournalCreditAccountId, NewJournalAmount);
                     return await AddJournalEntry();
                 }
                 else if (FormType == "taxrate")
                 {
+                    _logger.LogDebug("Attempting to add TaxRate: Code={Code} Percentage={Percentage}", NewTaxCode, NewTaxPercentage);
                     return await AddTaxRate();
                 }
                 else if (FormType == "invoiceline")
                 {
+                    _logger.LogDebug("Attempting to add InvoiceLine: InvoiceId={InvoiceId} Desc={Desc} Qty={Qty} UnitPrice={UnitPrice}", NewInvoiceLineInvoiceId, NewInvoiceLineDescription, NewInvoiceLineQuantity, NewInvoiceLineUnitPrice);
                     return await AddInvoiceLine();
                 }
                 else if (FormType == "journalline")
                 {
+                    _logger.LogDebug("Attempting to add JournalLine: EntryId={EntryId} AccountId={AccountId} Debit={Debit} Credit={Credit}", NewJournalLineEntryId, NewJournalLineAccountId, NewJournalLineDebit, NewJournalLineCredit);
                     return await AddJournalLine();
                 }
 
                 ErrorMessage = "Invalid form submission.";
+                _logger.LogWarning("Invalid FormType '{FormType}' posted", FormType);
                 await OnGetAsync();
                 return Page();
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Unhandled exception in FinancialManagement POST for FormType={FormType}", FormType);
                 ErrorMessage = $"Error processing form: {ex.Message}";
                 await OnGetAsync();
                 return Page();
@@ -465,6 +479,7 @@ namespace WebApplication1.Pages
 
             _context.Accounts.Add(newAccount);
             await _context.SaveChangesAsync();
+            _logger.LogInformation("Added Account Id={Id} Number={Number}", newAccount.Id, newAccount.AccountNumber);
 
             Message = $"Account '{NewAccountName}' ({NewAccountNumber}) has been successfully added!";
             ResetAllForms();
@@ -492,6 +507,7 @@ namespace WebApplication1.Pages
 
             _context.Partners.Add(newPartner);
             await _context.SaveChangesAsync();
+            _logger.LogInformation("Added Partner Id={Id} Name={Name}", newPartner.Id, newPartner.PartnerName);
 
             Message = $"Partner '{NewPartnerName}' has been successfully added!";
             ResetAllForms();
@@ -528,6 +544,7 @@ namespace WebApplication1.Pages
 
             _context.Invoices.Add(newInvoice);
             await _context.SaveChangesAsync();
+            _logger.LogInformation("Added Invoice Id={Id} Number={Number}", newInvoice.Id, newInvoice.InvoiceNumber);
 
             Message = $"Invoice '{NewInvoiceNumber}' ({NewInvoiceAmount:C}) has been successfully added!";
             ResetAllForms();
@@ -562,6 +579,7 @@ namespace WebApplication1.Pages
 
             _context.OpenBalances.Add(newOpenBalance);
             await _context.SaveChangesAsync();
+            _logger.LogInformation("Added OpenBalance Id={Id} AccountId={AccountId}", newOpenBalance.Id, newOpenBalance.AccountId);
 
             Message = $"Open Balance ({NewOpenBalanceAmount:C}) for '{account.AccountName}' has been successfully added!";
             ResetAllForms();
@@ -610,6 +628,7 @@ namespace WebApplication1.Pages
 
             _context.Payments.Add(newPayment);
             await _context.SaveChangesAsync();
+            _logger.LogInformation("Added Payment Id={Id} Number={Number}", newPayment.Id, newPayment.PaymentNumber);
 
             Message = $"Payment ({NewPaymentAmount:C}) has been successfully added!";
             ResetAllForms();
@@ -663,6 +682,7 @@ namespace WebApplication1.Pages
 
             _context.JournalEntries.Add(newJournalEntry);
             await _context.SaveChangesAsync();
+            _logger.LogInformation("Added JournalEntry Id={Id} Number={Number}", newJournalEntry.Id, newJournalEntry.JournalNumber);
 
             Message = $"Journal Entry ({NewJournalAmount:C}) has been successfully added!";
             ResetAllForms();
@@ -700,6 +720,7 @@ namespace WebApplication1.Pages
 
             _context.TaxRates.Add(newTaxRate);
             await _context.SaveChangesAsync();
+            _logger.LogInformation("Added TaxRate Id={Id} Code={Code}", newTaxRate.Id, newTaxRate.TaxCode);
 
             Message = $"Tax Rate '{NewTaxCode}' ({NewTaxPercentage}%) has been successfully added!";
             ResetAllForms();
@@ -735,6 +756,7 @@ namespace WebApplication1.Pages
 
             _context.InvoiceLines.Add(line);
             await _context.SaveChangesAsync();
+            _logger.LogInformation("Added InvoiceLine Id={Id} InvoiceId={InvoiceId}", line.Id, line.InvoiceId);
 
             Message = "Invoice line added.";
             ResetAllForms();
@@ -778,6 +800,7 @@ namespace WebApplication1.Pages
 
             _context.JournalLines.Add(jl);
             await _context.SaveChangesAsync();
+            _logger.LogInformation("Added JournalLine Id={Id} EntryId={EntryId}", jl.Id, jl.JournalEntryId);
 
             Message = "Journal line added.";
             ResetAllForms();
