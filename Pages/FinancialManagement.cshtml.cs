@@ -367,12 +367,13 @@ namespace WebApplication1.Pages
                 .Where(i => i.Status != "Overdue")
                 .Sum(i => i.Amount);
 
-            // Calculate total expenses (from journal entries on the expense side)
+            // Calculate total expenses (from accounts - expense balances are typically negative or need absolute value)
+            // Since Expense account balances may be stored as negative, take absolute value
             TotalExpenses = Accounts
                 .Where(a => a.AccountType == "Expense")
-                .Sum(a => a.Balance);
+                .Sum(a => Math.Abs(a.Balance));
 
-            // Calculate net balance
+            // Calculate net balance (Revenue minus Expenses)
             NetBalance = TotalRevenue - TotalExpenses;
 
             // Calculate invoice statistics
