@@ -54,18 +54,7 @@
         </div>
     </div>
 
-    <!-- Category Toolbar -->
-    <div class="mb-3 d-flex flex-wrap gap-2">
-        <button type="button" class="btn btn-outline-primary" data-category="accounts">Accounts</button>
-        <button type="button" class="btn btn-outline-primary" data-category="partners">Partners</button>
-        <button type="button" class="btn btn-outline-primary" data-category="invoices">Invoices</button>
-        <button type="button" class="btn btn-outline-primary" data-category="openbalances">Open Balances</button>
-        <button type="button" class="btn btn-outline-primary" data-category="payments">Payments</button>
-        <button type="button" class="btn btn-outline-primary" data-category="journalentries">Journal Entries</button>
-        <button type="button" class="btn btn-outline-primary" data-category="invoicelines">Invoice Lines</button>
-        <button type="button" class="btn btn-outline-primary" data-category="journallines">Journal Lines</button>
-        <button type="button" class="btn btn-outline-primary" data-category="taxrates">Tax Rates</button>
-    </div>
+    <!-- Category Toolbar removed (buttons were redundant with collapsible modules below) -->
 
     <!-- ========== ACCOUNTS MODULE ========== -->
     <div class="card mb-3 financial-module" id="module-accounts">
@@ -104,7 +93,7 @@
                 <div class="table-responsive">
                     <table class="table table-sm table-striped mb-0">
                         <thead>
-                            <tr><th>Number</th><th>Name</th><th>Type</th><th>Balance</th><th>Created</th></tr>
+                            <tr><th>Number</th><th>Name</th><th>Type</th><th>Balance</th><th>Created</th><th>Actions</th></tr>
                         </thead>
                         <tbody>
                             @foreach (var a in Model.Accounts)
@@ -115,6 +104,18 @@
                                     <td>@a.AccountType</td>
                                     <td>@a.Balance.ToString("C")</td>
                                     <td>@a.CreatedAt.ToLocalTime().ToString("MM/dd/yyyy")</td>
+                                    <td class="actions-cell">
+                                        <div class="action-inline">
+                                            <button type="button" class="btn btn-sm btn-warning" title="Edit Account" data-bs-toggle="modal" data-bs-target="#editAccountModal"
+                                                    data-id="@a.Id" data-number="@a.AccountNumber" data-name="@a.AccountName" data-type="@a.AccountType" data-balance="@a.Balance">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <form method="post" asp-page-handler="DeleteAccount" onsubmit="return confirm('Delete account @a.AccountNumber?');">
+                                                <input type="hidden" name="id" value="@a.Id" />
+                                                <button type="submit" class="btn btn-sm btn-danger" title="Delete Account"><i class="fas fa-trash"></i></button>
+                                            </form>
+                                        </div>
+                                    </td>
                                 </tr>
                             }
                         </tbody>
@@ -160,7 +161,7 @@
                 <div class="table-responsive">
                     <table class="table table-sm table-striped mb-0">
                         <thead>
-                            <tr><th>Name</th><th>Type</th><th>Email</th><th>Phone</th><th>Created</th></tr>
+                            <tr><th>Name</th><th>Type</th><th>Email</th><th>Phone</th><th>Created</th><th>Actions</th></tr>
                         </thead>
                         <tbody>
                             @foreach (var p in Model.Partners)
@@ -171,6 +172,18 @@
                                     <td>@(string.IsNullOrWhiteSpace(p.Email) ? "-" : p.Email)</td>
                                     <td>@(string.IsNullOrWhiteSpace(p.Phone) ? "-" : p.Phone)</td>
                                     <td>@p.CreatedAt.ToLocalTime().ToString("MM/dd/yyyy")</td>
+                                    <td class="actions-cell">
+                                        <div class="action-inline">
+                                            <button type="button" class="btn btn-sm btn-warning" title="Edit Partner" data-bs-toggle="modal" data-bs-target="#editPartnerModal"
+                                                    data-id="@p.Id" data-name="@p.PartnerName" data-type="@p.PartnerType" data-email="@p.Email" data-phone="@p.Phone">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <form method="post" asp-page-handler="DeletePartner" onsubmit="return confirm('Delete partner @p.PartnerName?');">
+                                                <input type="hidden" name="id" value="@p.Id" />
+                                                <button type="submit" class="btn btn-sm btn-danger" title="Delete Partner"><i class="fas fa-trash"></i></button>
+                                            </form>
+                                        </div>
+                                    </td>
                                 </tr>
                             }
                         </tbody>
@@ -226,7 +239,7 @@
                 <div class="table-responsive">
                     <table class="table table-sm table-striped mb-0">
                         <thead>
-                            <tr><th>Invoice #</th><th>Partner</th><th>Amount</th><th>Status</th><th>Invoice Date</th><th>Due Date</th></tr>
+                            <tr><th>Invoice #</th><th>Partner</th><th>Amount</th><th>Status</th><th>Invoice Date</th><th>Due Date</th><th>Actions</th></tr>
                         </thead>
                         <tbody>
                             @foreach (var i in Model.Invoices)
@@ -239,6 +252,18 @@
                                     <td>@i.Status</td>
                                     <td>@i.InvoiceDate.ToLocalTime().ToString("MM/dd/yyyy")</td>
                                     <td>@i.DueDate.ToLocalTime().ToString("MM/dd/yyyy")</td>
+                                    <td class="actions-cell">
+                                        <div class="action-inline">
+                                            <button type="button" class="btn btn-sm btn-warning" title="Edit Invoice" data-bs-toggle="modal" data-bs-target="#editInvoiceModal"
+                                                    data-id="@i.Id" data-partnerid="@i.PartnerId" data-number="@i.InvoiceNumber" data-amount="@i.Amount" data-status="@i.Status" data-invoicedate="@i.InvoiceDate.ToString("yyyy-MM-dd")" data-duedate="@i.DueDate.ToString("yyyy-MM-dd")">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <form method="post" asp-page-handler="DeleteInvoice" onsubmit="return confirm('Delete invoice @i.InvoiceNumber?');">
+                                                <input type="hidden" name="id" value="@i.Id" />
+                                                <button type="submit" class="btn btn-sm btn-danger" title="Delete Invoice"><i class="fas fa-trash"></i></button>
+                                            </form>
+                                        </div>
+                                    </td>
                                 </tr>
                             }
                         </tbody>
@@ -284,7 +309,7 @@
                 <div class="table-responsive">
                     <table class="table table-sm table-striped mb-0">
                         <thead>
-                            <tr><th>Account</th><th>Balance</th><th>Date</th><th>Description</th></tr>
+                            <tr><th>Account</th><th>Balance</th><th>Date</th><th>Description</th><th>Actions</th></tr>
                         </thead>
                         <tbody>
                             @foreach (var ob in Model.OpenBalances)
@@ -295,6 +320,18 @@
                                     <td>@ob.OpeningBalance.ToString("C")</td>
                                     <td>@ob.BalanceDate.ToLocalTime().ToString("MM/dd/yyyy")</td>
                                     <td>@(string.IsNullOrWhiteSpace(ob.Description) ? "-" : ob.Description)</td>
+                                    <td class="actions-cell">
+                                        <div class="action-inline">
+                                            <button type="button" class="btn btn-sm btn-warning" title="Edit Open Balance" data-bs-toggle="modal" data-bs-target="#editOpenBalanceModal"
+                                                    data-id="@ob.Id" data-accountid="@ob.AccountId" data-amount="@ob.OpeningBalance" data-date="@ob.BalanceDate.ToString("yyyy-MM-dd")" data-description="@ob.Description">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <form method="post" asp-page-handler="DeleteOpenBalance" onsubmit="return confirm('Delete open balance for account @account?.AccountNumber?');">
+                                                <input type="hidden" name="id" value="@ob.Id" />
+                                                <button type="submit" class="btn btn-sm btn-danger" title="Delete Open Balance"><i class="fas fa-trash"></i></button>
+                                            </form>
+                                        </div>
+                                    </td>
                                 </tr>
                             }
                         </tbody>
@@ -349,7 +386,7 @@
                 <div class="table-responsive">
                     <table class="table table-sm table-striped mb-0">
                         <thead>
-                            <tr><th>Payment #</th><th>Invoice</th><th>Amount</th><th>Date</th><th>Method</th></tr>
+                            <tr><th>Payment #</th><th>Invoice</th><th>Amount</th><th>Date</th><th>Method</th><th>Actions</th></tr>
                         </thead>
                         <tbody>
                             @foreach (var pay in Model.Payments)
@@ -361,6 +398,18 @@
                                     <td>@pay.PaymentAmount.ToString("C")</td>
                                     <td>@pay.PaymentDate.ToLocalTime().ToString("MM/dd/yyyy")</td>
                                     <td>@pay.PaymentMethod</td>
+                                    <td class="actions-cell">
+                                        <div class="action-inline">
+                                            <button type="button" class="btn btn-sm btn-warning" title="Edit Payment" data-bs-toggle="modal" data-bs-target="#editPaymentModal"
+                                                    data-id="@pay.Id" data-invoiceid="@pay.InvoiceId" data-number="@pay.PaymentNumber" data-amount="@pay.PaymentAmount" data-date="@pay.PaymentDate.ToString("yyyy-MM-dd")" data-method="@pay.PaymentMethod">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <form method="post" asp-page-handler="DeletePayment" onsubmit="return confirm('Delete payment @pay.PaymentNumber?');">
+                                                <input type="hidden" name="id" value="@pay.Id" />
+                                                <button type="submit" class="btn btn-sm btn-danger" title="Delete Payment"><i class="fas fa-trash"></i></button>
+                                            </form>
+                                        </div>
+                                    </td>
                                 </tr>
                             }
                         </tbody>
@@ -418,7 +467,7 @@
                 <div class="table-responsive">
                     <table class="table table-sm table-striped mb-0">
                         <thead>
-                            <tr><th>Journal #</th><th>Debit Acct</th><th>Credit Acct</th><th>Amount</th><th>Date</th><th>Description</th></tr>
+                            <tr><th>Journal #</th><th>Debit Acct</th><th>Credit Acct</th><th>Amount</th><th>Date</th><th>Description</th><th>Actions</th></tr>
                         </thead>
                         <tbody>
                             @foreach (var je in Model.JournalEntries)
@@ -432,6 +481,18 @@
                                     <td>@je.Amount.ToString("C")</td>
                                     <td>@je.EntryDate.ToLocalTime().ToString("MM/dd/yyyy")</td>
                                     <td title="@je.Description">@(string.IsNullOrWhiteSpace(je.Description) ? "-" : (je.Description.Length > 30 ? je.Description.Substring(0,30) + "..." : je.Description))</td>
+                                    <td class="actions-cell">
+                                        <div class="action-inline">
+                                            <button type="button" class="btn btn-sm btn-warning" title="Edit Journal Entry" data-bs-toggle="modal" data-bs-target="#editJournalEntryModal"
+                                                    data-id="@je.Id" data-number="@je.JournalNumber" data-debit="@je.DebitAccountId" data-credit="@je.CreditAccountId" data-amount="@je.Amount" data-date="@je.EntryDate.ToString("yyyy-MM-dd")" data-description="@je.Description">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <form method="post" asp-page-handler="DeleteJournalEntry" onsubmit="return confirm('Delete journal entry @je.JournalNumber?');">
+                                                <input type="hidden" name="id" value="@je.Id" />
+                                                <button type="submit" class="btn btn-sm btn-danger" title="Delete Journal Entry"><i class="fas fa-trash"></i></button>
+                                            </form>
+                                        </div>
+                                    </td>
                                 </tr>
                             }
                         </tbody>
@@ -477,7 +538,7 @@
                 <div class="table-responsive">
                     <table class="table table-sm table-striped mb-0">
                         <thead>
-                            <tr><th>Invoice</th><th>Description</th><th>Qty</th><th>Unit Price</th><th>Total</th></tr>
+                            <tr><th>Invoice</th><th>Description</th><th>Qty</th><th>Unit Price</th><th>Total</th><th>Actions</th></tr>
                         </thead>
                         <tbody>
                             @foreach (var il in Model.InvoiceLines)
@@ -489,6 +550,18 @@
                                     <td>@il.Quantity</td>
                                     <td>@il.UnitPrice.ToString("C")</td>
                                     <td>@il.LineTotal.ToString("C")</td>
+                                    <td class="actions-cell">
+                                        <div class="action-inline">
+                                            <button type="button" class="btn btn-sm btn-warning" title="Edit Invoice Line" data-bs-toggle="modal" data-bs-target="#editInvoiceLineModal"
+                                                    data-id="@il.Id" data-invoiceid="@il.InvoiceId" data-description="@il.Description" data-quantity="@il.Quantity" data-unitprice="@il.UnitPrice">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <form method="post" asp-page-handler="DeleteInvoiceLine" onsubmit="return confirm('Delete invoice line @il.Description?');">
+                                                <input type="hidden" name="id" value="@il.Id" />
+                                                <button type="submit" class="btn btn-sm btn-danger" title="Delete Invoice Line"><i class="fas fa-trash"></i></button>
+                                            </form>
+                                        </div>
+                                    </td>
                                 </tr>
                             }
                         </tbody>
@@ -543,7 +616,7 @@
                 <div class="table-responsive">
                     <table class="table table-sm table-striped mb-0">
                         <thead>
-                            <tr><th>Journal Entry</th><th>Account</th><th>Debit</th><th>Credit</th><th>Description</th></tr>
+                            <tr><th>Journal Entry</th><th>Account</th><th>Debit</th><th>Credit</th><th>Description</th><th>Actions</th></tr>
                         </thead>
                         <tbody>
                             @foreach (var jl in Model.JournalLines)
@@ -556,6 +629,18 @@
                                     <td>@jl.Debit.ToString("C")</td>
                                     <td>@jl.Credit.ToString("C")</td>
                                     <td>@(string.IsNullOrWhiteSpace(jl.Description) ? "-" : jl.Description)</td>
+                                    <td class="actions-cell">
+                                        <div class="action-inline">
+                                            <button type="button" class="btn btn-sm btn-warning" title="Edit Journal Line" data-bs-toggle="modal" data-bs-target="#editJournalLineModal"
+                                                    data-id="@jl.Id" data-entryid="@jl.JournalEntryId" data-accountid="@jl.AccountId" data-debit="@jl.Debit" data-credit="@jl.Credit" data-description="@jl.Description">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <form method="post" asp-page-handler="DeleteJournalLine" onsubmit="return confirm('Delete journal line for entry @je?.JournalNumber?');">
+                                                <input type="hidden" name="id" value="@jl.Id" />
+                                                <button type="submit" class="btn btn-sm btn-danger" title="Delete Journal Line"><i class="fas fa-trash"></i></button>
+                                            </form>
+                                        </div>
+                                    </td>
                                 </tr>
                             }
                         </tbody>
@@ -598,7 +683,7 @@
                 <div class="table-responsive">
                     <table class="table table-sm table-striped mb-0">
                         <thead>
-                            <tr><th>Code</th><th>Description</th><th>Rate</th><th>Type</th><th>Effective Date</th></tr>
+                            <tr><th>Code</th><th>Description</th><th>Rate</th><th>Type</th><th>Effective Date</th><th>Actions</th></tr>
                         </thead>
                         <tbody>
                             @foreach (var tr in Model.TaxRates)
@@ -609,6 +694,18 @@
                                     <td>@tr.Rate.ToString("P2")</td>
                                     <td>@(string.IsNullOrWhiteSpace(tr.TaxType) ? "-" : tr.TaxType)</td>
                                     <td>@tr.EffectiveDate.ToLocalTime().ToString("MM/dd/yyyy")</td>
+                                    <td class="actions-cell">
+                                        <div class="action-inline">
+                                            <button type="button" class="btn btn-sm btn-warning" title="Edit Tax Rate" data-bs-toggle="modal" data-bs-target="#editTaxRateModal"
+                                                    data-id="@tr.Id" data-code="@tr.TaxCode" data-description="@tr.TaxDescription" data-rate="@((tr.Rate*100).ToString("F4"))" data-type="@tr.TaxType" data-effectivedate="@tr.EffectiveDate.ToString("yyyy-MM-dd")">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <form method="post" asp-page-handler="DeleteTaxRate" onsubmit="return confirm('Delete tax rate @tr.TaxCode?');">
+                                                <input type="hidden" name="id" value="@tr.Id" />
+                                                <button type="submit" class="btn btn-sm btn-danger" title="Delete Tax Rate"><i class="fas fa-trash"></i></button>
+                                            </form>
+                                        </div>
+                                    </td>
                                 </tr>
                             }
                         </tbody>
@@ -617,45 +714,273 @@
             </div>
         </div>
     </div>
+<!-- Edit Modals -->
+<div class="modal fade" id="editAccountModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" asp-page-handler="EditAccount" asp-antiforgery="true">
+                <div class="modal-header"><h5 class="modal-title">Edit Account</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+                <div class="modal-body">
+                    <input type="hidden" asp-for="EditAccountId" id="editAccountId" />
+                    <div class="mb-2"><label class="form-label">Number *</label><input asp-for="EditAccountNumber" class="form-control" id="editAccountNumber" required /></div>
+                    <div class="mb-2"><label class="form-label">Name *</label><input asp-for="EditAccountName" class="form-control" id="editAccountName" required /></div>
+                    <div class="mb-2"><label class="form-label">Type *</label>
+                        <select asp-for="EditAccountType" class="form-select" id="editAccountType" required>
+                            <option value="Asset">Asset</option>
+                            <option value="Liability">Liability</option>
+                            <option value="Equity">Equity</option>
+                            <option value="Revenue">Revenue</option>
+                            <option value="Expense">Expense</option>
+                        </select>
+                    </div>
+                    <div class="mb-2"><label class="form-label">Balance</label><input asp-for="EditAccountBalance" type="number" step="0.01" class="form-control" id="editAccountBalance" /></div>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button><button type="submit" class="btn btn-warning">Save</button></div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editPartnerModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" asp-page-handler="EditPartner" asp-antiforgery="true">
+                <div class="modal-header"><h5 class="modal-title">Edit Partner</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+                <div class="modal-body">
+                    <input type="hidden" asp-for="EditPartnerId" id="editPartnerId" />
+                    <div class="mb-2"><label class="form-label">Name *</label><input asp-for="EditPartnerName" class="form-control" id="editPartnerName" required /></div>
+                    <div class="mb-2"><label class="form-label">Type *</label><input asp-for="EditPartnerType" class="form-control" id="editPartnerType" required /></div>
+                    <div class="mb-2"><label class="form-label">Email</label><input asp-for="EditPartnerEmail" type="email" class="form-control" id="editPartnerEmail" /></div>
+                    <div class="mb-2"><label class="form-label">Phone</label><input asp-for="EditPartnerPhone" class="form-control" id="editPartnerPhone" /></div>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button><button type="submit" class="btn btn-warning">Save</button></div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Additional Edit Modals -->
+<div class="modal fade" id="editInvoiceModal" tabindex="-1">
+    <div class="modal-dialog"><div class="modal-content">
+        <form method="post" asp-page-handler="EditInvoice" asp-antiforgery="true">
+            <div class="modal-header"><h5 class="modal-title">Edit Invoice</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+            <div class="modal-body">
+                <input type="hidden" asp-for="EditInvoiceId" id="editInvoiceId" />
+                <div class="mb-2"><label class="form-label">Partner *</label><select asp-for="EditInvoicePartnerId" class="form-select" id="editInvoicePartnerId">@foreach(var p in Model.Partners){<option value="@p.Id">@p.PartnerName</option>}</select></div>
+                <div class="mb-2"><label class="form-label">Number *</label><input asp-for="EditInvoiceNumber" class="form-control" id="editInvoiceNumber" required /></div>
+                <div class="mb-2"><label class="form-label">Amount *</label><input asp-for="EditInvoiceAmount" type="number" step="0.01" class="form-control" id="editInvoiceAmount" required /></div>
+                <div class="mb-2"><label class="form-label">Status</label><select asp-for="EditInvoiceStatus" class="form-select" id="editInvoiceStatus"><option>Pending</option><option>Paid</option><option>Overdue</option></select></div>
+                <div class="mb-2"><label class="form-label">Invoice Date</label><input asp-for="EditInvoiceDate" type="date" class="form-control" id="editInvoiceDate" /></div>
+                <div class="mb-2"><label class="form-label">Due Date</label><input asp-for="EditInvoiceDueDate" type="date" class="form-control" id="editInvoiceDueDate" /></div>
+            </div>
+            <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button><button type="submit" class="btn btn-warning">Save</button></div>
+        </form>
+    </div></div>
+</div>
+
+<div class="modal fade" id="editOpenBalanceModal" tabindex="-1">
+    <div class="modal-dialog"><div class="modal-content">
+        <form method="post" asp-page-handler="EditOpenBalance" asp-antiforgery="true">
+            <div class="modal-header"><h5 class="modal-title">Edit Open Balance</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+            <div class="modal-body">
+                <input type="hidden" asp-for="EditOpenBalanceId" id="editOpenBalanceId" />
+                <div class="mb-2"><label class="form-label">Account *</label><select asp-for="EditOpenBalanceAccountId" class="form-select" id="editOpenBalanceAccountId">@foreach(var a in Model.Accounts){<option value="@a.Id">@a.AccountNumber - @a.AccountName</option>}</select></div>
+                <div class="mb-2"><label class="form-label">Amount *</label><input asp-for="EditOpenBalanceAmount" type="number" step="0.01" class="form-control" id="editOpenBalanceAmount" required /></div>
+                <div class="mb-2"><label class="form-label">Date</label><input asp-for="EditOpenBalanceDate" type="date" class="form-control" id="editOpenBalanceDate" /></div>
+                <div class="mb-2"><label class="form-label">Description</label><input asp-for="EditOpenBalanceDescription" class="form-control" id="editOpenBalanceDescription" /></div>
+            </div>
+            <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button><button type="submit" class="btn btn-warning">Save</button></div>
+        </form>
+    </div></div>
+</div>
+
+<div class="modal fade" id="editPaymentModal" tabindex="-1">
+    <div class="modal-dialog"><div class="modal-content">
+        <form method="post" asp-page-handler="EditPayment" asp-antiforgery="true">
+            <div class="modal-header"><h5 class="modal-title">Edit Payment</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+            <div class="modal-body">
+                <input type="hidden" asp-for="EditPaymentId" id="editPaymentId" />
+                <div class="mb-2"><label class="form-label">Invoice *</label><select asp-for="EditPaymentInvoiceId" class="form-select" id="editPaymentInvoiceId">@foreach(var i in Model.Invoices){<option value="@i.Id">@i.InvoiceNumber</option>}</select></div>
+                <div class="mb-2"><label class="form-label">Number *</label><input asp-for="EditPaymentNumber" class="form-control" id="editPaymentNumber" required /></div>
+                <div class="mb-2"><label class="form-label">Amount *</label><input asp-for="EditPaymentAmount" type="number" step="0.01" class="form-control" id="editPaymentAmount" required /></div>
+                <div class="mb-2"><label class="form-label">Date</label><input asp-for="EditPaymentDate" type="date" class="form-control" id="editPaymentDate" /></div>
+                <div class="mb-2"><label class="form-label">Method</label><select asp-for="EditPaymentMethod" class="form-select" id="editPaymentMethod"><option>Bank Transfer</option><option>Check</option><option>Wire</option><option>Credit Card</option><option>Cash</option></select></div>
+            </div>
+            <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button><button type="submit" class="btn btn-warning">Save</button></div>
+        </form>
+    </div></div>
+</div>
+
+<div class="modal fade" id="editJournalEntryModal" tabindex="-1">
+    <div class="modal-dialog"><div class="modal-content">
+        <form method="post" asp-page-handler="EditJournalEntry" asp-antiforgery="true">
+            <div class="modal-header"><h5 class="modal-title">Edit Journal Entry</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+            <div class="modal-body">
+                <input type="hidden" asp-for="EditJournalEntryId" id="editJournalEntryId" />
+                <div class="mb-2"><label class="form-label">Number *</label><input asp-for="EditJournalNumber" class="form-control" id="editJournalNumber" required /></div>
+                <div class="mb-2"><label class="form-label">Debit Account *</label><select asp-for="EditJournalDebitAccountId" class="form-select" id="editJournalDebitAccountId">@foreach(var a in Model.Accounts){<option value="@a.Id">@a.AccountNumber - @a.AccountName</option>}</select></div>
+                <div class="mb-2"><label class="form-label">Credit Account *</label><select asp-for="EditJournalCreditAccountId" class="form-select" id="editJournalCreditAccountId">@foreach(var a in Model.Accounts){<option value="@a.Id">@a.AccountNumber - @a.AccountName</option>}</select></div>
+                <div class="mb-2"><label class="form-label">Amount *</label><input asp-for="EditJournalAmount" type="number" step="0.01" class="form-control" id="editJournalAmount" required /></div>
+                <div class="mb-2"><label class="form-label">Entry Date</label><input asp-for="EditJournalDate" type="date" class="form-control" id="editJournalDate" /></div>
+                <div class="mb-2"><label class="form-label">Description</label><input asp-for="EditJournalDescription" class="form-control" id="editJournalDescription" /></div>
+            </div>
+            <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button><button type="submit" class="btn btn-warning">Save</button></div>
+        </form>
+    </div></div>
+</div>
+
+<div class="modal fade" id="editInvoiceLineModal" tabindex="-1">
+    <div class="modal-dialog"><div class="modal-content">
+        <form method="post" asp-page-handler="EditInvoiceLine" asp-antiforgery="true">
+            <div class="modal-header"><h5 class="modal-title">Edit Invoice Line</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+            <div class="modal-body">
+                <input type="hidden" asp-for="EditInvoiceLineId" id="editInvoiceLineId" />
+                <div class="mb-2"><label class="form-label">Invoice *</label><select asp-for="EditInvoiceLineInvoiceId" class="form-select" id="editInvoiceLineInvoiceId">@foreach(var i in Model.Invoices){<option value="@i.Id">@i.InvoiceNumber</option>}</select></div>
+                <div class="mb-2"><label class="form-label">Description *</label><input asp-for="EditInvoiceLineDescription" class="form-control" id="editInvoiceLineDescription" required /></div>
+                <div class="mb-2"><label class="form-label">Quantity *</label><input asp-for="EditInvoiceLineQuantity" type="number" class="form-control" id="editInvoiceLineQuantity" required /></div>
+                <div class="mb-2"><label class="form-label">Unit Price *</label><input asp-for="EditInvoiceLineUnitPrice" type="number" step="0.01" class="form-control" id="editInvoiceLineUnitPrice" required /></div>
+            </div>
+            <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button><button type="submit" class="btn btn-warning">Save</button></div>
+        </form>
+    </div></div>
+</div>
+
+<div class="modal fade" id="editJournalLineModal" tabindex="-1">
+    <div class="modal-dialog"><div class="modal-content">
+        <form method="post" asp-page-handler="EditJournalLine" asp-antiforgery="true">
+            <div class="modal-header"><h5 class="modal-title">Edit Journal Line</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+            <div class="modal-body">
+                <input type="hidden" asp-for="EditJournalLineId" id="editJournalLineId" />
+                <div class="mb-2"><label class="form-label">Journal Entry *</label><select asp-for="EditJournalLineEntryId" class="form-select" id="editJournalLineEntryId">@foreach(var j in Model.JournalEntries){<option value="@j.Id">@j.JournalNumber</option>}</select></div>
+                <div class="mb-2"><label class="form-label">Account *</label><select asp-for="EditJournalLineAccountId" class="form-select" id="editJournalLineAccountId">@foreach(var a in Model.Accounts){<option value="@a.Id">@a.AccountNumber - @a.AccountName</option>}</select></div>
+                <div class="mb-2"><label class="form-label">Debit</label><input asp-for="EditJournalLineDebit" type="number" step="0.01" class="form-control" id="editJournalLineDebit" /></div>
+                <div class="mb-2"><label class="form-label">Credit</label><input asp-for="EditJournalLineCredit" type="number" step="0.01" class="form-control" id="editJournalLineCredit" /></div>
+                <div class="mb-2"><label class="form-label">Description</label><input asp-for="EditJournalLineDescription" class="form-control" id="editJournalLineDescription" /></div>
+            </div>
+            <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button><button type="submit" class="btn btn-warning">Save</button></div>
+        </form>
+    </div></div>
+</div>
+
+<div class="modal fade" id="editTaxRateModal" tabindex="-1">
+    <div class="modal-dialog"><div class="modal-content">
+        <form method="post" asp-page-handler="EditTaxRate" asp-antiforgery="true">
+            <div class="modal-header"><h5 class="modal-title">Edit Tax Rate</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+            <div class="modal-body">
+                <input type="hidden" asp-for="EditTaxRateId" id="editTaxRateId" />
+                <div class="mb-2"><label class="form-label">Code *</label><input asp-for="EditTaxCode" class="form-control" id="editTaxCode" required /></div>
+                <div class="mb-2"><label class="form-label">Description</label><input asp-for="EditTaxDescription" class="form-control" id="editTaxDescription" /></div>
+                <div class="mb-2"><label class="form-label">Rate (%)</label><input asp-for="EditTaxPercentage" type="number" step="0.0001" class="form-control" id="editTaxPercentage" /></div>
+                <div class="mb-2"><label class="form-label">Type</label><input asp-for="EditTaxType" class="form-control" id="editTaxType" /></div>
+                <div class="mb-2"><label class="form-label">Effective Date</label><input asp-for="EditTaxEffectiveDate" type="date" class="form-control" id="editTaxEffectiveDate" /></div>
+            </div>
+            <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button><button type="submit" class="btn btn-warning">Save</button></div>
+        </form>
+    </div></div>
+</div>
+
 </div>
 
 @section Scripts {
     <script>
         (function(){
+            // Simplified: still honors ?ActiveCategory= query param or localStorage; defaults to 'accounts'.
             const qs = new URLSearchParams(window.location.search);
-            let active = (qs.get('ActiveCategory') || localStorage.getItem('financial_active_category') || '').toLowerCase();
+            let active = (qs.get('ActiveCategory') || localStorage.getItem('financial_active_category') || 'accounts').toLowerCase();
             const valid = ['accounts','partners','invoices','openbalances','payments','journalentries','invoicelines','journallines','taxrates'];
             if(!valid.includes(active)) active = 'accounts';
             localStorage.setItem('financial_active_category', active);
 
-            // Expand selected collapse
             const targetCollapse = document.querySelector(`[data-category-collapse="${active}"]`);
-            if(targetCollapse){
-                new bootstrap.Collapse(targetCollapse, { toggle: true });
-            }
+                        if(targetCollapse){ new bootstrap.Collapse(targetCollapse, { toggle: true }); }
 
-            // Highlight toolbar button
-            document.querySelectorAll('[data-category]').forEach(btn => {
-                if(btn.getAttribute('data-category') === active){
-                    btn.classList.remove('btn-outline-primary');
-                    btn.classList.add('btn-primary');
-                } else {
-                    btn.classList.remove('btn-primary');
-                    btn.classList.add('btn-outline-primary');
-                }
-            });
-
-            // Clicking toolbar buttons navigates with query param
-            document.querySelectorAll('[data-category]').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const cat = btn.getAttribute('data-category');
-                    if(!cat) return;
-                    localStorage.setItem('financial_active_category', cat);
-                    const url = new URL(window.location.href);
-                    url.searchParams.set('ActiveCategory', cat);
-                    window.location.href = url.toString();
-                });
-            });
+                        // Hook up modals
+                        const hookup = (modalId, fields) => {
+                            const el = document.getElementById(modalId);
+                            if(!el) return;
+                            el.addEventListener('show.bs.modal', evt => {
+                                const btn = evt.relatedTarget; if(!btn) return;
+                                fields.forEach(f => {
+                                    const target = document.getElementById(f.id);
+                                    if(target){
+                                        let val = btn.getAttribute(f.attr) || '';
+                                        if(f.transform) val = f.transform(val);
+                                        target.value = val;
+                                    }
+                                });
+                            });
+                        };
+                        hookup('editAccountModal', [
+                            {id:'editAccountId', attr:'data-id'},
+                            {id:'editAccountNumber', attr:'data-number'},
+                            {id:'editAccountName', attr:'data-name'},
+                            {id:'editAccountType', attr:'data-type'},
+                            {id:'editAccountBalance', attr:'data-balance'}
+                        ]);
+                        hookup('editPartnerModal', [
+                            {id:'editPartnerId', attr:'data-id'},
+                            {id:'editPartnerName', attr:'data-name'},
+                            {id:'editPartnerType', attr:'data-type'},
+                            {id:'editPartnerEmail', attr:'data-email'},
+                            {id:'editPartnerPhone', attr:'data-phone'}
+                        ]);
+                        hookup('editInvoiceModal', [
+                            {id:'editInvoiceId', attr:'data-id'},
+                            {id:'editInvoicePartnerId', attr:'data-partnerid'},
+                            {id:'editInvoiceNumber', attr:'data-number'},
+                            {id:'editInvoiceAmount', attr:'data-amount'},
+                            {id:'editInvoiceStatus', attr:'data-status'},
+                            {id:'editInvoiceDate', attr:'data-invoicedate'},
+                            {id:'editInvoiceDueDate', attr:'data-duedate'}
+                        ]);
+                        hookup('editOpenBalanceModal', [
+                            {id:'editOpenBalanceId', attr:'data-id'},
+                            {id:'editOpenBalanceAccountId', attr:'data-accountid'},
+                            {id:'editOpenBalanceAmount', attr:'data-amount'},
+                            {id:'editOpenBalanceDate', attr:'data-date'},
+                            {id:'editOpenBalanceDescription', attr:'data-description'}
+                        ]);
+                        hookup('editPaymentModal', [
+                            {id:'editPaymentId', attr:'data-id'},
+                            {id:'editPaymentInvoiceId', attr:'data-invoiceid'},
+                            {id:'editPaymentNumber', attr:'data-number'},
+                            {id:'editPaymentAmount', attr:'data-amount'},
+                            {id:'editPaymentDate', attr:'data-date'},
+                            {id:'editPaymentMethod', attr:'data-method'}
+                        ]);
+                        hookup('editJournalEntryModal', [
+                            {id:'editJournalEntryId', attr:'data-id'},
+                            {id:'editJournalNumber', attr:'data-number'},
+                            {id:'editJournalDebitAccountId', attr:'data-debit'},
+                            {id:'editJournalCreditAccountId', attr:'data-credit'},
+                            {id:'editJournalAmount', attr:'data-amount'},
+                            {id:'editJournalDate', attr:'data-date'},
+                            {id:'editJournalDescription', attr:'data-description'}
+                        ]);
+                        hookup('editInvoiceLineModal', [
+                            {id:'editInvoiceLineId', attr:'data-id'},
+                            {id:'editInvoiceLineInvoiceId', attr:'data-invoiceid'},
+                            {id:'editInvoiceLineDescription', attr:'data-description'},
+                            {id:'editInvoiceLineQuantity', attr:'data-quantity'},
+                            {id:'editInvoiceLineUnitPrice', attr:'data-unitprice'}
+                        ]);
+                        hookup('editJournalLineModal', [
+                            {id:'editJournalLineId', attr:'data-id'},
+                            {id:'editJournalLineEntryId', attr:'data-entryid'},
+                            {id:'editJournalLineAccountId', attr:'data-accountid'},
+                            {id:'editJournalLineDebit', attr:'data-debit'},
+                            {id:'editJournalLineCredit', attr:'data-credit'},
+                            {id:'editJournalLineDescription', attr:'data-description'}
+                        ]);
+                        hookup('editTaxRateModal', [
+                            {id:'editTaxRateId', attr:'data-id'},
+                            {id:'editTaxCode', attr:'data-code'},
+                            {id:'editTaxDescription', attr:'data-description'},
+                            {id:'editTaxPercentage', attr:'data-rate'},
+                            {id:'editTaxType', attr:'data-type'},
+                            {id:'editTaxEffectiveDate', attr:'data-effectivedate'}
+                        ]);
+                        // Removed toolbar button highlight/click logic because toolbar no longer exists.
         })();
     </script>
 }

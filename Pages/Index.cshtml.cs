@@ -78,17 +78,8 @@ public class IndexModel : PageModel
             {
                 HttpContext.Session.SetString("UserRole", demoRole);
                 HttpContext.Session.SetString("UserEmail", Email ?? string.Empty);
-                _logger.LogInformation("DEMO login used for {Email} with role {Role}", normalizedEmail, demoRole);
-
-                if (demoRole.Equals("admin", System.StringComparison.OrdinalIgnoreCase))
-                    return RedirectToPage("/HRM");
-                if (demoRole.Equals("user", System.StringComparison.OrdinalIgnoreCase))
-                    return RedirectToPage("/Privacy");
-                if (demoRole.Equals("vendor", System.StringComparison.OrdinalIgnoreCase))
-                    return RedirectToPage("/VendorManagement");
-
-                ModelState.AddModelError(string.Empty, "Invalid role assignment.");
-                return Page();
+                _logger.LogInformation("DEMO login used for {Email} with role {Role}. Redirecting to Dashboard.", normalizedEmail, demoRole);
+                return RedirectToPage("/Dashboard");
             }
 
             // Check if user exists in database
@@ -107,27 +98,8 @@ public class IndexModel : PageModel
                     HttpContext.Session.SetString("UserEmail", user.Email);
                     
                     var userRole = user.Role.ToLower();
-                    _logger.LogInformation("Password matched. Session set. Redirecting based on role: {Role}", userRole);
-                    
-                    if (userRole == "admin")
-                    {
-                        return RedirectToPage("/HRM");
-                    }
-                    else if (userRole == "user")
-                    {
-                        return RedirectToPage("/Privacy");
-                    }
-                    else if (userRole == "vendor")
-                    {
-                        return RedirectToPage("/VendorManagement");
-                    }
-                    else
-                    {
-                        // Handle any other roles if needed
-                        _logger.LogWarning("Unknown role: {Role}", userRole);
-                        ModelState.AddModelError(string.Empty, "Invalid role assignment.");
-                        return Page();
-                    }
+                    _logger.LogInformation("Password matched. Session set for role {Role}. Redirecting to Dashboard.", userRole);
+                    return RedirectToPage("/Dashboard");
                 }
                 else
                 {

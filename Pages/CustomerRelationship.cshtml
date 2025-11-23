@@ -7,6 +7,44 @@
 <div class="container py-3">
     <h2 class="mb-4">Customer Relationship Management</h2>
 
+    <!-- Top Metrics Cards -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card border-primary shadow-sm crm-metric-card">
+                <div class="card-body text-center">
+                    <h6 class="card-title text-muted mb-2">Total Companies</h6>
+                    <div class="metric-primary-value text-primary">@Model.TotalCompanies</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-info shadow-sm crm-metric-card">
+                <div class="card-body text-center">
+                    <h6 class="card-title text-muted mb-2">Total Contacts</h6>
+                    <div class="metric-primary-value text-info">@Model.TotalContacts</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-success shadow-sm crm-metric-card top-opportunity-card">
+                <div class="card-body text-center">
+                    <h6 class="card-title text-muted mb-2">Top Opportunity</h6>
+                    @if (Model.TopOpportunity != null)
+                    {
+                        <div class="metric-primary-value text-success top-op-value">@((Model.TopOpportunity.Value ?? 0).ToString("C"))</div>
+                        <div class="metric-secondary-text text-success fw-semibold mt-2">@Model.TopOpportunity.Name</div>
+                        <div class="metric-secondary-text text-muted">@Model.TopOpportunity.Company?.Name</div>
+                    }
+                    else
+                    {
+                        <div class="metric-primary-value text-muted top-op-value">–</div>
+                        <div class="metric-secondary-text text-muted mt-2">No Opportunities</div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
     @if (!string.IsNullOrWhiteSpace(Model.ActiveModule) && ViewContext.ModelState.IsValid == false)
     {
         <div class="alert alert-danger py-2 mb-3">
@@ -27,13 +65,7 @@
         </div>
     }
 
-    <div class="mb-3 d-flex flex-wrap gap-2">
-        <button type="button" class="btn btn-outline-primary" data-module="companies">Companies</button>
-        <button type="button" class="btn btn-outline-primary" data-module="contacts">Contacts</button>
-        <button type="button" class="btn btn-outline-primary" data-module="opportunities">Opportunities</button>
-        <button type="button" class="btn btn-outline-primary" data-module="activities">Activities</button>
-        <button type="button" class="btn btn-outline-primary" data-module="notes">Notes</button>
-    </div>
+    <!-- Top toolbar with module buttons removed as requested -->
 
     <!-- Companies Module -->
     <div class="card mb-3 crm-module" id="module-companies">
@@ -63,6 +95,7 @@
                         <thead>
                             <tr>
                                 <th>Name</th><th>Industry</th><th>Website</th><th>Created</th>
+                                   <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -73,6 +106,18 @@
                                     <td>@(string.IsNullOrWhiteSpace(c.Industry)?"-":c.Industry)</td>
                                     <td>@(string.IsNullOrWhiteSpace(c.Website)?"-":c.Website)</td>
                                     <td>@c.CreatedAt.ToLocalTime().ToString("MM/dd/yyyy")</td>
+                                       <td class="actions-cell">
+                                           <div class="action-inline">
+                                               <button type="button" class="btn btn-sm btn-warning" title="Edit Company" data-bs-toggle="modal" data-bs-target="#editCompanyModal"
+                                                       data-id="@c.Id" data-name="@c.Name" data-industry="@c.Industry" data-website="@c.Website">
+                                                   <i class="fas fa-edit"></i>
+                                               </button>
+                                               <form method="post" asp-page-handler="DeleteCompany" onsubmit="return confirm('Delete company @c.Name?');">
+                                                   <input type="hidden" name="id" value="@c.Id" />
+                                                   <button type="submit" class="btn btn-sm btn-danger" title="Delete Company"><i class="fas fa-trash"></i></button>
+                                               </form>
+                                           </div>
+                                       </td>
                                 </tr>
                             }
                         </tbody>
@@ -118,6 +163,7 @@
                         <thead>
                             <tr>
                                 <th>Name</th><th>Email</th><th>Phone</th><th>Company</th><th>Created</th>
+                                   <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -129,6 +175,18 @@
                                     <td>@(string.IsNullOrWhiteSpace(c.Phone)?"-":c.Phone)</td>
                                     <td>@(c.Company?.Name ?? "-")</td>
                                     <td>@c.CreatedAt.ToLocalTime().ToString("MM/dd/yyyy")</td>
+                                       <td class="actions-cell">
+                                           <div class="action-inline">
+                                               <button type="button" class="btn btn-sm btn-warning" title="Edit Contact" data-bs-toggle="modal" data-bs-target="#editContactModal"
+                                                       data-id="@c.Id" data-first="@c.FirstName" data-last="@c.LastName" data-email="@c.Email" data-phone="@c.Phone" data-companyid="@c.CompanyId">
+                                                   <i class="fas fa-edit"></i>
+                                               </button>
+                                               <form method="post" asp-page-handler="DeleteContact" onsubmit="return confirm('Delete contact @c.FirstName @c.LastName?');">
+                                                   <input type="hidden" name="id" value="@c.Id" />
+                                                   <button type="submit" class="btn btn-sm btn-danger" title="Delete Contact"><i class="fas fa-trash"></i></button>
+                                               </form>
+                                           </div>
+                                       </td>
                                 </tr>
                             }
                         </tbody>
@@ -173,6 +231,7 @@
                         <thead>
                             <tr>
                                 <th>Name</th><th>Stage</th><th>Value</th><th>Close Date</th><th>Company</th><th>Created</th>
+                                   <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -185,6 +244,18 @@
                                     <td>@(o.CloseDate?.ToLocalTime().ToString("MM/dd/yyyy") ?? "-")</td>
                                     <td>@(o.Company?.Name ?? "-")</td>
                                     <td>@o.CreatedAt.ToLocalTime().ToString("MM/dd/yyyy")</td>
+                                       <td class="actions-cell">
+                                           <div class="action-inline">
+                                               <button type="button" class="btn btn-sm btn-warning" title="Edit Opportunity" data-bs-toggle="modal" data-bs-target="#editOpportunityModal"
+                                                       data-id="@o.Id" data-name="@o.Name" data-stage="@o.Stage" data-value="@o.Value" data-closedate="@o.CloseDate" data-companyid="@o.CompanyId">
+                                                   <i class="fas fa-edit"></i>
+                                               </button>
+                                               <form method="post" asp-page-handler="DeleteOpportunity" onsubmit="return confirm('Delete opportunity @o.Name?');">
+                                                   <input type="hidden" name="id" value="@o.Id" />
+                                                   <button type="submit" class="btn btn-sm btn-danger" title="Delete Opportunity"><i class="fas fa-trash"></i></button>
+                                               </form>
+                                           </div>
+                                       </td>
                                 </tr>
                             }
                         </tbody>
@@ -250,6 +321,18 @@
                                     <td>@(string.IsNullOrWhiteSpace(a.Subject)?"-":a.Subject)</td>
                                     <td>@(a.Company?.Name ?? "-")</td>
                                     <td>@((a.Contact != null) ? a.Contact.FirstName + " " + a.Contact.LastName : "-")</td>
+                                       <td class="actions-cell">
+                                           <div class="action-inline">
+                                               <button type="button" class="btn btn-sm btn-warning" title="Edit Activity" data-bs-toggle="modal" data-bs-target="#editActivityModal"
+                                                       data-id="@a.Id" data-type="@a.ActivityType" data-subject="@a.Subject" data-date="@a.ActivityDate" data-companyid="@a.CompanyId" data-contactid="@a.ContactId">
+                                                   <i class="fas fa-edit"></i>
+                                               </button>
+                                               <form method="post" asp-page-handler="DeleteActivity" onsubmit="return confirm('Delete activity @a.ActivityType?');">
+                                                   <input type="hidden" name="id" value="@a.Id" />
+                                                   <button type="submit" class="btn btn-sm btn-danger" title="Delete Activity"><i class="fas fa-trash"></i></button>
+                                               </form>
+                                           </div>
+                                       </td>
                                 </tr>
                             }
                         </tbody>
@@ -309,6 +392,18 @@
                                     <td>@(n.Company?.Name ?? "-")</td>
                                     <td>@((n.Contact != null) ? n.Contact.FirstName + " " + n.Contact.LastName : "-")</td>
                                     <td>@n.CreatedAt.ToLocalTime().ToString("MM/dd/yyyy")</td>
+                                       <td class="actions-cell">
+                                           <div class="action-inline">
+                                               <button type="button" class="btn btn-sm btn-warning" title="Edit Note" data-bs-toggle="modal" data-bs-target="#editNoteModal"
+                                                       data-id="@n.Id" data-content="@n.Content" data-companyid="@n.CompanyId" data-contactid="@n.ContactId">
+                                                   <i class="fas fa-edit"></i>
+                                               </button>
+                                               <form method="post" asp-page-handler="DeleteNote" onsubmit="return confirm('Delete note?');">
+                                                   <input type="hidden" name="id" value="@n.Id" />
+                                                   <button type="submit" class="btn btn-sm btn-danger" title="Delete Note"><i class="fas fa-trash"></i></button>
+                                               </form>
+                                           </div>
+                                       </td>
                                 </tr>
                             }
                         </tbody>
@@ -323,40 +418,70 @@
     <partial name="_ValidationScriptsPartial" />
     <script>
         (function(){
+            // Preserve ability to open with ?ActiveModule=... but default to Companies.
             const qs = new URLSearchParams(window.location.search);
-            let active = (qs.get('ActiveModule') || localStorage.getItem('crm_active_module') || '').toLowerCase();
+            let active = (qs.get('ActiveModule') || localStorage.getItem('crm_active_module') || 'companies').toLowerCase();
             const valid = ['companies','contacts','opportunities','activities','notes'];
             if(!valid.includes(active)) active = 'companies';
             localStorage.setItem('crm_active_module', active);
 
-            // Expand selected collapse
+            // Expand selected module collapse pane
             const targetCollapse = document.querySelector(`[data-module-collapse="${active}"]`);
             if(targetCollapse){
                 new bootstrap.Collapse(targetCollapse, { toggle: true });
             }
-
-            // Highlight toolbar button
-            document.querySelectorAll('[data-module]').forEach(btn => {
-                if(btn.getAttribute('data-module') === active){
-                    btn.classList.remove('btn-outline-primary');
-                    btn.classList.add('btn-primary');
-                } else {
-                    btn.classList.remove('btn-primary');
-                    btn.classList.add('btn-outline-primary');
-                }
-            });
-
-            // Clicking toolbar buttons navigates with query param
-            document.querySelectorAll('[data-module]').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const mod = btn.getAttribute('data-module');
-                    if(!mod) return;
-                    localStorage.setItem('crm_active_module', mod);
-                    const url = new URL(window.location.href);
-                    url.searchParams.set('ActiveModule', mod);
-                    window.location.href = url.toString();
-                });
-            });
+                        // Populate edit modals (Bootstrap 5 events)
+                        const hookup = (modalId, fields) => {
+                            const modalEl = document.getElementById(modalId);
+                            if(!modalEl) return;
+                            modalEl.addEventListener('show.bs.modal', evt => {
+                                const btn = evt.relatedTarget; if(!btn) return;
+                                fields.forEach(f => {
+                                    const el = document.getElementById(f.id);
+                                    if(el){
+                                        let val = btn.getAttribute(f.attr) || '';
+                                        if(f.transform) val = f.transform(val);
+                                        el.value = val;
+                                    }
+                                });
+                            });
+                        };
+                        hookup('editCompanyModal', [
+                            {id:'editCompanyId', attr:'data-id'},
+                            {id:'editCompanyName', attr:'data-name'},
+                            {id:'editCompanyIndustry', attr:'data-industry'},
+                            {id:'editCompanyWebsite', attr:'data-website'}
+                        ]);
+                        hookup('editContactModal', [
+                            {id:'editContactId', attr:'data-id'},
+                            {id:'editContactFirst', attr:'data-first'},
+                            {id:'editContactLast', attr:'data-last'},
+                            {id:'editContactEmail', attr:'data-email'},
+                            {id:'editContactPhone', attr:'data-phone'},
+                            {id:'editContactCompany', attr:'data-companyid'}
+                        ]);
+                        hookup('editOpportunityModal', [
+                            {id:'editOpportunityId', attr:'data-id'},
+                            {id:'editOpportunityName', attr:'data-name'},
+                            {id:'editOpportunityStage', attr:'data-stage'},
+                            {id:'editOpportunityValue', attr:'data-value'},
+                            {id:'editOpportunityCloseDate', attr:'data-closedate', transform:(v)=> v && v.includes('T')? v.split('T')[0]: v},
+                            {id:'editOpportunityCompany', attr:'data-companyid'}
+                        ]);
+                        hookup('editActivityModal', [
+                            {id:'editActivityId', attr:'data-id'},
+                            {id:'editActivityType', attr:'data-type'},
+                            {id:'editActivitySubject', attr:'data-subject'},
+                            {id:'editActivityDate', attr:'data-date', transform:(v)=> v && v.includes('T')? v.split('T')[0]: v},
+                            {id:'editActivityCompany', attr:'data-companyid'},
+                            {id:'editActivityContact', attr:'data-contactid'}
+                        ]);
+                        hookup('editNoteModal', [
+                            {id:'editNoteId', attr:'data-id'},
+                            {id:'editNoteContent', attr:'data-content'},
+                            {id:'editNoteCompany', attr:'data-companyid'},
+                            {id:'editNoteContact', attr:'data-contactid'}
+                        ]);
         })();
     </script>
 }

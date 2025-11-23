@@ -62,6 +62,76 @@ namespace WebApplication1.Pages
     [BindProperty(SupportsGet = true)]
     public string? ActiveCategory { get; set; } = "Accounts";
 
+        // Edit form properties (Accounts)
+        [BindProperty] public int EditAccountId { get; set; }
+        [BindProperty] public string EditAccountNumber { get; set; } = string.Empty;
+        [BindProperty] public string EditAccountName { get; set; } = string.Empty;
+        [BindProperty] public string EditAccountType { get; set; } = string.Empty;
+        [BindProperty] public decimal EditAccountBalance { get; set; }
+
+        // Edit form properties (Partners)
+        [BindProperty] public int EditPartnerId { get; set; }
+        [BindProperty] public string EditPartnerName { get; set; } = string.Empty;
+        [BindProperty] public string EditPartnerType { get; set; } = string.Empty;
+        [BindProperty] public string EditPartnerEmail { get; set; } = string.Empty;
+        [BindProperty] public string EditPartnerPhone { get; set; } = string.Empty;
+
+    // Edit form properties (Invoices)
+    [BindProperty] public int EditInvoiceId { get; set; }
+    [BindProperty] public int EditInvoicePartnerId { get; set; }
+    [BindProperty] public string EditInvoiceNumber { get; set; } = string.Empty;
+    [BindProperty] public decimal EditInvoiceAmount { get; set; }
+    [BindProperty] public string EditInvoiceStatus { get; set; } = string.Empty;
+    [BindProperty] public DateTime EditInvoiceDate { get; set; } = DateTime.Today;
+    [BindProperty] public DateTime EditInvoiceDueDate { get; set; } = DateTime.Today.AddDays(30);
+
+    // Edit form properties (Open Balances)
+    [BindProperty] public int EditOpenBalanceId { get; set; }
+    [BindProperty] public int EditOpenBalanceAccountId { get; set; }
+    [BindProperty] public decimal EditOpenBalanceAmount { get; set; }
+    [BindProperty] public DateTime EditOpenBalanceDate { get; set; } = DateTime.Today;
+    [BindProperty] public string EditOpenBalanceDescription { get; set; } = string.Empty;
+
+    // Edit form properties (Payments)
+    [BindProperty] public int EditPaymentId { get; set; }
+    [BindProperty] public int EditPaymentInvoiceId { get; set; }
+    [BindProperty] public string EditPaymentNumber { get; set; } = string.Empty;
+    [BindProperty] public decimal EditPaymentAmount { get; set; }
+    [BindProperty] public DateTime EditPaymentDate { get; set; } = DateTime.Today;
+    [BindProperty] public string EditPaymentMethod { get; set; } = string.Empty;
+
+    // Edit form properties (Journal Entries)
+    [BindProperty] public int EditJournalEntryId { get; set; }
+    [BindProperty] public string EditJournalNumber { get; set; } = string.Empty;
+    [BindProperty] public int EditJournalDebitAccountId { get; set; }
+    [BindProperty] public int EditJournalCreditAccountId { get; set; }
+    [BindProperty] public decimal EditJournalAmount { get; set; }
+    [BindProperty] public DateTime EditJournalDate { get; set; } = DateTime.Today;
+    [BindProperty] public string EditJournalDescription { get; set; } = string.Empty;
+
+    // Edit form properties (Invoice Lines)
+    [BindProperty] public int EditInvoiceLineId { get; set; }
+    [BindProperty] public int EditInvoiceLineInvoiceId { get; set; }
+    [BindProperty] public string EditInvoiceLineDescription { get; set; } = string.Empty;
+    [BindProperty] public decimal EditInvoiceLineQuantity { get; set; }
+    [BindProperty] public decimal EditInvoiceLineUnitPrice { get; set; }
+
+    // Edit form properties (Journal Lines)
+    [BindProperty] public int EditJournalLineId { get; set; }
+    [BindProperty] public int EditJournalLineEntryId { get; set; }
+    [BindProperty] public int EditJournalLineAccountId { get; set; }
+    [BindProperty] public decimal EditJournalLineDebit { get; set; }
+    [BindProperty] public decimal EditJournalLineCredit { get; set; }
+    [BindProperty] public string EditJournalLineDescription { get; set; } = string.Empty;
+
+    // Edit form properties (Tax Rates)
+    [BindProperty] public int EditTaxRateId { get; set; }
+    [BindProperty] public string EditTaxCode { get; set; } = string.Empty;
+    [BindProperty] public string EditTaxDescription { get; set; } = string.Empty;
+    [BindProperty] public decimal EditTaxPercentage { get; set; }
+    [BindProperty] public string EditTaxType { get; set; } = string.Empty;
+    [BindProperty] public DateTime EditTaxEffectiveDate { get; set; } = DateTime.Today;
+
         // Form Properties for Add Account
         [BindProperty]
         public string NewAccountNumber { get; set; } = string.Empty;
@@ -487,6 +557,62 @@ namespace WebApplication1.Pages
             return RedirectWithCategory();
         }
 
+        // Edit Account
+        public async Task<IActionResult> OnPostEditAccountAsync()
+        {
+            ActiveCategory = "accounts"; // ensure accounts section remains open
+            if (EditAccountId <= 0 || string.IsNullOrWhiteSpace(EditAccountNumber) || string.IsNullOrWhiteSpace(EditAccountName) || string.IsNullOrWhiteSpace(EditAccountType))
+            {
+                ErrorMessage = "All account fields are required for edit.";
+                await OnGetAsync();
+                return Page();
+            }
+            var acct = await _context.Accounts.FirstOrDefaultAsync(a => a.Id == EditAccountId);
+            if (acct == null)
+            {
+                ErrorMessage = "Account not found.";
+                await OnGetAsync();
+                return Page();
+            }
+            // Prevent duplicate account number if changed
+            if (acct.AccountNumber != EditAccountNumber)
+            {
+                var dup = await _context.Accounts.FirstOrDefaultAsync(a => a.AccountNumber == EditAccountNumber);
+                if (dup != null)
+                {
+                    ErrorMessage = $"Account number '{EditAccountNumber}' already exists.";
+                    await OnGetAsync();
+                    return Page();
+                }
+            }
+            acct.AccountNumber = EditAccountNumber.Trim();
+            acct.AccountName = EditAccountName.Trim();
+            acct.AccountType = EditAccountType.Trim();
+            acct.Balance = EditAccountBalance;
+            await _context.SaveChangesAsync();
+            Message = "Account updated.";
+            _logger.LogInformation("Edited Account Id={Id} Number={Number}", acct.Id, acct.AccountNumber);
+            return RedirectWithCategory();
+        }
+
+        public async Task<IActionResult> OnPostDeleteAccountAsync(int id)
+        {
+            ActiveCategory = "accounts";
+            var acct = await _context.Accounts.FirstOrDefaultAsync(a => a.Id == id);
+            if (acct != null)
+            {
+                _context.Accounts.Remove(acct);
+                await _context.SaveChangesAsync();
+                Message = "Account deleted.";
+                _logger.LogInformation("Deleted Account Id={Id}", id);
+            }
+            else
+            {
+                ErrorMessage = "Account not found.";
+            }
+            return RedirectWithCategory();
+        }
+
         private async Task<IActionResult> AddPartner()
         {
             if (string.IsNullOrWhiteSpace(NewPartnerName) || 
@@ -512,6 +638,373 @@ namespace WebApplication1.Pages
 
             Message = $"Partner '{NewPartnerName}' has been successfully added!";
             ResetAllForms();
+            return RedirectWithCategory();
+        }
+
+        // Edit Partner
+        public async Task<IActionResult> OnPostEditPartnerAsync()
+        {
+            ActiveCategory = "partners";
+            if (EditPartnerId <= 0 || string.IsNullOrWhiteSpace(EditPartnerName) || string.IsNullOrWhiteSpace(EditPartnerType))
+            {
+                ErrorMessage = "Partner Name and Type are required for edit.";
+                await OnGetAsync();
+                return Page();
+            }
+            var partner = await _context.Partners.FirstOrDefaultAsync(p => p.Id == EditPartnerId);
+            if (partner == null)
+            {
+                ErrorMessage = "Partner not found.";
+                await OnGetAsync();
+                return Page();
+            }
+            partner.PartnerName = EditPartnerName.Trim();
+            partner.PartnerType = EditPartnerType.Trim();
+            partner.Email = EditPartnerEmail?.Trim() ?? string.Empty;
+            partner.Phone = EditPartnerPhone?.Trim() ?? string.Empty;
+            await _context.SaveChangesAsync();
+            Message = "Partner updated.";
+            _logger.LogInformation("Edited Partner Id={Id} Name={Name}", partner.Id, partner.PartnerName);
+            return RedirectWithCategory();
+        }
+
+        public async Task<IActionResult> OnPostDeletePartnerAsync(int id)
+        {
+            ActiveCategory = "partners";
+            var partner = await _context.Partners.FirstOrDefaultAsync(p => p.Id == id);
+            if (partner != null)
+            {
+                _context.Partners.Remove(partner);
+                await _context.SaveChangesAsync();
+                Message = "Partner deleted.";
+                _logger.LogInformation("Deleted Partner Id={Id}", id);
+            }
+            else
+            {
+                ErrorMessage = "Partner not found.";
+            }
+            return RedirectWithCategory();
+        }
+
+        // Edit Invoice
+        public async Task<IActionResult> OnPostEditInvoiceAsync()
+        {
+            ActiveCategory = "invoices";
+            if (EditInvoiceId <= 0 || EditInvoicePartnerId <= 0 || string.IsNullOrWhiteSpace(EditInvoiceNumber) || EditInvoiceAmount <= 0)
+            {
+                ErrorMessage = "Invoice Partner, Number, and Amount are required.";
+                await OnGetAsync();
+                return Page();
+            }
+            var invoice = await _context.Invoices.FirstOrDefaultAsync(i => i.Id == EditInvoiceId);
+            if (invoice == null)
+            {
+                ErrorMessage = "Invoice not found.";
+                await OnGetAsync();
+                return Page();
+            }
+            invoice.PartnerId = EditInvoicePartnerId;
+            invoice.InvoiceNumber = EditInvoiceNumber.Trim();
+            invoice.Amount = EditInvoiceAmount;
+            invoice.Status = EditInvoiceStatus?.Trim() ?? invoice.Status;
+            invoice.InvoiceDate = EditInvoiceDate;
+            invoice.DueDate = EditInvoiceDueDate;
+            await _context.SaveChangesAsync();
+            Message = "Invoice updated.";
+            _logger.LogInformation("Edited Invoice Id={Id} Number={Number}", invoice.Id, invoice.InvoiceNumber);
+            return RedirectWithCategory();
+        }
+        public async Task<IActionResult> OnPostDeleteInvoiceAsync(int id)
+        {
+            ActiveCategory = "invoices";
+            var invoice = await _context.Invoices.FirstOrDefaultAsync(i => i.Id == id);
+            if (invoice != null)
+            {
+                _context.Invoices.Remove(invoice);
+                await _context.SaveChangesAsync();
+                Message = "Invoice deleted.";
+                _logger.LogInformation("Deleted Invoice Id={Id}", id);
+            }
+            else
+            {
+                ErrorMessage = "Invoice not found.";
+            }
+            return RedirectWithCategory();
+        }
+
+        // Edit Open Balance
+        public async Task<IActionResult> OnPostEditOpenBalanceAsync()
+        {
+            ActiveCategory = "openbalances";
+            if (EditOpenBalanceId <= 0 || EditOpenBalanceAccountId <= 0)
+            {
+                ErrorMessage = "Account is required.";
+                await OnGetAsync();
+                return Page();
+            }
+            var ob = await _context.OpenBalances.FirstOrDefaultAsync(o => o.Id == EditOpenBalanceId);
+            if (ob == null)
+            {
+                ErrorMessage = "Open Balance not found.";
+                await OnGetAsync();
+                return Page();
+            }
+            ob.AccountId = EditOpenBalanceAccountId;
+            ob.OpeningBalance = EditOpenBalanceAmount;
+            ob.BalanceDate = EditOpenBalanceDate;
+            ob.Description = EditOpenBalanceDescription ?? string.Empty;
+            await _context.SaveChangesAsync();
+            Message = "Open Balance updated.";
+            _logger.LogInformation("Edited OpenBalance Id={Id}", ob.Id);
+            return RedirectWithCategory();
+        }
+        public async Task<IActionResult> OnPostDeleteOpenBalanceAsync(int id)
+        {
+            ActiveCategory = "openbalances";
+            var ob = await _context.OpenBalances.FirstOrDefaultAsync(o => o.Id == id);
+            if (ob != null)
+            {
+                _context.OpenBalances.Remove(ob);
+                await _context.SaveChangesAsync();
+                Message = "Open Balance deleted.";
+                _logger.LogInformation("Deleted OpenBalance Id={Id}", id);
+            }
+            else
+            {
+                ErrorMessage = "Open Balance not found.";
+            }
+            return RedirectWithCategory();
+        }
+
+        // Edit Payment
+        public async Task<IActionResult> OnPostEditPaymentAsync()
+        {
+            ActiveCategory = "payments";
+            if (EditPaymentId <= 0 || EditPaymentInvoiceId <= 0 || string.IsNullOrWhiteSpace(EditPaymentNumber))
+            {
+                ErrorMessage = "Invoice and Payment Number are required.";
+                await OnGetAsync();
+                return Page();
+            }
+            var payment = await _context.Payments.FirstOrDefaultAsync(p => p.Id == EditPaymentId);
+            if (payment == null)
+            {
+                ErrorMessage = "Payment not found.";
+                await OnGetAsync();
+                return Page();
+            }
+            payment.InvoiceId = EditPaymentInvoiceId;
+            payment.PaymentNumber = EditPaymentNumber.Trim();
+            payment.PaymentAmount = EditPaymentAmount;
+            payment.PaymentDate = EditPaymentDate;
+            payment.PaymentMethod = EditPaymentMethod?.Trim() ?? payment.PaymentMethod;
+            await _context.SaveChangesAsync();
+            Message = "Payment updated.";
+            _logger.LogInformation("Edited Payment Id={Id} Number={Number}", payment.Id, payment.PaymentNumber);
+            return RedirectWithCategory();
+        }
+        public async Task<IActionResult> OnPostDeletePaymentAsync(int id)
+        {
+            ActiveCategory = "payments";
+            var payment = await _context.Payments.FirstOrDefaultAsync(p => p.Id == id);
+            if (payment != null)
+            {
+                _context.Payments.Remove(payment);
+                await _context.SaveChangesAsync();
+                Message = "Payment deleted.";
+                _logger.LogInformation("Deleted Payment Id={Id}", id);
+            }
+            else
+            {
+                ErrorMessage = "Payment not found.";
+            }
+            return RedirectWithCategory();
+        }
+
+        // Edit Journal Entry
+        public async Task<IActionResult> OnPostEditJournalEntryAsync()
+        {
+            ActiveCategory = "journalentries";
+            if (EditJournalEntryId <= 0 || string.IsNullOrWhiteSpace(EditJournalNumber) || EditJournalDebitAccountId <= 0 || EditJournalCreditAccountId <= 0)
+            {
+                ErrorMessage = "Journal Number and accounts are required.";
+                await OnGetAsync();
+                return Page();
+            }
+            if (EditJournalDebitAccountId == EditJournalCreditAccountId)
+            {
+                ErrorMessage = "Debit and Credit accounts must differ.";
+                await OnGetAsync();
+                return Page();
+            }
+            var je = await _context.JournalEntries.FirstOrDefaultAsync(j => j.Id == EditJournalEntryId);
+            if (je == null)
+            {
+                ErrorMessage = "Journal Entry not found.";
+                await OnGetAsync();
+                return Page();
+            }
+            je.JournalNumber = EditJournalNumber.Trim();
+            je.DebitAccountId = EditJournalDebitAccountId;
+            je.CreditAccountId = EditJournalCreditAccountId;
+            je.Amount = EditJournalAmount;
+            je.EntryDate = EditJournalDate;
+            je.Description = EditJournalDescription ?? string.Empty;
+            await _context.SaveChangesAsync();
+            Message = "Journal Entry updated.";
+            _logger.LogInformation("Edited JournalEntry Id={Id} Number={Number}", je.Id, je.JournalNumber);
+            return RedirectWithCategory();
+        }
+        public async Task<IActionResult> OnPostDeleteJournalEntryAsync(int id)
+        {
+            ActiveCategory = "journalentries";
+            var je = await _context.JournalEntries.FirstOrDefaultAsync(j => j.Id == id);
+            if (je != null)
+            {
+                _context.JournalEntries.Remove(je);
+                await _context.SaveChangesAsync();
+                Message = "Journal Entry deleted.";
+                _logger.LogInformation("Deleted JournalEntry Id={Id}", id);
+            }
+            else
+            {
+                ErrorMessage = "Journal Entry not found.";
+            }
+            return RedirectWithCategory();
+        }
+
+        // Edit Invoice Line
+        public async Task<IActionResult> OnPostEditInvoiceLineAsync()
+        {
+            ActiveCategory = "invoicelines";
+            if (EditInvoiceLineId <= 0 || EditInvoiceLineInvoiceId <= 0 || string.IsNullOrWhiteSpace(EditInvoiceLineDescription) || EditInvoiceLineQuantity <= 0 || EditInvoiceLineUnitPrice < 0)
+            {
+                ErrorMessage = "Invoice, Description, Quantity and Unit Price are required.";
+                await OnGetAsync();
+                return Page();
+            }
+            var line = await _context.InvoiceLines.FirstOrDefaultAsync(il => il.Id == EditInvoiceLineId);
+            if (line == null)
+            {
+                ErrorMessage = "Invoice Line not found.";
+                await OnGetAsync();
+                return Page();
+            }
+            line.InvoiceId = EditInvoiceLineInvoiceId;
+            line.Description = EditInvoiceLineDescription.Trim();
+            line.Quantity = EditInvoiceLineQuantity;
+            line.UnitPrice = EditInvoiceLineUnitPrice;
+            line.LineTotal = EditInvoiceLineQuantity * EditInvoiceLineUnitPrice;
+            await _context.SaveChangesAsync();
+            Message = "Invoice Line updated.";
+            _logger.LogInformation("Edited InvoiceLine Id={Id}", line.Id);
+            return RedirectWithCategory();
+        }
+        public async Task<IActionResult> OnPostDeleteInvoiceLineAsync(int id)
+        {
+            ActiveCategory = "invoicelines";
+            var line = await _context.InvoiceLines.FirstOrDefaultAsync(il => il.Id == id);
+            if (line != null)
+            {
+                _context.InvoiceLines.Remove(line);
+                await _context.SaveChangesAsync();
+                Message = "Invoice Line deleted.";
+                _logger.LogInformation("Deleted InvoiceLine Id={Id}", id);
+            }
+            else
+            {
+                ErrorMessage = "Invoice Line not found.";
+            }
+            return RedirectWithCategory();
+        }
+
+        // Edit Journal Line
+        public async Task<IActionResult> OnPostEditJournalLineAsync()
+        {
+            ActiveCategory = "journallines";
+            if (EditJournalLineId <= 0 || EditJournalLineEntryId <= 0 || EditJournalLineAccountId <= 0)
+            {
+                ErrorMessage = "Journal Entry and Account are required.";
+                await OnGetAsync();
+                return Page();
+            }
+            var jl = await _context.JournalLines.FirstOrDefaultAsync(j => j.Id == EditJournalLineId);
+            if (jl == null)
+            {
+                ErrorMessage = "Journal Line not found.";
+                await OnGetAsync();
+                return Page();
+            }
+            jl.JournalEntryId = EditJournalLineEntryId;
+            jl.AccountId = EditJournalLineAccountId;
+            jl.Debit = EditJournalLineDebit;
+            jl.Credit = EditJournalLineCredit;
+            jl.Description = EditJournalLineDescription ?? string.Empty;
+            await _context.SaveChangesAsync();
+            Message = "Journal Line updated.";
+            _logger.LogInformation("Edited JournalLine Id={Id}", jl.Id);
+            return RedirectWithCategory();
+        }
+        public async Task<IActionResult> OnPostDeleteJournalLineAsync(int id)
+        {
+            ActiveCategory = "journallines";
+            var jl = await _context.JournalLines.FirstOrDefaultAsync(j => j.Id == id);
+            if (jl != null)
+            {
+                _context.JournalLines.Remove(jl);
+                await _context.SaveChangesAsync();
+                Message = "Journal Line deleted.";
+                _logger.LogInformation("Deleted JournalLine Id={Id}", id);
+            }
+            else
+            {
+                ErrorMessage = "Journal Line not found.";
+            }
+            return RedirectWithCategory();
+        }
+
+        // Edit Tax Rate
+        public async Task<IActionResult> OnPostEditTaxRateAsync()
+        {
+            ActiveCategory = "taxrates";
+            if (EditTaxRateId <= 0 || string.IsNullOrWhiteSpace(EditTaxCode))
+            {
+                ErrorMessage = "Tax Code is required.";
+                await OnGetAsync();
+                return Page();
+            }
+            var tax = await _context.TaxRates.FirstOrDefaultAsync(t => t.Id == EditTaxRateId);
+            if (tax == null)
+            {
+                ErrorMessage = "Tax Rate not found.";
+                await OnGetAsync();
+                return Page();
+            }
+            tax.TaxCode = EditTaxCode.Trim();
+            tax.TaxDescription = EditTaxDescription?.Trim() ?? string.Empty;
+            tax.Rate = EditTaxPercentage / 100m;
+            tax.TaxType = EditTaxType?.Trim() ?? string.Empty;
+            tax.EffectiveDate = EditTaxEffectiveDate;
+            await _context.SaveChangesAsync();
+            Message = "Tax Rate updated.";
+            _logger.LogInformation("Edited TaxRate Id={Id} Code={Code}", tax.Id, tax.TaxCode);
+            return RedirectWithCategory();
+        }
+        public async Task<IActionResult> OnPostDeleteTaxRateAsync(int id)
+        {
+            ActiveCategory = "taxrates";
+            var tax = await _context.TaxRates.FirstOrDefaultAsync(t => t.Id == id);
+            if (tax != null)
+            {
+                _context.TaxRates.Remove(tax);
+                await _context.SaveChangesAsync();
+                Message = "Tax Rate deleted.";
+                _logger.LogInformation("Deleted TaxRate Id={Id}", id);
+            }
+            else
+            {
+                ErrorMessage = "Tax Rate not found.";
+            }
             return RedirectWithCategory();
         }
 

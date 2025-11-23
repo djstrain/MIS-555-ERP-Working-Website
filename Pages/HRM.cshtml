@@ -125,16 +125,18 @@
                                     <td>@(employee.Address ?? "N/A")</td>
                                     <td>@(employee.Phone ?? "N/A")</td>
                                     <td>@employee.Salary.ToString("C0")</td>
-                                    <td>
-                                        <button type="button" class="btn btn-sm btn-warning"
-                                                onclick="editEmployee(@employee.Id, '@employee.Name', '@employee.Department', '@employee.Role', '@(employee.Address ?? "")', '@(employee.Phone ?? "")', '@employee.Salary')">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <form method="post" asp-page-handler="Delete" asp-route-employeeId="@employee.Id" style="display:inline;">
-                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete @employee.Name?');">
-                                                <i class="fas fa-trash"></i>
+                                    <td class="actions-cell">
+                                        <div class="action-inline">
+                                            <button type="button" class="btn btn-sm btn-warning"
+                                                    onclick="editEmployee(@employee.Id, '@employee.Name', '@employee.Department', '@employee.Role', '@(employee.Address ?? "")', '@(employee.Phone ?? "")', '@employee.Salary')" title="Edit Employee">
+                                                <i class="fas fa-edit" aria-hidden="true"></i>
                                             </button>
-                                        </form>
+                                            <form method="post" asp-page-handler="Delete" asp-route-employeeId="@employee.Id">
+                                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete @employee.Name?');" title="Delete Employee">
+                                                    <i class="fas fa-trash" aria-hidden="true"></i>
+                                                </button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                             }

@@ -111,3 +111,42 @@ h2 {
 .crm-module .table td, .crm-module .table th, .financial-module .table td, .financial-module .table th { vertical-align: middle; }
 .crm-module form .form-control, .financial-module form .form-control { font-size: .85rem; }
 .crm-module .toggle-btn, .financial-module .toggle-btn { min-width: 70px; }
+
+/* ========================================================================= */
+/* --- CRM Metric Cards Uniform Sizing --- */
+/* ========================================================================= */
+.crm-metric-card .card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 170px; /* Ensures all three cards share same vertical space */
+  padding: 20px 15px;
+}
+
+.crm-metric-card h3, .crm-metric-card h4, .crm-metric-card h5 {
+  margin: 0;
+}
+
+.crm-metric-card .metric-primary-value {
+  font-size: 2.2rem; /* Scaled up for emphasis */
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+/* Slightly smaller font for top opportunity so visual hierarchy feels balanced */
+.top-opportunity-card .metric-primary-value.top-op-value {
+  font-size: 1.8rem;
+}
+
+/* ========================================================================= */
+/* --- Condensed Action Buttons --- */
+/* ========================================================================= */
+td.actions-cell { width: 72px; }
+/* Inline action buttons (horizontal like vendor page) */
+.action-inline { display:flex; flex-direction:row; align-items:center; gap:4px; }
+.action-inline .btn { width:34px; height:34px; padding:0; display:flex; align-items:center; justify-content:center; border-radius:5px; font-size:.85rem; }
+.action-inline .btn i { font-size:0.9rem; }
+@media (max-width: 576px){ .action-inline .btn { width:30px; height:30px; } }
+
+.crm-metric-card .metric-secondary-text { font-size: .85rem; }

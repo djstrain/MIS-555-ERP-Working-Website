@@ -6,12 +6,9 @@
 
 <div class="container mt-4">
     <div class="row mb-4">
-        <div class="col-md-8">
+        <div class="col-12">
             <h1>Dashboard</h1>
             <p class="text-muted">Welcome, <strong>@Model.UserEmail</strong> (@Model.UserRole)</p>
-        </div>
-        <div class="col-md-4 text-end">
-            <a href="/Logout" class="btn btn-danger">Logout</a>
         </div>
     </div>
 
@@ -58,19 +55,45 @@
         </div>
     </div>
 
-    <!-- Quick Action Buttons -->
-    <div class="row">
+    <!-- Quick Actions Label -->
+    <div class="row mb-2">
         <div class="col-md-12">
-            <div class="card">
-                <div class="card-header bg-light">
-                    <h5 class="mb-0">Quick Actions</h5>
-                </div>
-                <div class="card-body">
-                    <a href="/HRM" class="btn btn-primary me-2">Manage Employees</a>
-                    <a href="/Privacy" class="btn btn-secondary me-2">Settings</a>
-                    <a href="/Logout" class="btn btn-danger">Logout</a>
-                </div>
-            </div>
+            <h5 class="mb-0">Quick Actions</h5>
+        </div>
+    </div>
+
+    <!-- Quick Action Buttons -->
+    <div class="row mb-4">
+        <!-- HRM Button -->
+        <div class="col-md-6 col-lg-3 mb-3">
+            <a href="/HRM" class="btn btn-primary w-100 py-4 d-flex flex-column align-items-center justify-content-center">
+                <i class="fa-solid fa-users fa-2x mb-2"></i>
+                <span class="fs-5 fw-semibold">HRM</span>
+            </a>
+        </div>
+
+        <!-- Vendors Button -->
+        <div class="col-md-6 col-lg-3 mb-3">
+            <a href="/VendorManagement" class="btn btn-info w-100 py-4 d-flex flex-column align-items-center justify-content-center">
+                <i class="fa-solid fa-truck fa-2x mb-2"></i>
+                <span class="fs-5 fw-semibold">Vendors</span>
+            </a>
+        </div>
+
+        <!-- Financial Button -->
+        <div class="col-md-6 col-lg-3 mb-3">
+            <a href="/FinancialManagement" class="btn btn-success w-100 py-4 d-flex flex-column align-items-center justify-content-center">
+                <i class="fa-solid fa-dollar-sign fa-2x mb-2"></i>
+                <span class="fs-5 fw-semibold">Financial</span>
+            </a>
+        </div>
+
+        <!-- CRM Button -->
+        <div class="col-md-6 col-lg-3 mb-3">
+            <a href="/CustomerRelationship" class="btn btn-warning w-100 py-4 d-flex flex-column align-items-center justify-content-center">
+                <i class="fa-solid fa-handshake fa-2x mb-2"></i>
+                <span class="fs-5 fw-semibold">CRM</span>
+            </a>
         </div>
     </div>
 </div>
@@ -79,6 +102,7 @@
     .card {
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         transition: transform 0.2s;
+        height: 100%; /* Ensure all cards have equal height */
     }
 
     .card:hover {
@@ -90,10 +114,12 @@
         font-size: 0.875rem;
         font-weight: 600;
         letter-spacing: 0.5px;
+        min-height: 2.5rem; /* Ensure consistent title height */
     }
 
     .card-text {
-        font-size: 1.75rem;
+        font-size: 1.5rem; /* Reduced from 1.75rem for consistency */
         font-weight: 700;
+        word-break: break-word; /* Prevent overflow on long numbers */
     }
 </style>
