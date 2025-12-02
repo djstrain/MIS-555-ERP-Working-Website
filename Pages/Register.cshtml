@@ -33,9 +33,14 @@
             <select asp-for="Input.Role" class="form-select">
                 <option value="User">User</option>
                 <option value="Admin">Admin</option>
+                <option value="Guest">Guest</option>
+                <option value="HR">HR</option>
                 <option value="Vendor">Vendor</option>
+                <option value="Customer">Customer</option>
+                <option value="Accountant">Accountant</option>
+                <option value="InventoryManager">Inventory Manager</option>
             </select>
-            <small class="text-muted">Choose Vendor if this account should access the Vendor portal.</small>
+            <small class="text-muted">Select the appropriate role for this account.</small>
             <span asp-validation-for="Input.Role" class="text-danger"></span>
         </div>
 
