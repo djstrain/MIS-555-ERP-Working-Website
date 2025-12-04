@@ -49,8 +49,13 @@ namespace WebApplication1.Pages
         // Surface validation errors to UI
         public List<string> ValidationErrors { get; set; } = new();
 
-        public async Task OnGetAsync()
+        public async Task<IActionResult> OnGetAsync()
         {
+            if (!IsCrmAllowed())
+            {
+                _logger.LogWarning("Unauthorized CRM access attempt by role: {Role}", HttpContext?.Session?.GetString("UserRole") ?? "<none>");
+                return RedirectToPage("/Index");
+            }
             ActiveModule = NormalizeModule(ActiveModule);
             // Load limited sets for performance; can expand later
             Companies = await _db.Companies.OrderByDescending(c => c.Id).Take(25).ToListAsync();
@@ -66,10 +71,12 @@ namespace WebApplication1.Pages
                 .OrderByDescending(o => o.Value ?? 0)
                 .Include(o => o.Company)
                 .FirstOrDefaultAsync();
+            return Page();
         }
 
         public async Task<IActionResult> OnPostAddCompanyAsync()
         {
+            if (!IsCrmAllowed()) return RedirectToPage("/Index");
             ValidationErrors.Clear();
             // Restrict validation only to the Company object to avoid cross-form required errors
             ModelState.Clear();
@@ -98,6 +105,7 @@ namespace WebApplication1.Pages
 
         public async Task<IActionResult> OnPostEditCompanyAsync()
         {
+            if (!IsCrmAllowed()) return RedirectToPage("/Index");
             ValidationErrors.Clear();
             if (EditCompany.Id <= 0)
             {
@@ -130,6 +138,7 @@ namespace WebApplication1.Pages
 
         public async Task<IActionResult> OnPostDeleteCompanyAsync(int id)
         {
+            if (!IsCrmAllowed()) return RedirectToPage("/Index");
             var existing = await _db.Companies.FirstOrDefaultAsync(c => c.Id == id);
             if (existing != null)
             {
@@ -142,6 +151,7 @@ namespace WebApplication1.Pages
 
         public async Task<IActionResult> OnPostAddContactAsync()
         {
+            if (!IsCrmAllowed()) return RedirectToPage("/Index");
             ValidationErrors.Clear();
             ModelState.Clear();
             var isValid = TryValidateModel(NewContact, nameof(NewContact));
@@ -178,6 +188,7 @@ namespace WebApplication1.Pages
 
         public async Task<IActionResult> OnPostEditContactAsync()
         {
+            if (!IsCrmAllowed()) return RedirectToPage("/Index");
             ValidationErrors.Clear();
             if (EditContact.Id <= 0) ValidationErrors.Add("Invalid Contact Id.");
             if (string.IsNullOrWhiteSpace(EditContact.FirstName)) ValidationErrors.Add("First Name required.");
@@ -207,6 +218,7 @@ namespace WebApplication1.Pages
 
         public async Task<IActionResult> OnPostDeleteContactAsync(int id)
         {
+            if (!IsCrmAllowed()) return RedirectToPage("/Index");
             var existing = await _db.Contacts.FirstOrDefaultAsync(c => c.Id == id);
             if (existing != null)
             {
@@ -219,6 +231,7 @@ namespace WebApplication1.Pages
 
         public async Task<IActionResult> OnPostAddOpportunityAsync()
         {
+            if (!IsCrmAllowed()) return RedirectToPage("/Index");
             ValidationErrors.Clear();
             ModelState.Clear();
             var isValid = TryValidateModel(NewOpportunity, nameof(NewOpportunity));
@@ -258,6 +271,7 @@ namespace WebApplication1.Pages
 
         public async Task<IActionResult> OnPostEditOpportunityAsync()
         {
+            if (!IsCrmAllowed()) return RedirectToPage("/Index");
             ValidationErrors.Clear();
             if (EditOpportunity.Id <= 0) ValidationErrors.Add("Invalid Opportunity Id.");
             if (string.IsNullOrWhiteSpace(EditOpportunity.Name)) ValidationErrors.Add("Name required.");
@@ -287,6 +301,7 @@ namespace WebApplication1.Pages
 
         public async Task<IActionResult> OnPostDeleteOpportunityAsync(int id)
         {
+            if (!IsCrmAllowed()) return RedirectToPage("/Index");
             var existing = await _db.Opportunities.FirstOrDefaultAsync(o => o.Id == id);
             if (existing != null)
             {
@@ -299,6 +314,7 @@ namespace WebApplication1.Pages
 
         public async Task<IActionResult> OnPostAddActivityAsync()
         {
+            if (!IsCrmAllowed()) return RedirectToPage("/Index");
             ValidationErrors.Clear();
             ModelState.Clear();
             var isValid = TryValidateModel(NewActivity, nameof(NewActivity));
@@ -321,6 +337,7 @@ namespace WebApplication1.Pages
 
         public async Task<IActionResult> OnPostEditActivityAsync()
         {
+            if (!IsCrmAllowed()) return RedirectToPage("/Index");
             ValidationErrors.Clear();
             if (EditActivity.Id <= 0) ValidationErrors.Add("Invalid Activity Id.");
             if (ValidationErrors.Any())
@@ -348,6 +365,7 @@ namespace WebApplication1.Pages
 
         public async Task<IActionResult> OnPostDeleteActivityAsync(int id)
         {
+            if (!IsCrmAllowed()) return RedirectToPage("/Index");
             var existing = await _db.Activities.FirstOrDefaultAsync(a => a.Id == id);
             if (existing != null)
             {
@@ -360,6 +378,7 @@ namespace WebApplication1.Pages
 
         public async Task<IActionResult> OnPostAddNoteAsync()
         {
+            if (!IsCrmAllowed()) return RedirectToPage("/Index");
             ValidationErrors.Clear();
             ModelState.Clear();
             var isValid = TryValidateModel(NewNote, nameof(NewNote));
@@ -382,6 +401,7 @@ namespace WebApplication1.Pages
 
         public async Task<IActionResult> OnPostEditNoteAsync()
         {
+            if (!IsCrmAllowed()) return RedirectToPage("/Index");
             ValidationErrors.Clear();
             if (EditNote.Id <= 0) ValidationErrors.Add("Invalid Note Id.");
             if (string.IsNullOrWhiteSpace(EditNote.Content)) ValidationErrors.Add("Content required.");
@@ -408,6 +428,7 @@ namespace WebApplication1.Pages
 
         public async Task<IActionResult> OnPostDeleteNoteAsync(int id)
         {
+            if (!IsCrmAllowed()) return RedirectToPage("/Index");
             var existing = await _db.Notes.FirstOrDefaultAsync(n => n.Id == id);
             if (existing != null)
             {
@@ -436,6 +457,15 @@ namespace WebApplication1.Pages
         private IActionResult RedirectWithModule(string module)
         {
             return RedirectToPage("/CustomerRelationship", new { ActiveModule = module });
+        }
+
+        private bool IsCrmAllowed()
+        {
+            var role = HttpContext?.Session?.GetString("UserRole");
+            if (string.IsNullOrWhiteSpace(role)) return false;
+            return role.Equals("Admin", StringComparison.OrdinalIgnoreCase)
+                || role.Equals("Manager", StringComparison.OrdinalIgnoreCase)
+                || role.Equals("Customer", StringComparison.OrdinalIgnoreCase);
         }
     }
 }
