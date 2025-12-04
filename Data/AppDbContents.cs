@@ -32,6 +32,9 @@ namespace WebApplication1.Data
         public DbSet<Activity> Activities { get; set; } = null!;
         public DbSet<Note> Notes { get; set; } = null!;
 
+        // Inventory
+        public DbSet<InventoryItem> InventoryItems { get; set; } = null!;
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -122,6 +125,9 @@ namespace WebApplication1.Data
             modelBuilder.Entity<Opportunity>().ToTable("Opportunities");
             modelBuilder.Entity<Activity>().ToTable("Activities");
             modelBuilder.Entity<Note>().ToTable("Notes");
+
+            // Inventory table mapping
+            modelBuilder.Entity<InventoryItem>().ToTable("InventoryItems");
         }
     }
 }

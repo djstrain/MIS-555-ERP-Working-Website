@@ -47,6 +47,12 @@
                                 <a class="nav-link text-dark" asp-area="" asp-page="/HRM">HRM</a>
                             </li>
                         }
+                        @if (isLoggedIn)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Inventory">Inventory</a>
+                            </li>
+                        }
                         @if (isVendor || isAdmin)
                         {
                             <li class="nav-item">
