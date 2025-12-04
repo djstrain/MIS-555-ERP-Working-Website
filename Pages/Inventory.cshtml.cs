@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using WebApplication1.Data;
-using WebApplication1.Data;
 
 public class InventoryModel : PageModel
 {
@@ -25,8 +24,25 @@ public class InventoryModel : PageModel
     public decimal StockValue { get; set; }
     public int LowStockCount { get; set; }
 
-    public async Task OnGet()
+    // Helper method to check if user is allowed to access Inventory
+    private bool IsInventoryAllowed()
     {
+        var userRole = HttpContext.Session.GetString("UserRole");
+        if (string.IsNullOrEmpty(userRole)) return false;
+        
+        return userRole.Equals("Admin", StringComparison.OrdinalIgnoreCase)
+            || userRole.Equals("Guest", StringComparison.OrdinalIgnoreCase)
+            || userRole.Equals("InventoryManager", StringComparison.OrdinalIgnoreCase);
+    }
+
+    public async Task<IActionResult> OnGetAsync()
+    {
+        if (!IsInventoryAllowed())
+        {
+            TempData["ErrorMessage"] = "You do not have permission to access the Inventory page.";
+            return RedirectToPage("/Privacy");
+        }
+
         Categories = _db.InventoryItems
             .Select(i => i.Category)
             .Where(c => c != null && c != "")
@@ -46,10 +62,18 @@ public class InventoryModel : PageModel
 
         StockValue = Items.Sum(i => i.UnitCost * i.QuantityOnHand);
         LowStockCount = Items.Count(i => i.QuantityOnHand <= i.ReorderLevel);
+
+        return Page();
     }
 
     public IActionResult OnPostAdd(InventoryItem input)
     {
+        if (!IsInventoryAllowed())
+        {
+            TempData["ErrorMessage"] = "You do not have permission to add inventory items.";
+            return RedirectToPage("/Privacy");
+        }
+
         if (!ModelState.IsValid)
         {
             return RedirectToPage(new { Category });
@@ -63,6 +87,12 @@ public class InventoryModel : PageModel
 
     public IActionResult OnPostEdit(InventoryItem input)
     {
+        if (!IsInventoryAllowed())
+        {
+            TempData["ErrorMessage"] = "You do not have permission to edit inventory items.";
+            return RedirectToPage("/Privacy");
+        }
+
         var existing = _db.InventoryItems.FirstOrDefault(i => i.Id == input.Id);
         if (existing == null)
         {
@@ -83,6 +113,12 @@ public class InventoryModel : PageModel
 
     public IActionResult OnPostDelete(int id)
     {
+        if (!IsInventoryAllowed())
+        {
+            TempData["ErrorMessage"] = "You do not have permission to delete inventory items.";
+            return RedirectToPage("/Privacy");
+        }
+
         var existing = _db.InventoryItems.FirstOrDefault(i => i.Id == id);
         if (existing != null)
         {

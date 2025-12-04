@@ -76,16 +76,23 @@ public class HRMmodel : PageModel
         public decimal Salary { get; set; }
     }
 
+    // Helper method to check if user is allowed to access HRM
+    private bool IsHRMAllowed()
+    {
+        var userRole = HttpContext.Session.GetString("UserRole");
+        if (string.IsNullOrEmpty(userRole)) return false;
+        
+        return userRole.Equals("Admin", StringComparison.OrdinalIgnoreCase)
+            || userRole.Equals("Guest", StringComparison.OrdinalIgnoreCase)
+            || userRole.Equals("HR", StringComparison.OrdinalIgnoreCase);
+    }
+
     // OnGet handler to simulate fetching the data (for initial page load)
     public async Task<IActionResult> OnGetAsync()
     {
-        //create a variable save UserRole values from session
-        var userRole = HttpContext.Session.GetString("UserRole");
-        //check if userrole is null or not admin (case-insensitive)
-        if (string.IsNullOrEmpty(userRole) || !userRole.Equals("Admin", StringComparison.OrdinalIgnoreCase))
+        if (!IsHRMAllowed())
         {
             TempData["ErrorMessage"] = "You do not have permission to access the HRM page.";
-            // redirect regular users to Privacy
             return RedirectToPage("/Privacy");
         }
 
@@ -99,9 +106,8 @@ public class HRMmodel : PageModel
     // Search handler to process search/filter submissions
     public async Task<IActionResult> OnPostSearchAsync()
     {
-        // Enforce admin-only access on POST as well
-        var userRole = HttpContext.Session.GetString("UserRole");
-        if (string.IsNullOrEmpty(userRole) || !userRole.Equals("Admin", StringComparison.OrdinalIgnoreCase))
+        // Enforce HRM access control on POST as well
+        if (!IsHRMAllowed())
         {
             TempData["ErrorMessage"] = "You do not have permission to access the HRM page.";
             return RedirectToPage("/Privacy");
@@ -146,9 +152,8 @@ public class HRMmodel : PageModel
     // Add a new employee
     public async Task<IActionResult> OnPostAddAsync()
     {
-        // Enforce admin-only access on POST as well
-        var userRole = HttpContext.Session.GetString("UserRole");
-        if (string.IsNullOrEmpty(userRole) || !userRole.Equals("Admin", StringComparison.OrdinalIgnoreCase))
+        // Enforce HRM access control on POST as well
+        if (!IsHRMAllowed())
         {
             TempData["ErrorMessage"] = "You do not have permission to add employees.";
             return RedirectToPage("/Privacy");
@@ -181,8 +186,7 @@ public class HRMmodel : PageModel
     // Edit an existing employee
     public async Task<IActionResult> OnPostEditAsync()
     {
-        var userRole = HttpContext.Session.GetString("UserRole");
-        if (string.IsNullOrEmpty(userRole) || !userRole.Equals("Admin", StringComparison.OrdinalIgnoreCase))
+        if (!IsHRMAllowed())
         {
             TempData["ErrorMessage"] = "You do not have permission to edit employees.";
             return RedirectToPage("/Privacy");
@@ -223,8 +227,7 @@ public class HRMmodel : PageModel
     // Delete an employee
     public async Task<IActionResult> OnPostDeleteAsync(int employeeId)
     {
-        var userRole = HttpContext.Session.GetString("UserRole");
-        if (string.IsNullOrEmpty(userRole) || !userRole.Equals("Admin", StringComparison.OrdinalIgnoreCase))
+        if (!IsHRMAllowed())
         {
             TempData["ErrorMessage"] = "You do not have permission to delete employees.";
             return RedirectToPage("/Privacy");
@@ -268,7 +271,7 @@ public class HRMmodel : PageModel
             .Count();
 
         AverageSalary = Employees.Any() ? Math.Round(Employees.Average(e => e.Salary), 2) : 0m;
-
+        
         // Monthly payroll = sum of salaries / 12
         MonthlyPayroll = Employees.Any() ? Math.Round(Employees.Sum(e => e.Salary) / 12m, 2) : 0m;
     }

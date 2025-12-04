@@ -465,7 +465,8 @@ namespace WebApplication1.Pages
             if (string.IsNullOrWhiteSpace(role)) return false;
             return role.Equals("Admin", StringComparison.OrdinalIgnoreCase)
                 || role.Equals("Manager", StringComparison.OrdinalIgnoreCase)
-                || role.Equals("Customer", StringComparison.OrdinalIgnoreCase);
+                || role.Equals("Customer", StringComparison.OrdinalIgnoreCase)
+                || role.Equals("Guest", StringComparison.OrdinalIgnoreCase);
         }
     }
 }

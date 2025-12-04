@@ -1,10 +1,13 @@
-﻿@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Http
 @{
     var role = Context?.Session?.GetString("UserRole");
     var isAdmin = string.Equals(role, "Admin", StringComparison.OrdinalIgnoreCase);
-    var isManager = string.Equals(role, "Manager", StringComparison.OrdinalIgnoreCase);
+    var isGuest = string.Equals(role, "Guest", StringComparison.OrdinalIgnoreCase);
+    var isHR = string.Equals(role, "HR", StringComparison.OrdinalIgnoreCase);
     var isVendor = string.Equals(role, "Vendor", StringComparison.OrdinalIgnoreCase);
     var isCustomer = string.Equals(role, "Customer", StringComparison.OrdinalIgnoreCase);
+    var isAccountant = string.Equals(role, "Accountant", StringComparison.OrdinalIgnoreCase);
+    var isInventoryManager = string.Equals(role, "InventoryManager", StringComparison.OrdinalIgnoreCase);
     var isLoggedIn = !string.IsNullOrEmpty(role);
 }
 
@@ -25,8 +28,7 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-page="/Index">CTRL+Freak</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
@@ -43,31 +45,41 @@
                                 <a class="nav-link text-dark" asp-area="" asp-page="/Dashboard">Dashboard</a>
                             </li>
                         }
-                        @if (isAdmin || isManager)
+                        
+                        <!-- HRM: Admin, Guest, HR can see -->
+                        @if (isAdmin || isGuest || isHR)
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-page="/HRM">HRM</a>
                             </li>
                         }
-                        @if (isAdmin || isManager)
+                        
+                        <!-- Inventory: Admin, Guest, InventoryManager can see -->
+                        @if (isAdmin || isGuest || isInventoryManager)
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-page="/Inventory">Inventory</a>
                             </li>
                         }
-                        @if (isVendor || isAdmin || isManager)
+                        
+                        <!-- Vendors: Admin, Guest, Vendor can see -->
+                        @if (isAdmin || isGuest || isVendor)
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-page="/VendorManagement">Vendors</a>
                             </li>
                         }
-                        @if (isAdmin || isManager)
+                        
+                        <!-- Financial: Admin, Guest, Accountant can see -->
+                        @if (isAdmin || isGuest || isAccountant)
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-page="/FinancialManagement">Financial</a>
                             </li>
                         }
-                        @if (isCustomer || isAdmin || isManager)
+                        
+                        <!-- CRM: Admin, Guest, Customer can see -->
+                        @if (isAdmin || isGuest || isCustomer)
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-page="/CustomerRelationship">CRM</a>

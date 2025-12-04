@@ -6,9 +6,12 @@
     ViewData["Title"] = "Dashboard";
     var role = HttpContextAccessor?.HttpContext?.Session?.GetString("UserRole");
     var isAdmin = string.Equals(role, "Admin", StringComparison.OrdinalIgnoreCase);
-    var isManager = string.Equals(role, "Manager", StringComparison.OrdinalIgnoreCase);
+    var isGuest = string.Equals(role, "Guest", StringComparison.OrdinalIgnoreCase);
+    var isHR = string.Equals(role, "HR", StringComparison.OrdinalIgnoreCase);
     var isVendor = string.Equals(role, "Vendor", StringComparison.OrdinalIgnoreCase);
     var isCustomer = string.Equals(role, "Customer", StringComparison.OrdinalIgnoreCase);
+    var isAccountant = string.Equals(role, "Accountant", StringComparison.OrdinalIgnoreCase);
+    var isInventoryManager = string.Equals(role, "InventoryManager", StringComparison.OrdinalIgnoreCase);
 }
 
 <div class="container mt-4">
@@ -31,22 +34,22 @@
             </div>
         </div>
 
-        <!-- Total Departments Card -->
+        <!-- Departments Card -->
         <div class="col-md-6 col-lg-3 mb-3">
-            <div class="card border-success">
+            <div class="card border-info">
                 <div class="card-body">
                     <h6 class="card-title text-muted">Departments</h6>
-                    <h2 class="card-text text-success">@Model.TotalDepartments</h2>
+                    <h2 class="card-text text-info">@Model.TotalDepartments</h2>
                 </div>
             </div>
         </div>
 
         <!-- Average Salary Card -->
         <div class="col-md-6 col-lg-3 mb-3">
-            <div class="card border-info">
+            <div class="card border-success">
                 <div class="card-body">
                     <h6 class="card-title text-muted">Average Salary</h6>
-                    <h2 class="card-text text-info">$@Model.AverageSalary.ToString("F2")</h2>
+                    <h2 class="card-text text-success">$@Model.AverageSalary.ToString("F2")</h2>
                 </div>
             </div>
         </div>
@@ -71,8 +74,8 @@
 
     <!-- Quick Action Buttons -->
     <div class="row mb-4">
-        <!-- HRM Button -->
-        @if (isAdmin || isManager)
+        <!-- HRM Button: Admin, Guest, HR -->
+        @if (isAdmin || isGuest || isHR)
         {
             <div class="col-md-6 col-lg-3 mb-3">
                 <a href="/HRM" class="btn btn-primary w-100 py-4 d-flex flex-column align-items-center justify-content-center">
@@ -82,8 +85,8 @@
             </div>
         }
 
-        <!-- Vendors Button -->
-        @if (isVendor || isAdmin || isManager)
+        <!-- Vendors Button: Admin, Guest, Vendor -->
+        @if (isAdmin || isGuest || isVendor)
         {
             <div class="col-md-6 col-lg-3 mb-3">
                 <a href="/VendorManagement" class="btn btn-info w-100 py-4 d-flex flex-column align-items-center justify-content-center">
@@ -93,8 +96,8 @@
             </div>
         }
 
-        <!-- Financial Button -->
-        @if (isAdmin || isManager)
+        <!-- Financial Button: Admin, Guest, Accountant -->
+        @if (isAdmin || isGuest || isAccountant)
         {
             <div class="col-md-6 col-lg-3 mb-3">
                 <a href="/FinancialManagement" class="btn btn-success w-100 py-4 d-flex flex-column align-items-center justify-content-center">
@@ -104,8 +107,8 @@
             </div>
         }
 
-        <!-- CRM Button -->
-        @if (isCustomer || isAdmin || isManager)
+        <!-- CRM Button: Admin, Guest, Customer -->
+        @if (isAdmin || isGuest || isCustomer)
         {
             <div class="col-md-6 col-lg-3 mb-3">
                 <a href="/CustomerRelationship" class="btn btn-warning w-100 py-4 d-flex flex-column align-items-center justify-content-center">
@@ -115,8 +118,8 @@
             </div>
         }
 
-        <!-- Inventory Button -->
-        @if (isAdmin || isManager)
+        <!-- Inventory Button: Admin, Guest, InventoryManager -->
+        @if (isAdmin || isGuest || isInventoryManager)
         {
             <div class="col-md-6 col-lg-3 mb-3">
                 <a href="/Inventory" class="btn btn-outline-primary w-100 py-4 d-flex flex-column align-items-center justify-content-center">
@@ -130,9 +133,9 @@
 
 <style>
     .card {
+        border-radius: 8px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        transition: transform 0.2s;
-        height: 100%; /* Ensure all cards have equal height */
+        transition: transform 0.2s, box-shadow 0.2s;
     }
 
     .card:hover {
@@ -140,16 +143,25 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     }
 
-    .card-title {
-        font-size: 0.875rem;
+    .btn {
+        border-radius: 8px;
         font-weight: 600;
-        letter-spacing: 0.5px;
-        min-height: 2.5rem; /* Ensure consistent title height */
+        transition: all 0.2s;
     }
 
-    .card-text {
-        font-size: 1.5rem; /* Reduced from 1.75rem for consistency */
-        font-weight: 700;
-        word-break: break-word; /* Prevent overflow on long numbers */
+    .btn:hover {
+        transform: scale(1.05);
+    }
+
+    h1 {
+        color: #007bff;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    h5 {
+        color: #333;
+        font-weight: 600;
+        margin-bottom: 15px;
     }
 </style>

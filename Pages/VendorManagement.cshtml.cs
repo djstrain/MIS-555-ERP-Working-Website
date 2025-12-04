@@ -95,7 +95,7 @@ public class VendorManagementModel : PageModel
     {
         // Check admin access
         var userRole = HttpContext.Session.GetString("UserRole");
-        if (string.IsNullOrEmpty(userRole) || !(userRole.Equals("Vendor", StringComparison.OrdinalIgnoreCase) || userRole.Equals("Admin", StringComparison.OrdinalIgnoreCase)))
+        if (string.IsNullOrEmpty(userRole) || !(userRole.Equals("Vendor", StringComparison.OrdinalIgnoreCase) || userRole.Equals("Admin", StringComparison.OrdinalIgnoreCase) || userRole.Equals("Guest", StringComparison.OrdinalIgnoreCase)))
         {
             TempData["ErrorMessage"] = "You do not have permission to access the Vendor Management page (Vendor or Admin role required).";
             return RedirectToPage("/Privacy");
@@ -118,7 +118,7 @@ public class VendorManagementModel : PageModel
     {
         // Check admin access
         var userRole = HttpContext.Session.GetString("UserRole");
-        if (string.IsNullOrEmpty(userRole) || !(userRole.Equals("Vendor", StringComparison.OrdinalIgnoreCase) || userRole.Equals("Admin", StringComparison.OrdinalIgnoreCase)))
+        if (string.IsNullOrEmpty(userRole) || !(userRole.Equals("Vendor", StringComparison.OrdinalIgnoreCase) || userRole.Equals("Admin", StringComparison.OrdinalIgnoreCase) || userRole.Equals("Guest", StringComparison.OrdinalIgnoreCase)))
         {
             TempData["ErrorMessage"] = "You do not have permission to access the Vendor Management page (Vendor or Admin role required).";
             return RedirectToPage("/Privacy");
@@ -153,7 +153,7 @@ public class VendorManagementModel : PageModel
     {
         // Check admin access
         var userRole = HttpContext.Session.GetString("UserRole");
-        if (string.IsNullOrEmpty(userRole) || !(userRole.Equals("Vendor", StringComparison.OrdinalIgnoreCase) || userRole.Equals("Admin", StringComparison.OrdinalIgnoreCase)))
+        if (string.IsNullOrEmpty(userRole) || !(userRole.Equals("Vendor", StringComparison.OrdinalIgnoreCase) || userRole.Equals("Admin", StringComparison.OrdinalIgnoreCase) || userRole.Equals("Guest", StringComparison.OrdinalIgnoreCase)))
         {
             TempData["ErrorMessage"] = "You do not have permission to access the Vendor Management page (Vendor or Admin role required).";
             return RedirectToPage("/Privacy");
@@ -196,7 +196,7 @@ public class VendorManagementModel : PageModel
     {
         // Check admin access
         var userRole = HttpContext.Session.GetString("UserRole");
-        if (string.IsNullOrEmpty(userRole) || !(userRole.Equals("Vendor", StringComparison.OrdinalIgnoreCase) || userRole.Equals("Admin", StringComparison.OrdinalIgnoreCase)))
+        if (string.IsNullOrEmpty(userRole) || !(userRole.Equals("Vendor", StringComparison.OrdinalIgnoreCase) || userRole.Equals("Admin", StringComparison.OrdinalIgnoreCase) || userRole.Equals("Guest", StringComparison.OrdinalIgnoreCase)))
         {
             TempData["ErrorMessage"] = "You do not have permission to access the Vendor Management page (Vendor or Admin role required).";
             return RedirectToPage("/Privacy");
@@ -217,7 +217,7 @@ public class VendorManagementModel : PageModel
     {
         // Check admin access
         var userRole = HttpContext.Session.GetString("UserRole");
-        if (string.IsNullOrEmpty(userRole) || !userRole.Equals("Admin", StringComparison.OrdinalIgnoreCase))
+        if (string.IsNullOrEmpty(userRole) || !(userRole.Equals("Admin", StringComparison.OrdinalIgnoreCase) || userRole.Equals("Guest", StringComparison.OrdinalIgnoreCase)))
         {
             TempData["ErrorMessage"] = "You do not have permission to access the Vendor Management page.";
             return RedirectToPage("/Privacy");
@@ -314,7 +314,7 @@ public class VendorManagementModel : PageModel
     public async Task<IActionResult> OnPostUploadAsync()
     {
         var userRole = HttpContext.Session.GetString("UserRole");
-        if (string.IsNullOrEmpty(userRole) || !(userRole.Equals("Vendor", StringComparison.OrdinalIgnoreCase) || userRole.Equals("Admin", StringComparison.OrdinalIgnoreCase)))
+        if (string.IsNullOrEmpty(userRole) || !(userRole.Equals("Vendor", StringComparison.OrdinalIgnoreCase) || userRole.Equals("Admin", StringComparison.OrdinalIgnoreCase) || userRole.Equals("Guest", StringComparison.OrdinalIgnoreCase)))
         {
             TempData["ErrorMessage"] = "You do not have permission to upload files (Vendor or Admin role required).";
             return RedirectToPage("/Privacy");
@@ -396,7 +396,7 @@ public class VendorManagementModel : PageModel
     public async Task<IActionResult> OnGetDownloadAsync(int fileId)
     {
         var userRole = HttpContext.Session.GetString("UserRole");
-        if (string.IsNullOrEmpty(userRole) || !(userRole.Equals("Vendor", StringComparison.OrdinalIgnoreCase) || userRole.Equals("Admin", StringComparison.OrdinalIgnoreCase)))
+        if (string.IsNullOrEmpty(userRole) || !(userRole.Equals("Vendor", StringComparison.OrdinalIgnoreCase) || userRole.Equals("Admin", StringComparison.OrdinalIgnoreCase) || userRole.Equals("Guest", StringComparison.OrdinalIgnoreCase)))
         {
             TempData["ErrorMessage"] = "You do not have permission to download files (Vendor or Admin role required).";
             return RedirectToPage("/Privacy");
@@ -427,7 +427,7 @@ public class VendorManagementModel : PageModel
     public async Task<IActionResult> OnGetPreviewAsync(int fileId)
     {
         var userRole = HttpContext.Session.GetString("UserRole");
-        if (string.IsNullOrEmpty(userRole) || !userRole.Equals("Admin", StringComparison.OrdinalIgnoreCase))
+        if (string.IsNullOrEmpty(userRole) || !(userRole.Equals("Admin", StringComparison.OrdinalIgnoreCase) || userRole.Equals("Guest", StringComparison.OrdinalIgnoreCase)))
         {
             return Unauthorized();
         }
@@ -454,7 +454,7 @@ public class VendorManagementModel : PageModel
     public async Task<IActionResult> OnPostDeleteFileAsync(int fileId, int selectedVendorId)
     {
         var userRole = HttpContext.Session.GetString("UserRole");
-        if (string.IsNullOrEmpty(userRole) || !(userRole.Equals("Vendor", StringComparison.OrdinalIgnoreCase) || userRole.Equals("Admin", StringComparison.OrdinalIgnoreCase)))
+        if (string.IsNullOrEmpty(userRole) || !(userRole.Equals("Vendor", StringComparison.OrdinalIgnoreCase) || userRole.Equals("Admin", StringComparison.OrdinalIgnoreCase) || userRole.Equals("Guest", StringComparison.OrdinalIgnoreCase)))
         {
             TempData["ErrorMessage"] = "You do not have permission to delete files (Vendor or Admin role required).";
             return RedirectToPage("/Privacy");

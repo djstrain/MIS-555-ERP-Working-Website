@@ -280,8 +280,26 @@ namespace WebApplication1.Pages
         public string? Message { get; set; }
         public string? ErrorMessage { get; set; }
 
+        // Helper method to check if user is allowed to access Financial Management
+        private bool IsFinancialAllowed()
+        {
+            var userRole = HttpContext.Session.GetString("UserRole");
+            if (string.IsNullOrEmpty(userRole)) return false;
+            
+            return userRole.Equals("Admin", StringComparison.OrdinalIgnoreCase)
+                || userRole.Equals("Guest", StringComparison.OrdinalIgnoreCase)
+                || userRole.Equals("Accountant", StringComparison.OrdinalIgnoreCase);
+        }
+
         public async Task OnGetAsync()
         {
+            if (!IsFinancialAllowed())
+            {
+                TempData["ErrorMessage"] = "You do not have permission to access the Financial Management page.";
+                RedirectToPage("/Privacy");
+                return;
+            }
+
             try
             {
                 // Load distinct values for filter dropdowns
