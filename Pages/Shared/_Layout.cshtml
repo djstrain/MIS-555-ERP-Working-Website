@@ -2,7 +2,9 @@
 @{
     var role = Context?.Session?.GetString("UserRole");
     var isAdmin = string.Equals(role, "Admin", StringComparison.OrdinalIgnoreCase);
+    var isManager = string.Equals(role, "Manager", StringComparison.OrdinalIgnoreCase);
     var isVendor = string.Equals(role, "Vendor", StringComparison.OrdinalIgnoreCase);
+    var isCustomer = string.Equals(role, "Customer", StringComparison.OrdinalIgnoreCase);
     var isLoggedIn = !string.IsNullOrEmpty(role);
 }
 
@@ -41,29 +43,32 @@
                                 <a class="nav-link text-dark" asp-area="" asp-page="/Dashboard">Dashboard</a>
                             </li>
                         }
-                        @if (isAdmin)
+                        @if (isAdmin || isManager)
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-page="/HRM">HRM</a>
                             </li>
                         }
-                        @if (isLoggedIn)
+                        @if (isAdmin || isManager)
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-page="/Inventory">Inventory</a>
                             </li>
                         }
-                        @if (isVendor || isAdmin)
+                        @if (isVendor || isAdmin || isManager)
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-page="/VendorManagement">Vendors</a>
                             </li>
                         }
-                        @if (isAdmin)
+                        @if (isAdmin || isManager)
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-page="/FinancialManagement">Financial</a>
                             </li>
+                        }
+                        @if (isCustomer || isAdmin || isManager)
+                        {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-page="/CustomerRelationship">CRM</a>
                             </li>
